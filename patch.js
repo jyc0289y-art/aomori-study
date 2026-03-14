@@ -43,20 +43,20 @@ replace(
 
 // === 2. 이자카야/스낵바 이미지 추가 (Day 1) ===
 const imgs = {
-    '<!-- Idobata -->': ['https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Views_at_night_in_April_of_2019_around_the_Ueno_neighborhood_in_Tokyo_19.jpg/640px-Views_at_night_in_April_of_2019_around_the_Ueno_neighborhood_in_Tokyo_19.jpg', '이자카야 골목 분위기'],
-    '<!-- Icchoku -->': ['https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Peque%C3%B1o_Bar_Japon%C3%A9s_%2851543924066%29.jpg/640px-Peque%C3%B1o_Bar_Japon%C3%A9s_%2851543924066%29.jpg', '소규모 이자카야 외관'],
-    '<!-- Tsugaru Joppari -->': ['https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Tsugaru-jamisen_Kaisenkaku_Asamushi_Onsen_Aomori_Japan06s5.jpg/640px-Tsugaru-jamisen_Kaisenkaku_Asamushi_Onsen_Aomori_Japan06s5.jpg', '쓰가루 샤미센 라이브 공연'],
-    '<!-- Snack: New Michiko -->': ['https://upload.wikimedia.org/wikipedia/commons/thumb/c/c6/Sunakku_b%C4%81_in_Sukagawa.JPG/640px-Sunakku_b%C4%81_in_Sukagawa.JPG', '스낵바 외관'],
-    '<!-- Snack: Daphne -->': ['https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Inside_a_bar_in_Japan_-_2009.jpg/640px-Inside_a_bar_in_Japan_-_2009.jpg', '일본 바 내부'],
+    '<!-- Idobata -->': ['images/izakaya_alley.jpg', '이자카야 골목 분위기'],
+    '<!-- Icchoku -->': ['images/small_izakaya.jpg', '소규모 이자카야 외관'],
+    '<!-- Tsugaru Joppari -->': ['images/tsugaru_shamisen.jpg', '쓰가루 샤미센 라이브 공연'],
+    '<!-- Snack: New Michiko -->': ['images/snackbar_exterior.jpg', '스낵바 외관'],
+    '<!-- Snack: Daphne -->': ['images/bar_interior.jpg', '일본 바 내부'],
     // Day 2
-    '<!-- Nebuta no kuni Takakyu -->': ['https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/2007%E5%B9%B4%E3%80%81%E6%96%B0%E5%AE%BF%E3%81%AE%E5%B1%85%E9%85%92%E5%B1%8B%E3%81%AE%E5%80%8B%E5%AE%A4.jpg/640px-2007%E5%B9%B4%E3%80%81%E6%96%B0%E5%AE%BF%E3%81%AE%E5%B1%85%E9%85%92%E5%B1%8B%E3%81%AE%E5%80%8B%E5%AE%A4.jpg', '이자카야 개인실 분위기'],
-    '<!-- Mitsuishi -->': ['https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Nobu_Sake_Bottles_display_front.JPG/640px-Nobu_Sake_Bottles_display_front.JPG', '사케 보틀 디스플레이'],
-    '<!-- Ninosuke -->': ['https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Kanaiya_Chichibu_ac_%281%29.jpg/640px-Kanaiya_Chichibu_ac_%281%29.jpg', '전통 이자카야 외관'],
-    '<!-- Snack: MyBoo -->': ['https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Snack_near_Takadanobaba.jpg/640px-Snack_near_Takadanobaba.jpg', '스낵바 외관'],
+    '<!-- Nebuta no kuni Takakyu -->': ['images/izakaya_private.jpg', '이자카야 개인실 분위기'],
+    '<!-- Mitsuishi -->': ['images/sake_bottles.jpg', '사케 보틀 디스플레이'],
+    '<!-- Ninosuke -->': ['images/traditional_izakaya.jpg', '전통 이자카야 외관'],
+    '<!-- Snack: MyBoo -->': ['images/snack_exterior2.jpg', '스낵바 외관'],
     // Day 3
-    '<!-- Fukuro -->': ['https://upload.wikimedia.org/wikipedia/commons/thumb/4/49/Views_at_night_in_April_of_2019_around_the_Ueno_neighborhood_in_Tokyo_19.jpg/640px-Views_at_night_in_April_of_2019_around_the_Ueno_neighborhood_in_Tokyo_19.jpg', '대중 이자카야 거리'],
-    '<!-- Ishiyaki -->': ['https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Kanaiya_Chichibu_ac_%281%29.jpg/640px-Kanaiya_Chichibu_ac_%281%29.jpg', '전통 이자카야 외관'],
-    '<!-- Snack: Lounge Bar Myu (new) + revisit -->': ['https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Inside_a_bar_in_Japan_-_2009.jpg/640px-Inside_a_bar_in_Japan_-_2009.jpg', '라운지바 내부'],
+    '<!-- Fukuro -->': ['images/izakaya_alley.jpg', '대중 이자카야 거리'],
+    '<!-- Ishiyaki -->': ['images/traditional_izakaya.jpg', '전통 이자카야 외관'],
+    '<!-- Snack: Lounge Bar Myu (new) + revisit -->': ['images/bar_interior.jpg', '라운지바 내부'],
 };
 
 for (const [comment, [src, alt]] of Object.entries(imgs)) {
