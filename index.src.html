@@ -18,14 +18,42 @@
             --night: #1a1a2e;
             --card-bg: #ffffff;
             --border: #ddd;
+            --body-bg: #f5f5f0;
+            --card-shadow: rgba(0,0,0,0.06);
+            --text: #333;
+            --text-secondary: #555;
+            --text-muted: #888;
+            --surface: #f8f9fa;
+            --surface-hover: #eef6ff;
+            --hero-fade: #f5f5f0;
+        }
+        [data-theme="dark"] {
+            --primary: #5ba3d9;
+            --accent: #ff6b6b;
+            --warm: #f39c12;
+            --snow: #1e2030;
+            --dark: #e0e0e0;
+            --sake: #e06060;
+            --green: #4ecca3;
+            --night: #1a1a2e;
+            --card-bg: #1e2030;
+            --border: #333a4f;
+            --body-bg: #13141f;
+            --card-shadow: rgba(0,0,0,0.3);
+            --text: #d0d0d0;
+            --text-secondary: #a0a0b0;
+            --text-muted: #707080;
+            --surface: #242538;
+            --surface-hover: #2a2b40;
+            --hero-fade: #13141f;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Noto Sans KR', 'Noto Sans JP', sans-serif;
-            background: #f5f5f0;
-            color: #333;
+            background: var(--body-bg);
+            color: var(--text);
             line-height: 1.7;
         }
 
@@ -59,7 +87,7 @@
             position: absolute;
             bottom: 0; left: 0; right: 0;
             height: 120px;
-            background: linear-gradient(to top, #f5f5f0, transparent);
+            background: linear-gradient(to top, var(--hero-fade), transparent);
         }
         .hero-badge {
             display: inline-block;
@@ -143,11 +171,12 @@
 
         /* Navigation */
         .nav-bar {
-            background: white;
+            background: var(--card-bg);
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px var(--card-shadow);
+            border-bottom: 1px solid var(--border);
             overflow-x: auto;
             white-space: nowrap;
             -webkit-overflow-scrolling: touch;
@@ -191,7 +220,7 @@
             font-size: 1.2em;
         }
         .section-desc {
-            color: #666;
+            color: var(--text-secondary);
             margin-bottom: 30px;
             font-size: 0.95em;
         }
@@ -234,9 +263,9 @@
 
         /* Card */
         .card {
-            background: white;
+            background: var(--card-bg);
             border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 20px var(--card-shadow);
             margin-bottom: 24px;
             overflow: hidden;
             transition: transform 0.2s;
@@ -268,16 +297,16 @@
             padding: 0 24px 20px;
         }
         .card-body p {
-            color: #555;
+            color: var(--text);
             font-size: 0.93em;
             margin-bottom: 12px;
         }
 
         /* Place Card */
         .place-card {
-            background: white;
+            background: var(--card-bg);
             border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 20px var(--card-shadow);
             margin-bottom: 24px;
             overflow: hidden;
         }
@@ -290,12 +319,12 @@
         .place-hero-img.tall { height: 280px; }
         .img-credit {
             font-size: 0.7em;
-            color: #aaa;
+            color: var(--text-muted);
             text-align: right;
             padding: 4px 16px;
-            background: #fafafa;
+            background: var(--surface);
         }
-        .img-credit a { color: #999; }
+        .img-credit a { color: var(--text-muted); }
         .place-info {
             padding: 20px 24px;
         }
@@ -306,18 +335,18 @@
             margin-bottom: 4px;
         }
         .place-info .jp-name {
-            color: #888;
+            color: var(--text-muted);
             font-size: 0.85em;
             font-family: 'Noto Sans JP', sans-serif;
             margin-bottom: 8px;
         }
         .place-info .address {
-            color: #888;
+            color: var(--text-muted);
             font-size: 0.82em;
             margin-bottom: 8px;
         }
         .place-info .desc {
-            color: #555;
+            color: var(--text-secondary);
             font-size: 0.92em;
             margin-bottom: 12px;
         }
@@ -336,16 +365,17 @@
             font-size: 0.78em;
             font-weight: 500;
         }
-        .meta-tag.price { background: #fef3e2; color: #e67e22; }
-        .meta-tag.hours { background: #eaf4fe; color: #2980b9; }
-        .meta-tag.seats { background: #f0faf0; color: #27ae60; }
-        .meta-tag.special { background: #fde8e8; color: #c0392b; }
+        .meta-tag.price { background: rgba(230,126,34,0.12); color: #e67e22; }
+        .meta-tag.hours { background: rgba(41,128,185,0.12); color: #2980b9; }
+        .meta-tag.seats { background: rgba(39,174,96,0.12); color: var(--green); }
+        .meta-tag.special { background: rgba(192,57,43,0.12); color: var(--sake); }
 
         /* Map embed */
         .map-container {
             width: 100%;
             height: 250px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid var(--border);
+            opacity: 0.9;
         }
         .map-container iframe {
             width: 100%;
@@ -363,12 +393,12 @@
             font-size: 0.85em;
             font-weight: 500;
             padding: 6px 14px;
-            background: #eaf4fe;
+            background: var(--surface);
             border-radius: 8px;
             transition: background 0.2s;
         }
         .photo-link:hover {
-            background: #d4e9fc;
+            background: var(--surface-hover);
         }
 
         /* YouTube Comments Modal */
@@ -442,12 +472,16 @@
             white-space: pre-wrap;
         }
         .yt-comment-ja .jw {
-            border-bottom: 1px dotted rgba(243,156,18,0.5);
+            border-bottom: 1px dotted rgba(243,156,18,0.6);
             cursor: pointer;
+            transition: color 0.15s;
         }
         .yt-comment-ja .jw:hover, .yt-comment-ja .jw.active {
             color: #f39c12;
             border-bottom-color: #f39c12;
+            border-bottom-style: solid;
+            background: rgba(243,156,18,0.1);
+            border-radius: 2px;
         }
         .yt-comment-likes {
             font-size: 0.78rem;
@@ -504,7 +538,7 @@
             border-radius: 12px;
         }
         .video-summary {
-            background: #f8f9fa;
+            background: var(--surface);
             padding: 12px 16px;
             border-radius: 10px;
             margin-bottom: 16px;
@@ -517,12 +551,12 @@
             margin-bottom: 4px;
         }
         .video-summary .vid-meta {
-            color: #888;
+            color: var(--text-muted);
             font-size: 0.9em;
             margin-bottom: 4px;
         }
         .video-summary .vid-reason {
-            color: #555;
+            color: var(--text-secondary);
         }
 
         /* Video Table */
@@ -541,10 +575,11 @@
         }
         .video-table td {
             padding: 8px 12px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
         }
         .video-table tr:hover {
-            background: #f8f9fa;
+            background: var(--surface);
         }
         .video-table a {
             color: var(--primary);
@@ -561,9 +596,9 @@
             gap: 16px;
         }
         .izakaya-card {
-            background: white;
+            background: var(--card-bg);
             border-radius: 14px;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+            box-shadow: 0 3px 15px var(--card-shadow);
             overflow: hidden;
             border-left: 4px solid var(--sake);
         }
@@ -583,7 +618,7 @@
             text-decoration: none;
             font-weight: 600;
             transition: filter 0.2s;
-            border-bottom: 1px solid rgba(0,0,0,0.06);
+            border-bottom: 1px solid var(--border);
             position: relative;
             overflow: hidden;
         }
@@ -630,22 +665,23 @@
         }
         .izakaya-card .jp-sub {
             font-family: 'Noto Sans JP', sans-serif;
-            color: #999;
+            color: var(--text-muted);
             font-size: 0.82em;
             margin-bottom: 8px;
         }
         .izakaya-card .iz-desc {
             font-size: 0.88em;
-            color: #555;
+            color: var(--text-secondary);
             margin-bottom: 10px;
         }
         .friend-tip {
-            background: #fff8e1;
+            background: rgba(243,156,18,0.08);
             border-radius: 10px;
             padding: 12px 16px;
             font-size: 0.85em;
-            color: #795548;
+            color: var(--text-secondary);
             margin-top: 8px;
+            border: 1px solid rgba(243,156,18,0.15);
         }
         .friend-tip strong {
             color: var(--accent);
@@ -653,10 +689,12 @@
 
         /* Tips */
         .tip-box {
-            background: linear-gradient(135deg, #fff8e1, #fff3cd);
+            background: rgba(243,156,18,0.08);
             border-radius: 14px;
             padding: 20px 24px;
             margin-bottom: 20px;
+            border-left: 4px solid var(--warm);
+            border: 1px solid rgba(243,156,18,0.15);
             border-left: 4px solid var(--warm);
         }
         .tip-box h4 {
@@ -667,7 +705,7 @@
         .tip-box ul {
             padding-left: 18px;
             font-size: 0.9em;
-            color: #555;
+            color: var(--text-secondary);
         }
         .tip-box li {
             margin-bottom: 6px;
@@ -816,11 +854,12 @@
         }
         .budget-table td {
             padding: 10px 14px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
         }
         .budget-table tr:last-child {
             font-weight: 700;
-            background: #f8f9fa;
+            background: var(--surface);
         }
 
         /* Full Map */
@@ -927,7 +966,7 @@
 
         /* Review highlights */
         .review-highlights {
-            background: #fafafa;
+            background: var(--surface);
             border-radius: 10px;
             padding: 14px 18px;
             margin-top: 12px;
@@ -940,30 +979,30 @@
         }
         .review-highlights .review-item {
             font-size: 0.82em;
-            color: #555;
+            color: var(--text-secondary);
             padding: 5px 0;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid var(--border);
             line-height: 1.5;
         }
         .review-highlights .review-item:last-child { border-bottom: none; }
         .review-highlights .review-item .ja {
             font-family: 'Noto Sans JP', sans-serif;
-            color: #333;
+            color: var(--text);
             font-size: 1em;
             font-weight: 500;
         }
         .review-highlights .review-item .ko {
-            border-left: 3px solid #3498db;
-            background: #f0f7ff;
+            border-left: 3px solid var(--primary);
+            background: rgba(91,163,217,0.08);
             padding: 3px 10px;
             margin-top: 4px;
             border-radius: 4px;
-            color: #555;
+            color: var(--text-secondary);
             font-size: 0.92em;
         }
         .review-highlights .review-rating {
             display: inline-block;
-            background: #fff3e0;
+            background: rgba(230,126,34,0.12);
             color: #e67e22;
             font-weight: 700;
             padding: 2px 10px;
@@ -974,23 +1013,23 @@
 
         /* Review language annotations */
         .review-lang-notes {
-            background: linear-gradient(135deg, #fefce8 0%, #fef9c3 100%);
-            border: 1px solid #eab308;
+            background: rgba(234,179,8,0.06);
+            border: 1px solid rgba(234,179,8,0.25);
             border-left: 4px solid #eab308;
             border-radius: 10px;
-            padding: 14px 18px;
-            margin-top: 10px;
-            font-size: 0.85em;
+            padding: 16px 20px;
+            margin-top: 12px;
+            font-size: 0.92em;
         }
         .review-lang-notes h6 {
-            color: #92400e;
-            font-size: 0.95em;
+            color: var(--warm);
+            font-size: 1em;
             margin-bottom: 8px;
         }
         .review-lang-notes .lang-note {
             margin-bottom: 10px;
             padding-bottom: 8px;
-            border-bottom: 1px dashed #d4a017;
+            border-bottom: 1px dashed rgba(234,179,8,0.3);
         }
         .review-lang-notes .lang-note:last-child {
             margin-bottom: 0;
@@ -1000,12 +1039,12 @@
         .review-lang-notes .note-expr {
             font-family: 'Noto Sans JP', sans-serif;
             font-weight: 600;
-            color: #92400e;
+            color: var(--warm);
         }
         .review-lang-notes .note-type {
             display: inline-block;
-            background: #fbbf24;
-            color: #78350f;
+            background: rgba(251,191,36,0.25);
+            color: var(--warm);
             font-size: 0.78em;
             font-weight: 700;
             padding: 1px 7px;
@@ -1013,7 +1052,7 @@
             margin-left: 6px;
         }
         .review-lang-notes .note-desc {
-            color: #555;
+            color: var(--text-secondary);
             margin-top: 3px;
             line-height: 1.6;
         }
@@ -1027,7 +1066,8 @@
         }
         .timestamp-table td {
             padding: 5px 10px;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
             vertical-align: top;
         }
         .timestamp-table td:first-child {
@@ -1056,14 +1096,14 @@
 
         /* Transport card */
         .transport-card {
-            background: #eef6ff;
+            background: rgba(52,152,219,0.08);
             border-radius: 14px;
             padding: 18px 22px;
             margin-bottom: 20px;
             border-left: 4px solid #3498db;
         }
         .transport-card h4 {
-            color: #2980b9;
+            color: var(--primary);
             font-size: 0.95em;
             margin-bottom: 10px;
             display: flex;
@@ -1076,41 +1116,41 @@
             gap: 6px;
             flex-wrap: wrap;
             font-size: 0.88em;
-            color: #555;
+            color: var(--text-secondary);
             margin-bottom: 8px;
             padding: 8px 0;
         }
         .transport-card .route-stop {
-            background: white;
+            background: var(--card-bg);
             padding: 5px 14px;
             border-radius: 10px;
             font-weight: 500;
-            border: 1px solid #d4e9fc;
+            border: 1px solid var(--border);
         }
         .transport-card .route-arrow {
-            color: #3498db;
+            color: var(--primary);
             font-weight: 700;
             font-size: 1.1em;
         }
         .transport-card .route-info {
             font-size: 0.82em;
-            color: #777;
+            color: var(--text-muted);
             margin-left: 4px;
         }
         .transport-card p {
             font-size: 0.88em;
-            color: #555;
+            color: var(--text-secondary);
             margin-bottom: 6px;
         }
 
         /* === HOVER DICTIONARY TOOLTIP === */
         .jw {
-            border-bottom: 1px dotted #e74c3c;
+            border-bottom: 1px dotted var(--accent);
             cursor: help;
             font-family: 'Noto Sans JP', sans-serif;
         }
         .jw:hover, .jw.active {
-            background: #fff0f0;
+            background: rgba(231,76,60,0.12);
             border-bottom-style: solid;
         }
         /* 글로벌 플로팅 툴팁 (body 직접 자식 — overflow 영향 없음) */
@@ -1122,7 +1162,7 @@
             padding: 10px 14px;
             border-radius: 10px;
             font-size: 0.82em;
-            z-index: 10000;
+            z-index: 10001;
             box-shadow: 0 4px 15px rgba(0,0,0,0.25);
             line-height: 1.6;
             max-width: 300px;
@@ -1174,19 +1214,19 @@
         .bilingual .ko { margin-bottom: 2px; }
         .bilingual .ja {
             font-family: 'Noto Sans JP', sans-serif;
-            color: #555;
+            color: var(--text-secondary);
             font-size: 0.88em;
             border-left: 3px solid var(--accent);
             padding-left: 10px;
             margin-top: 4px;
             line-height: 1.7;
-            background: #fdf6f6;
+            background: rgba(231,76,60,0.06);
             padding: 4px 10px;
             border-radius: 0 6px 6px 0;
         }
         .bilingual .ja ruby rt {
             font-size: 0.6em;
-            color: #999;
+            color: var(--text-muted);
         }
 
         /* Vocab table (collapsible) */
@@ -1194,14 +1234,14 @@
             margin: 16px 0;
         }
         .vocab-section summary {
-            background: linear-gradient(135deg, #eaf4fe, #f0faf0);
+            background: var(--surface);
             padding: 12px 18px;
             border-radius: 12px;
             cursor: pointer;
             font-size: 0.9em;
             font-weight: 600;
             color: var(--primary);
-            border: 1px solid #d4e9fc;
+            border: 1px solid var(--border);
             list-style: none;
             display: flex;
             align-items: center;
@@ -1222,7 +1262,7 @@
             width: 100%;
             border-collapse: collapse;
             font-size: 0.82em;
-            border: 1px solid #d4e9fc;
+            border: 1px solid var(--border);
             border-top: none;
             border-radius: 0 0 12px 12px;
             overflow: hidden;
@@ -1237,66 +1277,72 @@
         }
         .vocab-table td {
             padding: 8px 10px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--border);
             vertical-align: top;
             line-height: 1.5;
+            color: var(--text);
         }
-        .vocab-table tr:nth-child(even) { background: #f8fbff; }
-        .vocab-table tr:hover { background: #eef6ff; }
+        .vocab-table tr:nth-child(even) { background: var(--surface); }
+        .vocab-table tr:hover { background: var(--surface-hover); }
         .vocab-table .kanji-col {
-            color: #888;
+            color: var(--text-muted);
             font-size: 0.92em;
         }
 
         /* Real review expressions */
         .real-review-section {
-            background: linear-gradient(135deg, #fff8f0, #fff3e6);
+            background: rgba(230,126,34,0.06);
             border-radius: 14px;
             padding: 18px 20px;
             margin: 16px 0;
             border-left: 4px solid #e67e22;
+            border: 1px solid rgba(230,126,34,0.15);
+            border-left: 4px solid #e67e22;
         }
         .real-review-section h5 {
             color: #e67e22;
-            font-size: 0.95em;
-            margin-bottom: 12px;
+            font-size: 1.05em;
+            margin-bottom: 14px;
             display: flex;
             align-items: center;
             gap: 6px;
         }
         .real-review-section h5::before { content: '💬'; }
         .review-expr {
-            background: white;
+            background: var(--card-bg);
             border-radius: 10px;
-            padding: 12px 16px;
-            margin-bottom: 10px;
-            border: 1px solid #fde8d0;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            border: 1px solid var(--border);
         }
         .review-expr .expr-original {
             font-family: 'Noto Sans JP', sans-serif;
-            font-size: 0.95em;
-            color: #333;
+            font-size: 1.08em;
+            color: var(--text);
             font-weight: 500;
-            margin-bottom: 4px;
+            margin-bottom: 8px;
+            line-height: 1.7;
         }
         .review-expr .expr-reading {
-            font-size: 0.8em;
-            color: #999;
-            margin-bottom: 4px;
+            font-size: 0.88em;
+            color: var(--text-muted);
+            margin-bottom: 6px;
         }
         .review-expr .expr-meaning {
-            font-size: 0.85em;
-            color: #555;
-            margin-bottom: 4px;
+            font-size: 0.95em;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            line-height: 1.6;
         }
         .review-expr .expr-point {
-            font-size: 0.8em;
+            font-size: 0.88em;
             color: #e67e22;
             font-weight: 500;
+            line-height: 1.6;
         }
         .review-expr .expr-source {
             font-size: 0.72em;
-            color: #bbb;
+            color: var(--text-muted);
             margin-top: 4px;
         }
 
@@ -1344,8 +1390,8 @@
 
         /* === SECTION INLINE QUIZ === */
         .section-quiz {
-            background: linear-gradient(135deg, #f8f9ff 0%, #eef2ff 100%);
-            border: 2px solid #d4daf0;
+            background: var(--surface);
+            border: 2px solid var(--border);
             border-radius: 16px;
             padding: 24px;
             margin-top: 30px;
@@ -1368,31 +1414,32 @@
             cursor: pointer;
             transition: background 0.2s;
         }
-        .sq-start:hover { background: #14436b; }
+        .sq-start:hover { opacity: 0.85; }
         .sq-q { font-size: 1.05em; font-weight: 700; color: var(--dark); margin-bottom: 12px; }
-        .sq-q .sq-hint { font-size: 0.8em; color: #999; font-weight: 400; font-family: 'Noto Sans JP', sans-serif; }
+        .sq-q .sq-hint { font-size: 0.8em; color: var(--text-muted); font-weight: 400; font-family: 'Noto Sans JP', sans-serif; }
         .sq-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
         .sq-opt {
-            background: white;
-            border: 2px solid #d4daf0;
+            background: var(--card-bg);
+            border: 2px solid var(--border);
             border-radius: 10px;
             padding: 12px;
             text-align: center;
             cursor: pointer;
             font-size: 0.92em;
             transition: all 0.2s;
+            color: var(--text);
         }
-        .sq-opt:hover { background: #eef2ff; border-color: var(--primary); }
-        .sq-opt.correct { background: #d4edda; border-color: #27ae60; }
-        .sq-opt.wrong { background: #f8d7da; border-color: #e74c3c; }
+        .sq-opt:hover { background: var(--surface-hover); border-color: var(--primary); }
+        .sq-opt.correct { background: rgba(39,174,96,0.15); border-color: var(--green); }
+        .sq-opt.wrong { background: rgba(231,76,60,0.15); border-color: var(--accent); }
         .sq-exp {
-            background: white;
+            background: var(--card-bg);
             border-radius: 10px;
             padding: 12px 16px;
             margin-top: 8px;
             font-size: 0.85em;
-            color: #555;
-            border-left: 3px solid #27ae60;
+            color: var(--text-secondary);
+            border-left: 3px solid var(--green);
             display: none;
         }
         .sq-exp.show { display: block; }
@@ -1413,7 +1460,7 @@
         .sq-result-box { text-align: center; margin-top: 16px; }
         .sq-result-box .emoji { font-size: 2em; }
         .sq-result-box .title { font-size: 1.2em; color: var(--primary); font-weight: 700; margin-top: 8px; }
-        .sq-result-box .desc { color: #777; margin-top: 6px; }
+        .sq-result-box .desc { color: var(--text-muted); margin-top: 6px; }
         .sq-retry {
             margin-top: 14px;
             padding: 10px 28px;
@@ -1434,8 +1481,8 @@
             display: inline-flex;
             align-items: center;
             gap: 4px;
-            background: #e8f5e9;
-            color: #27ae60;
+            background: rgba(39,174,96,0.12);
+            color: var(--green);
             padding: 3px 10px;
             border-radius: 10px;
             font-size: 0.75em;
@@ -1482,6 +1529,33 @@
             .quiz-tabs { gap: 6px; }
             .quiz-tab { padding: 6px 14px; font-size: 0.8em; }
             .bilingual .ja { font-size: 0.82em; }
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 8px 14px;
+            cursor: pointer;
+            font-size: 1.2em;
+            box-shadow: 0 4px 15px var(--card-shadow);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+        .theme-toggle .toggle-label {
+            font-size: 0.65em;
+            color: var(--text-muted);
+            font-weight: 500;
         }
 
         /* Scroll animation */
@@ -1592,6 +1666,10 @@
 <body>
 <div id="jw-loading" style="position:fixed;bottom:20px;right:20px;background:#1a1a2e;color:white;padding:10px 18px;border-radius:10px;font-size:0.85em;z-index:9999;box-shadow:0 4px 15px rgba(0,0,0,0.3);">📖 일본어 사전 로딩 중...</div>
 <div id="jw-popup"></div>
+<button class="theme-toggle" onclick="toggleTheme()" title="라이트/다크 모드 전환">
+    <span id="theme-icon">🌙</span>
+    <span class="toggle-label" id="theme-label">다크</span>
+</button>
 
 <!-- YouTube Comments Modal Overlay -->
 <div id="yt-comments-overlay" class="yt-modal-overlay" onclick="if(event.target===this)closeYtComments()">
@@ -1756,7 +1834,6 @@
             <tr><td><a href="https://www.youtube.com/watch?v=c3lW5qDZqgk&t=2364s" target="_blank">39:24</a></td><td>6차: 古川市場 — 아침 놋케동<br><span class="ja">6軒目：古川市場 — 朝のっけ丼</span></td></tr>
             <tr><td><a href="https://www.youtube.com/watch?v=c3lW5qDZqgk&t=2930s" target="_blank">48:50</a></td><td>마무리: 長尾中華そば — 〆라멘<br><span class="ja">締め：長尾中華そば — 〆ラーメン</span></td></tr>
         </table>
-        <button class="yt-comments-btn" 
         <div class="real-review-section" style="margin-top:12px">
             <h5>💬 이 영상의 댓글로 배우기</h5>
             <div class="review-expr">
@@ -1805,7 +1882,6 @@
             <tr><td><a href="https://www.youtube.com/watch?v=H3wL0KsvZr8&t=510s" target="_blank">8:30</a></td><td>3차: 浜料理 さとや — 시라코, 타코<br><span class="ja">3軒目：浜料理 さとや — 白子西京焼き、たこ鉄板焼き</span></td></tr>
             <tr><td><a href="https://www.youtube.com/watch?v=H3wL0KsvZr8&t=690s" target="_blank">11:30</a></td><td>4차: 和食ダイニング 貴 — 마무리<br><span class="ja">4軒目：和食ダイニング 貴 — 稲村屋の地酒、おでん、うどんで締め</span></td></tr>
         </table>
-        <button class="yt-comments-btn" 
         <div class="real-review-section" style="margin-top:12px">
             <h5>💬 이 영상의 댓글로 배우기</h5>
             <div class="review-expr">
@@ -1962,7 +2038,6 @@
                     <tr><td><a href="https://www.youtube.com/watch?v=1m0mgp5I8Og&t=68s" target="_blank">1:08</a></td><td>식권 구매 방법<br><span class="ja">食券（チケット）購入方法 — 12枚¥2,200のシステム説明</span></td></tr>
                     <tr><td><a href="https://www.youtube.com/watch?v=1m0mgp5I8Og&t=642s" target="_blank">10:42</a></td><td>놋케동 완성! 시식<br><span class="ja">のっけ丼完成！トッピング選びの結果と試食</span></td></tr>
                 </table>
-                <button class="yt-comments-btn" 
                 <div class="real-review-section" style="margin-top:12px">
                     <h5>💬 이 영상의 댓글로 배우기</h5>
                     <div class="review-expr">
@@ -2084,7 +2159,6 @@
                     <tr><td><a href="https://www.youtube.com/watch?v=GC3TKUjG9tk&t=514s" target="_blank">8:14</a></td><td>助六 — 역 근처 이자카야<br><span class="ja">助六 — 駅近くの居酒屋</span></td></tr>
                     <tr><td><a href="https://www.youtube.com/watch?v=GC3TKUjG9tk&t=636s" target="_blank">10:36</a></td><td>丸青食堂 재방문<br><span class="ja">丸青食堂 再訪問 — カレー注文</span></td></tr>
                 </table>
-                <button class="yt-comments-btn" 
                 <div class="real-review-section" style="margin-top:12px">
                     <h5>💬 이 영상의 댓글로 배우기</h5>
                     <div class="review-expr">
@@ -2734,7 +2808,6 @@
                     <tr><td><a href="https://www.youtube.com/watch?v=9reJCnjY6Xg&t=1368s" target="_blank">22:48</a></td><td>永井久慈良餅店 — 120년 전통 떡집 (명물 쿠지라모찌) <span class="ja">120年の伝統餅屋（名物くじら餅）</span></td></tr>
                     <tr><td><a href="https://www.youtube.com/watch?v=9reJCnjY6Xg&t=1454s" target="_blank">24:14</a></td><td>鶴亀屋食堂 — 초대형 참치 덮밥으로 유명한 식당 <span class="ja">超大盛りマグロ丼で有名な食堂</span></td></tr>
                 </table>
-                <button class="yt-comments-btn" 
                 <div class="real-review-section" style="margin-top:12px">
                     <h5>💬 이 영상의 댓글로 배우기</h5>
                     <div class="review-expr">
@@ -3093,7 +3166,6 @@
                     <tr><td><a href="https://www.youtube.com/watch?v=bTPm0HWbKBw&t=900s" target="_blank">15:00</a></td><td>あんこうの共和え(아귀 공화에) + 현지인과 대화 <span class="ja">あんこうの共和え＋地元の人と会話</span></td></tr>
                     <tr><td><a href="https://www.youtube.com/watch?v=bTPm0HWbKBw&t=1140s" target="_blank">19:00</a></td><td>茶飯(차메시)으로 〆 + 마무리 소감 <span class="ja">茶飯で〆＋まとめ感想</span></td></tr>
                 </table>
-                <button class="yt-comments-btn" 
                 <div class="real-review-section" style="margin-top:12px">
                     <h5>💬 이 영상의 댓글로 배우기</h5>
                     <div class="review-expr">
@@ -3466,7 +3538,6 @@
                     <tr><td><a href="https://www.youtube.com/watch?v=MuAhhkbmOgY&t=540s" target="_blank">9:00</a></td><td>단골손님 합류 — 현지인과 자연스러운 교류 <span class="ja">常連さん合流 — 地元の人と自然な交流</span></td></tr>
                     <tr><td><a href="https://www.youtube.com/watch?v=MuAhhkbmOgY&t=750s" target="_blank">12:30</a></td><td>마무리 — 퇴장 인사, 스낵바 체험 소감 <span class="ja">締め — 退店の挨拶、スナック体験の感想</span></td></tr>
                 </table>
-                <button class="yt-comments-btn" 
                 <div class="real-review-section" style="margin-top:12px">
                     <h5>💬 이 영상의 댓글로 배우기</h5>
                     <div class="review-expr">
@@ -3643,7 +3714,6 @@
                 <tr><td><a href="https://www.youtube.com/watch?v=dDVFRg3R0AI&t=90s" target="_blank">1:30</a></td><td>감정 표현 — "わいは！"(놀람), "けっぱれ"(힘내) 등 리액션 표현</td></tr>
                 <tr><td><a href="https://www.youtube.com/watch?v=dDVFRg3R0AI&t=180s" target="_blank">3:00</a></td><td>작별 인사 — "せばだば、まだな！"(그럼, 또 보자!) 가게 나갈 때 사용</td></tr>
             </table>
-            <button class="yt-comments-btn" 
             <div class="real-review-section" style="margin-top:12px; background:rgba(255,255,255,0.06); border-left-color:#f39c12;">
                 <h5 style="color:#f39c12">💬 이 영상의 댓글로 배우기</h5>
                 <div class="review-expr" style="background:rgba(255,255,255,0.04); border-color:rgba(243,156,18,0.2);">
@@ -3679,7 +3749,6 @@
                 <tr><td><a href="https://www.youtube.com/watch?v=pHQkxdCKfbI&t=60s" target="_blank">1:00</a></td><td>감정 표현 대사 — "わいは！" 등 감탄사가 쓰가루벤으로 어떻게 바뀌는지</td></tr>
                 <tr><td><a href="https://www.youtube.com/watch?v=pHQkxdCKfbI&t=120s" target="_blank">2:00</a></td><td>일상 대화 변환 — 표준어와 쓰가루벤 비교로 "けやぐ"(친구) 등의 단어 학습</td></tr>
             </table>
-            <button class="yt-comments-btn" 
             <div class="real-review-section" style="margin-top:12px; background:rgba(255,255,255,0.06); border-left-color:#f39c12;">
                 <h5 style="color:#f39c12">💬 이 영상의 댓글로 배우기</h5>
                 <div class="review-expr" style="background:rgba(255,255,255,0.04); border-color:rgba(243,156,18,0.2);">
@@ -3715,7 +3784,6 @@
                 <tr><td><a href="https://www.youtube.com/watch?v=EFPleQyonsk&t=60s" target="_blank">1:00</a></td><td>"どさ？ゆさ！" 등 유명 쓰가루벤 짧은 대화가 코미디 소재로 등장</td></tr>
                 <tr><td><a href="https://www.youtube.com/watch?v=EFPleQyonsk&t=120s" target="_blank">2:00</a></td><td>"なんぼ？"(얼마?), "けっぱれ"(힘내!) 등 실용 표현을 콩트 맥락에서 학습</td></tr>
             </table>
-            <button class="yt-comments-btn" 
             <div class="real-review-section" style="margin-top:12px; background:rgba(255,255,255,0.06); border-left-color:#f39c12;">
                 <h5 style="color:#f39c12">💬 이 영상의 댓글로 배우기</h5>
                 <div class="review-expr" style="background:rgba(255,255,255,0.04); border-color:rgba(243,156,18,0.2);">
@@ -4078,6 +4146,34 @@
 </footer>
 
 <script>
+// Theme toggle
+function toggleTheme() {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+        html.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+        document.getElementById('theme-icon').textContent = '🌙';
+        document.getElementById('theme-label').textContent = '다크';
+    } else {
+        html.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        document.getElementById('theme-icon').textContent = '☀️';
+        document.getElementById('theme-label').textContent = '라이트';
+    }
+}
+// Restore saved theme
+(function() {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('theme-icon').textContent = '☀️';
+            document.getElementById('theme-label').textContent = '라이트';
+        });
+    }
+})();
+
 // Scroll animation
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {

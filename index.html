@@ -16,14 +16,42 @@
             --night: #1a1a2e;
             --card-bg: #ffffff;
             --border: #ddd;
+            --body-bg: #f5f5f0;
+            --card-shadow: rgba(0,0,0,0.06);
+            --text: #333;
+            --text-secondary: #555;
+            --text-muted: #888;
+            --surface: #f8f9fa;
+            --surface-hover: #eef6ff;
+            --hero-fade: #f5f5f0;
+        }
+        [data-theme="dark"] {
+            --primary: #5ba3d9;
+            --accent: #ff6b6b;
+            --warm: #f39c12;
+            --snow: #1e2030;
+            --dark: #e0e0e0;
+            --sake: #e06060;
+            --green: #4ecca3;
+            --night: #1a1a2e;
+            --card-bg: #1e2030;
+            --border: #333a4f;
+            --body-bg: #13141f;
+            --card-shadow: rgba(0,0,0,0.3);
+            --text: #d0d0d0;
+            --text-secondary: #a0a0b0;
+            --text-muted: #707080;
+            --surface: #242538;
+            --surface-hover: #2a2b40;
+            --hero-fade: #13141f;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Noto Sans KR', 'Noto Sans JP', sans-serif;
-            background: #f5f5f0;
-            color: #333;
+            background: var(--body-bg);
+            color: var(--text);
             line-height: 1.7;
         }
 
@@ -57,7 +85,7 @@
             position: absolute;
             bottom: 0; left: 0; right: 0;
             height: 120px;
-            background: linear-gradient(to top, #f5f5f0, transparent);
+            background: linear-gradient(to top, var(--hero-fade), transparent);
         }
         .hero-badge {
             display: inline-block;
@@ -141,11 +169,12 @@
 
         /* Navigation */
         .nav-bar {
-            background: white;
+            background: var(--card-bg);
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px var(--card-shadow);
+            border-bottom: 1px solid var(--border);
             overflow-x: auto;
             white-space: nowrap;
             -webkit-overflow-scrolling: touch;
@@ -189,7 +218,7 @@
             font-size: 1.2em;
         }
         .section-desc {
-            color: #666;
+            color: var(--text-secondary);
             margin-bottom: 30px;
             font-size: 0.95em;
         }
@@ -232,9 +261,9 @@
 
         /* Card */
         .card {
-            background: white;
+            background: var(--card-bg);
             border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 20px var(--card-shadow);
             margin-bottom: 24px;
             overflow: hidden;
             transition: transform 0.2s;
@@ -266,16 +295,16 @@
             padding: 0 24px 20px;
         }
         .card-body p {
-            color: #555;
+            color: var(--text);
             font-size: 0.93em;
             margin-bottom: 12px;
         }
 
         /* Place Card */
         .place-card {
-            background: white;
+            background: var(--card-bg);
             border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+            box-shadow: 0 4px 20px var(--card-shadow);
             margin-bottom: 24px;
             overflow: hidden;
         }
@@ -288,12 +317,12 @@
         .place-hero-img.tall { height: 280px; }
         .img-credit {
             font-size: 0.7em;
-            color: #aaa;
+            color: var(--text-muted);
             text-align: right;
             padding: 4px 16px;
-            background: #fafafa;
+            background: var(--surface);
         }
-        .img-credit a { color: #999; }
+        .img-credit a { color: var(--text-muted); }
         .place-info {
             padding: 20px 24px;
         }
@@ -304,18 +333,18 @@
             margin-bottom: 4px;
         }
         .place-info .jp-name {
-            color: #888;
+            color: var(--text-muted);
             font-size: 0.85em;
             font-family: 'Noto Sans JP', sans-serif;
             margin-bottom: 8px;
         }
         .place-info .address {
-            color: #888;
+            color: var(--text-muted);
             font-size: 0.82em;
             margin-bottom: 8px;
         }
         .place-info .desc {
-            color: #555;
+            color: var(--text-secondary);
             font-size: 0.92em;
             margin-bottom: 12px;
         }
@@ -334,16 +363,17 @@
             font-size: 0.78em;
             font-weight: 500;
         }
-        .meta-tag.price { background: #fef3e2; color: #e67e22; }
-        .meta-tag.hours { background: #eaf4fe; color: #2980b9; }
-        .meta-tag.seats { background: #f0faf0; color: #27ae60; }
-        .meta-tag.special { background: #fde8e8; color: #c0392b; }
+        .meta-tag.price { background: rgba(230,126,34,0.12); color: #e67e22; }
+        .meta-tag.hours { background: rgba(41,128,185,0.12); color: #2980b9; }
+        .meta-tag.seats { background: rgba(39,174,96,0.12); color: var(--green); }
+        .meta-tag.special { background: rgba(192,57,43,0.12); color: var(--sake); }
 
         /* Map embed */
         .map-container {
             width: 100%;
             height: 250px;
-            border-top: 1px solid #eee;
+            border-top: 1px solid var(--border);
+            opacity: 0.9;
         }
         .map-container iframe {
             width: 100%;
@@ -361,12 +391,12 @@
             font-size: 0.85em;
             font-weight: 500;
             padding: 6px 14px;
-            background: #eaf4fe;
+            background: var(--surface);
             border-radius: 8px;
             transition: background 0.2s;
         }
         .photo-link:hover {
-            background: #d4e9fc;
+            background: var(--surface-hover);
         }
 
         /* YouTube Comments Modal */
@@ -440,12 +470,16 @@
             white-space: pre-wrap;
         }
         .yt-comment-ja .jw {
-            border-bottom: 1px dotted rgba(243,156,18,0.5);
+            border-bottom: 1px dotted rgba(243,156,18,0.6);
             cursor: pointer;
+            transition: color 0.15s;
         }
         .yt-comment-ja .jw:hover, .yt-comment-ja .jw.active {
             color: #f39c12;
             border-bottom-color: #f39c12;
+            border-bottom-style: solid;
+            background: rgba(243,156,18,0.1);
+            border-radius: 2px;
         }
         .yt-comment-likes {
             font-size: 0.78rem;
@@ -502,7 +536,7 @@
             border-radius: 12px;
         }
         .video-summary {
-            background: #f8f9fa;
+            background: var(--surface);
             padding: 12px 16px;
             border-radius: 10px;
             margin-bottom: 16px;
@@ -515,12 +549,12 @@
             margin-bottom: 4px;
         }
         .video-summary .vid-meta {
-            color: #888;
+            color: var(--text-muted);
             font-size: 0.9em;
             margin-bottom: 4px;
         }
         .video-summary .vid-reason {
-            color: #555;
+            color: var(--text-secondary);
         }
 
         /* Video Table */
@@ -539,10 +573,11 @@
         }
         .video-table td {
             padding: 8px 12px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
         }
         .video-table tr:hover {
-            background: #f8f9fa;
+            background: var(--surface);
         }
         .video-table a {
             color: var(--primary);
@@ -559,9 +594,9 @@
             gap: 16px;
         }
         .izakaya-card {
-            background: white;
+            background: var(--card-bg);
             border-radius: 14px;
-            box-shadow: 0 3px 15px rgba(0,0,0,0.06);
+            box-shadow: 0 3px 15px var(--card-shadow);
             overflow: hidden;
             border-left: 4px solid var(--sake);
         }
@@ -581,7 +616,7 @@
             text-decoration: none;
             font-weight: 600;
             transition: filter 0.2s;
-            border-bottom: 1px solid rgba(0,0,0,0.06);
+            border-bottom: 1px solid var(--border);
             position: relative;
             overflow: hidden;
         }
@@ -628,22 +663,23 @@
         }
         .izakaya-card .jp-sub {
             font-family: 'Noto Sans JP', sans-serif;
-            color: #999;
+            color: var(--text-muted);
             font-size: 0.82em;
             margin-bottom: 8px;
         }
         .izakaya-card .iz-desc {
             font-size: 0.88em;
-            color: #555;
+            color: var(--text-secondary);
             margin-bottom: 10px;
         }
         .friend-tip {
-            background: #fff8e1;
+            background: rgba(243,156,18,0.08);
             border-radius: 10px;
             padding: 12px 16px;
             font-size: 0.85em;
-            color: #795548;
+            color: var(--text-secondary);
             margin-top: 8px;
+            border: 1px solid rgba(243,156,18,0.15);
         }
         .friend-tip strong {
             color: var(--accent);
@@ -651,10 +687,12 @@
 
         /* Tips */
         .tip-box {
-            background: linear-gradient(135deg, #fff8e1, #fff3cd);
+            background: rgba(243,156,18,0.08);
             border-radius: 14px;
             padding: 20px 24px;
             margin-bottom: 20px;
+            border-left: 4px solid var(--warm);
+            border: 1px solid rgba(243,156,18,0.15);
             border-left: 4px solid var(--warm);
         }
         .tip-box h4 {
@@ -665,7 +703,7 @@
         .tip-box ul {
             padding-left: 18px;
             font-size: 0.9em;
-            color: #555;
+            color: var(--text-secondary);
         }
         .tip-box li {
             margin-bottom: 6px;
@@ -814,11 +852,12 @@
         }
         .budget-table td {
             padding: 10px 14px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
         }
         .budget-table tr:last-child {
             font-weight: 700;
-            background: #f8f9fa;
+            background: var(--surface);
         }
 
         /* Full Map */
@@ -925,7 +964,7 @@
 
         /* Review highlights */
         .review-highlights {
-            background: #fafafa;
+            background: var(--surface);
             border-radius: 10px;
             padding: 14px 18px;
             margin-top: 12px;
@@ -938,30 +977,30 @@
         }
         .review-highlights .review-item {
             font-size: 0.82em;
-            color: #555;
+            color: var(--text-secondary);
             padding: 5px 0;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid var(--border);
             line-height: 1.5;
         }
         .review-highlights .review-item:last-child { border-bottom: none; }
         .review-highlights .review-item .ja {
             font-family: 'Noto Sans JP', sans-serif;
-            color: #333;
+            color: var(--text);
             font-size: 1em;
             font-weight: 500;
         }
         .review-highlights .review-item .ko {
-            border-left: 3px solid #3498db;
-            background: #f0f7ff;
+            border-left: 3px solid var(--primary);
+            background: rgba(91,163,217,0.08);
             padding: 3px 10px;
             margin-top: 4px;
             border-radius: 4px;
-            color: #555;
+            color: var(--text-secondary);
             font-size: 0.92em;
         }
         .review-highlights .review-rating {
             display: inline-block;
-            background: #fff3e0;
+            background: rgba(230,126,34,0.12);
             color: #e67e22;
             font-weight: 700;
             padding: 2px 10px;
@@ -972,23 +1011,23 @@
 
         /* Review language annotations */
         .review-lang-notes {
-            background: linear-gradient(135deg, #fefce8 0%, #fef9c3 100%);
-            border: 1px solid #eab308;
+            background: rgba(234,179,8,0.06);
+            border: 1px solid rgba(234,179,8,0.25);
             border-left: 4px solid #eab308;
             border-radius: 10px;
-            padding: 14px 18px;
-            margin-top: 10px;
-            font-size: 0.85em;
+            padding: 16px 20px;
+            margin-top: 12px;
+            font-size: 0.92em;
         }
         .review-lang-notes h6 {
-            color: #92400e;
-            font-size: 0.95em;
+            color: var(--warm);
+            font-size: 1em;
             margin-bottom: 8px;
         }
         .review-lang-notes .lang-note {
             margin-bottom: 10px;
             padding-bottom: 8px;
-            border-bottom: 1px dashed #d4a017;
+            border-bottom: 1px dashed rgba(234,179,8,0.3);
         }
         .review-lang-notes .lang-note:last-child {
             margin-bottom: 0;
@@ -998,12 +1037,12 @@
         .review-lang-notes .note-expr {
             font-family: 'Noto Sans JP', sans-serif;
             font-weight: 600;
-            color: #92400e;
+            color: var(--warm);
         }
         .review-lang-notes .note-type {
             display: inline-block;
-            background: #fbbf24;
-            color: #78350f;
+            background: rgba(251,191,36,0.25);
+            color: var(--warm);
             font-size: 0.78em;
             font-weight: 700;
             padding: 1px 7px;
@@ -1011,7 +1050,7 @@
             margin-left: 6px;
         }
         .review-lang-notes .note-desc {
-            color: #555;
+            color: var(--text-secondary);
             margin-top: 3px;
             line-height: 1.6;
         }
@@ -1025,7 +1064,8 @@
         }
         .timestamp-table td {
             padding: 5px 10px;
-            border-bottom: 1px solid #f0f0f0;
+            border-bottom: 1px solid var(--border);
+            color: var(--text);
             vertical-align: top;
         }
         .timestamp-table td:first-child {
@@ -1054,14 +1094,14 @@
 
         /* Transport card */
         .transport-card {
-            background: #eef6ff;
+            background: rgba(52,152,219,0.08);
             border-radius: 14px;
             padding: 18px 22px;
             margin-bottom: 20px;
             border-left: 4px solid #3498db;
         }
         .transport-card h4 {
-            color: #2980b9;
+            color: var(--primary);
             font-size: 0.95em;
             margin-bottom: 10px;
             display: flex;
@@ -1074,41 +1114,41 @@
             gap: 6px;
             flex-wrap: wrap;
             font-size: 0.88em;
-            color: #555;
+            color: var(--text-secondary);
             margin-bottom: 8px;
             padding: 8px 0;
         }
         .transport-card .route-stop {
-            background: white;
+            background: var(--card-bg);
             padding: 5px 14px;
             border-radius: 10px;
             font-weight: 500;
-            border: 1px solid #d4e9fc;
+            border: 1px solid var(--border);
         }
         .transport-card .route-arrow {
-            color: #3498db;
+            color: var(--primary);
             font-weight: 700;
             font-size: 1.1em;
         }
         .transport-card .route-info {
             font-size: 0.82em;
-            color: #777;
+            color: var(--text-muted);
             margin-left: 4px;
         }
         .transport-card p {
             font-size: 0.88em;
-            color: #555;
+            color: var(--text-secondary);
             margin-bottom: 6px;
         }
 
         /* === HOVER DICTIONARY TOOLTIP === */
         .jw {
-            border-bottom: 1px dotted #e74c3c;
+            border-bottom: 1px dotted var(--accent);
             cursor: help;
             font-family: 'Noto Sans JP', sans-serif;
         }
         .jw:hover, .jw.active {
-            background: #fff0f0;
+            background: rgba(231,76,60,0.12);
             border-bottom-style: solid;
         }
         /* 글로벌 플로팅 툴팁 (body 직접 자식 — overflow 영향 없음) */
@@ -1120,7 +1160,7 @@
             padding: 10px 14px;
             border-radius: 10px;
             font-size: 0.82em;
-            z-index: 10000;
+            z-index: 10001;
             box-shadow: 0 4px 15px rgba(0,0,0,0.25);
             line-height: 1.6;
             max-width: 300px;
@@ -1172,19 +1212,19 @@
         .bilingual .ko { margin-bottom: 2px; }
         .bilingual .ja {
             font-family: 'Noto Sans JP', sans-serif;
-            color: #555;
+            color: var(--text-secondary);
             font-size: 0.88em;
             border-left: 3px solid var(--accent);
             padding-left: 10px;
             margin-top: 4px;
             line-height: 1.7;
-            background: #fdf6f6;
+            background: rgba(231,76,60,0.06);
             padding: 4px 10px;
             border-radius: 0 6px 6px 0;
         }
         .bilingual .ja ruby rt {
             font-size: 0.6em;
-            color: #999;
+            color: var(--text-muted);
         }
 
         /* Vocab table (collapsible) */
@@ -1192,14 +1232,14 @@
             margin: 16px 0;
         }
         .vocab-section summary {
-            background: linear-gradient(135deg, #eaf4fe, #f0faf0);
+            background: var(--surface);
             padding: 12px 18px;
             border-radius: 12px;
             cursor: pointer;
             font-size: 0.9em;
             font-weight: 600;
             color: var(--primary);
-            border: 1px solid #d4e9fc;
+            border: 1px solid var(--border);
             list-style: none;
             display: flex;
             align-items: center;
@@ -1220,7 +1260,7 @@
             width: 100%;
             border-collapse: collapse;
             font-size: 0.82em;
-            border: 1px solid #d4e9fc;
+            border: 1px solid var(--border);
             border-top: none;
             border-radius: 0 0 12px 12px;
             overflow: hidden;
@@ -1235,66 +1275,72 @@
         }
         .vocab-table td {
             padding: 8px 10px;
-            border-bottom: 1px solid #eee;
+            border-bottom: 1px solid var(--border);
             vertical-align: top;
             line-height: 1.5;
+            color: var(--text);
         }
-        .vocab-table tr:nth-child(even) { background: #f8fbff; }
-        .vocab-table tr:hover { background: #eef6ff; }
+        .vocab-table tr:nth-child(even) { background: var(--surface); }
+        .vocab-table tr:hover { background: var(--surface-hover); }
         .vocab-table .kanji-col {
-            color: #888;
+            color: var(--text-muted);
             font-size: 0.92em;
         }
 
         /* Real review expressions */
         .real-review-section {
-            background: linear-gradient(135deg, #fff8f0, #fff3e6);
+            background: rgba(230,126,34,0.06);
             border-radius: 14px;
             padding: 18px 20px;
             margin: 16px 0;
             border-left: 4px solid #e67e22;
+            border: 1px solid rgba(230,126,34,0.15);
+            border-left: 4px solid #e67e22;
         }
         .real-review-section h5 {
             color: #e67e22;
-            font-size: 0.95em;
-            margin-bottom: 12px;
+            font-size: 1.05em;
+            margin-bottom: 14px;
             display: flex;
             align-items: center;
             gap: 6px;
         }
         .real-review-section h5::before { content: '💬'; }
         .review-expr {
-            background: white;
+            background: var(--card-bg);
             border-radius: 10px;
-            padding: 12px 16px;
-            margin-bottom: 10px;
-            border: 1px solid #fde8d0;
+            padding: 16px 20px;
+            margin-bottom: 12px;
+            border: 1px solid var(--border);
         }
         .review-expr .expr-original {
             font-family: 'Noto Sans JP', sans-serif;
-            font-size: 0.95em;
-            color: #333;
+            font-size: 1.08em;
+            color: var(--text);
             font-weight: 500;
-            margin-bottom: 4px;
+            margin-bottom: 8px;
+            line-height: 1.7;
         }
         .review-expr .expr-reading {
-            font-size: 0.8em;
-            color: #999;
-            margin-bottom: 4px;
+            font-size: 0.88em;
+            color: var(--text-muted);
+            margin-bottom: 6px;
         }
         .review-expr .expr-meaning {
-            font-size: 0.85em;
-            color: #555;
-            margin-bottom: 4px;
+            font-size: 0.95em;
+            color: var(--text-secondary);
+            margin-bottom: 8px;
+            line-height: 1.6;
         }
         .review-expr .expr-point {
-            font-size: 0.8em;
+            font-size: 0.88em;
             color: #e67e22;
             font-weight: 500;
+            line-height: 1.6;
         }
         .review-expr .expr-source {
             font-size: 0.72em;
-            color: #bbb;
+            color: var(--text-muted);
             margin-top: 4px;
         }
 
@@ -1342,8 +1388,8 @@
 
         /* === SECTION INLINE QUIZ === */
         .section-quiz {
-            background: linear-gradient(135deg, #f8f9ff 0%, #eef2ff 100%);
-            border: 2px solid #d4daf0;
+            background: var(--surface);
+            border: 2px solid var(--border);
             border-radius: 16px;
             padding: 24px;
             margin-top: 30px;
@@ -1366,31 +1412,32 @@
             cursor: pointer;
             transition: background 0.2s;
         }
-        .sq-start:hover { background: #14436b; }
+        .sq-start:hover { opacity: 0.85; }
         .sq-q { font-size: 1.05em; font-weight: 700; color: var(--dark); margin-bottom: 12px; }
-        .sq-q .sq-hint { font-size: 0.8em; color: #999; font-weight: 400; font-family: 'Noto Sans JP', sans-serif; }
+        .sq-q .sq-hint { font-size: 0.8em; color: var(--text-muted); font-weight: 400; font-family: 'Noto Sans JP', sans-serif; }
         .sq-opts { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
         .sq-opt {
-            background: white;
-            border: 2px solid #d4daf0;
+            background: var(--card-bg);
+            border: 2px solid var(--border);
             border-radius: 10px;
             padding: 12px;
             text-align: center;
             cursor: pointer;
             font-size: 0.92em;
             transition: all 0.2s;
+            color: var(--text);
         }
-        .sq-opt:hover { background: #eef2ff; border-color: var(--primary); }
-        .sq-opt.correct { background: #d4edda; border-color: #27ae60; }
-        .sq-opt.wrong { background: #f8d7da; border-color: #e74c3c; }
+        .sq-opt:hover { background: var(--surface-hover); border-color: var(--primary); }
+        .sq-opt.correct { background: rgba(39,174,96,0.15); border-color: var(--green); }
+        .sq-opt.wrong { background: rgba(231,76,60,0.15); border-color: var(--accent); }
         .sq-exp {
-            background: white;
+            background: var(--card-bg);
             border-radius: 10px;
             padding: 12px 16px;
             margin-top: 8px;
             font-size: 0.85em;
-            color: #555;
-            border-left: 3px solid #27ae60;
+            color: var(--text-secondary);
+            border-left: 3px solid var(--green);
             display: none;
         }
         .sq-exp.show { display: block; }
@@ -1411,7 +1458,7 @@
         .sq-result-box { text-align: center; margin-top: 16px; }
         .sq-result-box .emoji { font-size: 2em; }
         .sq-result-box .title { font-size: 1.2em; color: var(--primary); font-weight: 700; margin-top: 8px; }
-        .sq-result-box .desc { color: #777; margin-top: 6px; }
+        .sq-result-box .desc { color: var(--text-muted); margin-top: 6px; }
         .sq-retry {
             margin-top: 14px;
             padding: 10px 28px;
@@ -1432,8 +1479,8 @@
             display: inline-flex;
             align-items: center;
             gap: 4px;
-            background: #e8f5e9;
-            color: #27ae60;
+            background: rgba(39,174,96,0.12);
+            color: var(--green);
             padding: 3px 10px;
             border-radius: 10px;
             font-size: 0.75em;
@@ -1480,6 +1527,33 @@
             .quiz-tabs { gap: 6px; }
             .quiz-tab { padding: 6px 14px; font-size: 0.8em; }
             .bilingual .ja { font-size: 0.82em; }
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 50px;
+            padding: 8px 14px;
+            cursor: pointer;
+            font-size: 1.2em;
+            box-shadow: 0 4px 15px var(--card-shadow);
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .theme-toggle:hover {
+            transform: scale(1.1);
+        }
+        .theme-toggle .toggle-label {
+            font-size: 0.65em;
+            color: var(--text-muted);
+            font-weight: 500;
         }
 
         /* Scroll animation */
@@ -1590,6 +1664,10 @@
 <body>
 
 <div id="jw-popup"></div>
+<button class="theme-toggle" onclick="toggleTheme()" title="라이트/다크 모드 전환">
+    <span id="theme-icon">🌙</span>
+    <span class="toggle-label" id="theme-label">다크</span>
+</button>
 
 <!-- YouTube Comments Modal Overlay -->
 <div id="yt-comments-overlay" class="yt-modal-overlay" onclick="if(event.target===this)closeYtComments()">
@@ -1754,7 +1832,7 @@
             <tr><td data-jw-done="1"><a href="https://www.youtube.com/watch?v=c3lW5qDZqgk&amp;t=2364s" target="_blank">39:24</a></td><td data-jw-done="1">6차<span class="jw" data-b="*" data-p="명사">:</span> <span class="jw" data-r="ふるかわ" data-m="후루카와">古川</span><span class="jw" data-r="しじょう" data-m="시장">市場</span> — 아침 놋케동<br><span class="ja" data-jw-done="1">6<span class="jw" data-r="けん" data-p="명사">軒</span><span class="jw" data-r="め" data-p="명사">目</span>：<span class="jw" data-r="ふるかわ" data-m="후루카와">古川</span><span class="jw" data-r="しじょう" data-m="시장">市場</span> — <span class="jw" data-r="あさ" data-p="명사">朝</span>のっけ<span class="jw" data-r="どんぶり" data-p="명사">丼</span></span></td></tr>
             <tr><td data-jw-done="1"><a href="https://www.youtube.com/watch?v=c3lW5qDZqgk&amp;t=2930s" target="_blank">48:50</a></td><td data-jw-done="1">마무리<span class="jw" data-b="*" data-p="명사">:</span> <span class="jw" data-r="ながお" data-p="명사">長尾</span><span class="jw" data-r="ちゅうか" data-p="명사">中華</span>そば — 〆라멘<br><span class="ja" data-jw-done="1"><span class="jw" data-r="しめ" data-p="명사">締め</span>：<span class="jw" data-r="ながお" data-p="명사">長尾</span><span class="jw" data-r="ちゅうか" data-p="명사">中華</span>そば — 〆<span class="jw" data-r="らーめん" data-p="명사">ラーメン</span></span></td></tr>
         </tbody></table>
-        <button class="yt-comments-btn" <div="" style="margin-top:12px">
+        <div class="real-review-section" style="margin-top:12px">
             <h5>💬 이 영상의 댓글로 배우기</h5>
             <div class="review-expr">
                 <div class="expr-original" data-jw-done="1">「<span class="jw" data-r="せるふ" data-p="명사">セルフ</span><span class="jw" data-r="す" data-p="명사">酢</span><span class="jw" data-r="めし" data-p="명사">飯</span>に<span class="jw" data-r="かすたむ" data-p="명사">カスタム</span><span class="jw" data-r="か" data-p="명사">可</span>。<span class="jw" data-r="けん" data-p="명사">券</span>1<span class="jw" data-r="まい" data-p="명사">枚</span>で<span class="jw" data-r="かに" data-p="명사">カニ</span>や<span class="jw" data-r="えび" data-p="명사">エビ</span><span class="jw" data-r="あたま" data-p="명사">頭</span>、<span class="jw" data-r="かいそう" data-p="명사">海藻</span>の<span class="jw" data-r="みそしる" data-p="명사">味噌汁</span>と<span class="jw" data-r="こうかん" data-p="명사">交換</span>できるよ」</div>
@@ -1781,7 +1859,7 @@
                     <div class="note-desc" data-jw-done="1">「<span class="jw" data-r="かすたむ" data-p="명사">カスタム</span><span class="jw" data-r="かのう" data-m="가능">可能</span>」의 <span class="jw" data-b="*" data-p="명사">SNS</span> 축약형. 리뷰<span class="jw" data-b="*" data-p="명사">/</span>댓글에서 정보를 압축해서 전달. 비슷한 패턴<span class="jw" data-b="*" data-p="명사">:</span> 「<span class="jw" data-r="よやく" data-m="예약">予約</span><span class="jw" data-r="ひっす" data-m="필수">必須</span>」<span class="jw" data-b="*" data-p="명사">(</span>예약 필수<span class="jw" data-b="*" data-p="명사">),</span> 「<span class="jw" data-r="げんきん" data-m="현금">現金</span>のみ<span class="jw" data-b="*" data-p="명사">」(</span>현금만<span class="jw" data-b="*" data-p="명사">),</span> 「<span class="jw" data-b="*" data-p="명사">テイクアウト</span><span class="jw" data-r="か" data-p="명사">可</span>」<span class="jw" data-b="*" data-p="명사">(</span>포장 가능<span class="jw" data-b="*" data-p="명사">)</span></div>
                 </div>
             </div>
-        </button></div>
+        </div>
         <button class="yt-comments-btn" onclick="openYtComments('c3lW5qDZqgk')">💬 YouTube 댓글 더보기</button>
 
         <div class="video-embed">
@@ -1802,7 +1880,7 @@
             <tr><td data-jw-done="1"><a href="https://www.youtube.com/watch?v=H3wL0KsvZr8&amp;t=510s" target="_blank">8:30</a></td><td data-jw-done="1">3차<span class="jw" data-b="*" data-p="명사">:</span> <span class="jw" data-r="はま" data-p="명사">浜</span><span class="jw" data-r="りょうり" data-m="요리">料理</span> さとや — 시라코, 타코<br><span class="ja" data-jw-done="1">3<span class="jw" data-r="けん" data-p="명사">軒</span><span class="jw" data-r="め" data-p="명사">目</span>：<span class="jw" data-r="はま" data-p="명사">浜</span><span class="jw" data-r="りょうり" data-m="요리">料理</span> さとや — <span class="jw" data-r="しらこ" data-p="명사">白子</span><span class="jw" data-r="にしぎょう" data-p="명사">西京</span><span class="jw" data-r="やき" data-p="명사">焼き</span>、たこ<span class="jw" data-r="てっぱん" data-p="명사">鉄板</span><span class="jw" data-r="やき" data-p="명사">焼き</span></span></td></tr>
             <tr><td data-jw-done="1"><a href="https://www.youtube.com/watch?v=H3wL0KsvZr8&amp;t=690s" target="_blank">11:30</a></td><td data-jw-done="1">4차<span class="jw" data-b="*" data-p="명사">:</span> <span class="jw" data-r="わしょく" data-p="명사">和食</span><span class="jw" data-r="だいにんぐ" data-p="명사">ダイニング</span> <span class="jw" data-r="とうと" data-b="貴い" data-p="형용사">貴</span> — 마무리<br><span class="ja" data-jw-done="1">4<span class="jw" data-r="けん" data-p="명사">軒</span><span class="jw" data-r="め" data-p="명사">目</span>：<span class="jw" data-r="わしょく" data-p="명사">和食</span><span class="jw" data-r="だいにんぐ" data-p="명사">ダイニング</span> <span class="jw" data-r="とうと" data-b="貴い" data-p="형용사">貴</span> — <span class="jw" data-r="いなむら" data-p="명사">稲村</span><span class="jw" data-r="や" data-p="명사">屋</span>の<span class="jw" data-r="じざけ" data-m="지자케 — 그 지역 양조 술">地酒</span>、おでん、うどんで<span class="jw" data-r="しめ" data-p="명사">締め</span></span></td></tr>
         </tbody></table>
-        <button class="yt-comments-btn" <div="" style="margin-top:12px">
+        <div class="real-review-section" style="margin-top:12px">
             <h5>💬 이 영상의 댓글로 배우기</h5>
             <div class="review-expr">
                 <div class="expr-original" data-jw-done="1">「<span class="jw" data-r="あおもり" data-m="아오모리">青森</span>は<span class="jw" data-r="ふつう" data-p="명사">普通</span>の<span class="jw" data-r="れべる" data-p="명사">レベル</span>が<span class="jw" data-r="さいこう" data-m="최고">最高</span><span class="jw" data-r="とくてん" data-p="명사">得点</span>なんですよね。<span class="jw" data-r="なにげなく" data-b="何気ない" data-p="형용사">何気なく</span><span class="jw" data-r="はいる" data-p="동사">入る</span><span class="jw" data-r="みせ" data-m="가게">店</span>で<span class="jw" data-r="おどろかさ" data-b="驚かす" data-p="동사">驚かさ</span>れる！」</div>
@@ -1829,11 +1907,11 @@
                     <div class="note-desc" data-jw-done="1">「놀라게 되다」. 「<span class="jw" data-r="おどろく" data-p="동사">驚く</span>」<span class="jw" data-b="*" data-p="명사">(</span>놀라다<span class="jw" data-b="*" data-p="명사">)</span> → 「<span class="jw" data-r="おどろかす" data-p="동사">驚かす</span>」<span class="jw" data-b="*" data-p="명사">(</span>놀라게 하다<span class="jw" data-b="*" data-p="명사">)</span> → 「<span class="jw" data-r="おどろかさ" data-b="驚かす" data-p="동사">驚かさ</span>れる<span class="jw" data-b="*" data-p="명사">」(</span>놀라게 되다<span class="jw" data-b="*" data-p="명사">).</span> 일본어의 사역수동은 <span class="jw" data-b="*" data-p="명사">"~</span>에 의해 <span class="jw" data-b="*" data-p="명사">~</span>당하다<span class="jw" data-b="*" data-p="명사">"</span>의 뉘앙스. 칭찬으로 <span class="jw" data-b="*" data-p="명사">"</span>이 가게에 놀라게 됐다<span class="jw" data-b="*" data-p="명사">"</span>는 자연스러운 표현</div>
                 </div>
             </div>
-        </button></section></div>
+        </div>
         <button class="yt-comments-btn" onclick="openYtComments('H3wL0KsvZr8')">💬 YouTube 댓글 더보기</button>
-    
-
-
+    </div>
+</section>
+</div>
 
 <!-- Full Map -->
 <div class="container">
@@ -1956,7 +2034,7 @@
                     <tr><td data-jw-done="1"><a href="https://www.youtube.com/watch?v=1m0mgp5I8Og&amp;t=68s" target="_blank">1:08</a></td><td data-jw-done="1">식권 구매 방법<br><span class="ja" data-jw-done="1"><span class="jw" data-r="しょっけん" data-m="식권">食券</span>（<span class="jw" data-r="ちけっと" data-p="명사">チケット</span>）<span class="jw" data-r="こうにゅう" data-p="명사">購入</span><span class="jw" data-r="ほうほう" data-p="명사">方法</span> — 12<span class="jw" data-r="まい" data-p="명사">枚</span><span class="jw" data-b="*" data-p="명사">¥</span>2,200の<span class="jw" data-r="しすてむ" data-p="명사">システム</span><span class="jw" data-r="せつめい" data-m="설명">説明</span></span></td></tr>
                     <tr><td data-jw-done="1"><a href="https://www.youtube.com/watch?v=1m0mgp5I8Og&amp;t=642s" target="_blank">10:42</a></td><td data-jw-done="1">놋케동 완성! 시식<br><span class="ja" data-jw-done="1">のっけ<span class="jw" data-r="どんぶり" data-p="명사">丼</span><span class="jw" data-r="かんせい" data-p="명사">完成</span>！<span class="jw" data-r="とっぴんぐ" data-p="명사">トッピング</span><span class="jw" data-r="えらび" data-p="명사">選び</span>の<span class="jw" data-r="けっか" data-p="명사">結果</span>と<span class="jw" data-r="ししょく" data-p="명사">試食</span></span></td></tr>
                 </tbody></table>
-                <button class="yt-comments-btn" <div="" style="margin-top:12px">
+                <div class="real-review-section" style="margin-top:12px">
                     <h5>💬 이 영상의 댓글로 배우기</h5>
                     <div class="review-expr">
                         <div class="expr-original" data-jw-done="1">「<span class="jw" data-r="はじめて" data-m="처음">初めて</span>のっけ<span class="jw" data-r="どんぶり" data-p="명사">丼</span>を<span class="jw" data-r="たべ" data-m="먹다" data-b="食べる">食べ</span>ました！又、のっけ<span class="jw" data-r="どんぶり" data-p="명사">丼</span>を<span class="jw" data-r="たべ" data-m="먹다" data-b="食べる">食べ</span>たいと<span class="jw" data-r="おもい" data-b="思う" data-p="동사">思い</span>ます！」</div>
@@ -1965,11 +2043,11 @@
                         <div class="expr-point" data-jw-done="1">표현 포인트<span class="jw" data-b="*" data-p="명사">:</span> 「<span class="jw" data-r="はじめて" data-m="처음">初めて</span>〜を<span class="jw" data-r="たべ" data-m="먹다" data-b="食べる">食べ</span>ました」<span class="jw" data-b="*" data-p="명사">=</span> 처음으로 <span class="jw" data-b="*" data-p="명사">~</span>를 먹었다 <span class="jw" data-b="*" data-p="명사">(</span>여행 경험 공유<span class="jw" data-b="*" data-p="명사">).</span> 「又〜たいと<span class="jw" data-r="おもい" data-b="思う" data-p="동사">思い</span>ます」<span class="jw" data-b="*" data-p="명사">=</span> 또 <span class="jw" data-b="*" data-p="명사">~</span>하고 싶다 <span class="jw" data-b="*" data-p="명사">(</span>재방문 의사<span class="jw" data-b="*" data-p="명사">)</span></div>
                         <div class="expr-source">YouTube 댓글</div>
                     </div>
-                </button></div>
+                </div>
                 <button class="yt-comments-btn" onclick="openYtComments('1m0mgp5I8Og')">💬 YouTube 댓글 더보기</button>
             </div>
         </div>
-    </section></div>
+    </div>
 
     <!-- 후루카와 시장 단어표 -->
     <details class="vocab-section fade-in">
@@ -2077,7 +2155,7 @@
                     <tr><td data-jw-done="1"><a href="https://www.youtube.com/watch?v=GC3TKUjG9tk&amp;t=514s" target="_blank">8:14</a></td><td data-jw-done="1"><span class="jw" data-r="すけろく" data-p="명사">助六</span> — 역 근처 이자카야<br><span class="ja" data-jw-done="1"><span class="jw" data-r="すけろく" data-p="명사">助六</span> — <span class="jw" data-r="えき" data-m="역">駅</span><span class="jw" data-r="ちかく" data-m="근처">近く</span>の<span class="jw" data-r="いざかや" data-m="이자카야 — 일본식 선술집">居酒屋</span></span></td></tr>
                     <tr><td data-jw-done="1"><a href="https://www.youtube.com/watch?v=GC3TKUjG9tk&amp;t=636s" target="_blank">10:36</a></td><td data-jw-done="1"><span class="jw" data-r="まる" data-p="명사">丸</span><span class="jw" data-r="あお" data-p="접두사">青</span><span class="jw" data-r="しょくどう" data-m="식당">食堂</span> 재방문<br><span class="ja" data-jw-done="1"><span class="jw" data-r="まる" data-p="명사">丸</span><span class="jw" data-r="あお" data-p="접두사">青</span><span class="jw" data-r="しょくどう" data-m="식당">食堂</span> <span class="jw" data-r="さい" data-p="접두사">再</span><span class="jw" data-r="ほうもん" data-p="명사">訪問</span> — <span class="jw" data-r="かれー" data-p="명사">カレー</span><span class="jw" data-r="ちゅうもん" data-m="주문">注文</span></span></td></tr>
                 </tbody></table>
-                <button class="yt-comments-btn" <div="" style="margin-top:12px">
+                <div class="real-review-section" style="margin-top:12px">
                     <h5>💬 이 영상의 댓글로 배우기</h5>
                     <div class="review-expr">
                         <div class="expr-original" data-jw-done="1">「<span class="jw" data-r="ふんいき" data-m="분위기">雰囲気</span>が<span class="jw" data-r="よく" data-b="良い" data-p="형용사">良く</span>て、それだけで<span class="jw" data-r="まんぞく" data-p="명사">満足</span><span class="jw" data-r="かん" data-p="명사">感</span>があるのに、<span class="jw" data-b="*" data-p="명사">ザッハトルテ</span>があんなに<span class="jw" data-r="おいしい" data-m="맛있는">美味しい</span>とは」</div>
@@ -2093,11 +2171,11 @@
                         <div class="expr-point" data-jw-done="1">표현 포인트<span class="jw" data-b="*" data-p="명사">:</span> 「<span class="jw" data-r="いち" data-p="명사">一</span><span class="jw" data-r="にん" data-p="명사">人</span><span class="jw" data-r="たび" data-m="여행">旅</span>」<span class="jw" data-b="*" data-p="명사">=</span> 혼자 여행 <span class="jw" data-b="*" data-p="명사">(</span>ひとりたび<span class="jw" data-b="*" data-p="명사">).</span> 「<span class="jw" data-r="さんこう" data-p="명사">参考</span>にする」<span class="jw" data-b="*" data-p="명사">=</span> 참고하다. 「<span class="jw" data-b="*" data-p="명사">チョイス</span>」<span class="jw" data-b="*" data-p="명사">=</span> 선택 <span class="jw" data-b="*" data-p="명사">(</span>영어 유래 구어<span class="jw" data-b="*" data-p="명사">)</span></div>
                         <div class="expr-source">YouTube 댓글</div>
                     </div>
-                </button></div>
+                </div>
                 <button class="yt-comments-btn" onclick="openYtComments('GC3TKUjG9tk')">💬 YouTube 댓글 더보기</button>
             </div>
         </div>
-    
+    </div>
 
     <!-- A-FACTORY 단어표 -->
     <details class="vocab-section fade-in">
@@ -2660,8 +2738,8 @@
         <div class="sq-result" data-quiz="d1" style="display:none;"></div>
     </div>
 
-
-
+</section>
+</div>
 
 <!-- DAY 2 -->
 <div class="container">
@@ -2726,7 +2804,7 @@
                     <tr><td data-jw-done="1"><a href="https://www.youtube.com/watch?v=9reJCnjY6Xg&amp;t=1368s" target="_blank">22:48</a></td><td data-jw-done="1"><span class="jw" data-r="ながい" data-p="명사">永井</span><span class="jw" data-r="くじ" data-p="명사">久慈</span><span class="jw" data-r="りょう" data-p="명사">良</span><span class="jw" data-r="もち" data-m="떡, 모찌">餅</span><span class="jw" data-r="てん" data-m="가게">店</span> — 120년 전통 떡집 <span class="jw" data-b="*" data-p="명사">(</span>명물 쿠지라모찌<span class="jw" data-b="*" data-p="명사">)</span> <span class="ja" data-jw-done="1">120<span class="jw" data-r="ねん" data-p="명사">年</span>の<span class="jw" data-r="でんとう" data-m="전통">伝統</span><span class="jw" data-r="もちや" data-p="명사">餅屋</span>（<span class="jw" data-r="めいぶつ" data-m="명물">名物</span>くじら<span class="jw" data-r="もち" data-m="떡, 모찌">餅</span>）</span></td></tr>
                     <tr><td data-jw-done="1"><a href="https://www.youtube.com/watch?v=9reJCnjY6Xg&amp;t=1454s" target="_blank">24:14</a></td><td data-jw-done="1"><span class="jw" data-r="つる" data-p="명사">鶴</span><span class="jw" data-r="かめや" data-p="명사">亀屋</span><span class="jw" data-r="しょくどう" data-m="식당">食堂</span> — 초대형 참치 덮밥으로 유명한 식당 <span class="ja" data-jw-done="1"><span class="jw" data-r="ちょう" data-p="접두사">超</span><span class="jw" data-r="おおもり" data-p="명사">大盛り</span><span class="jw" data-r="まぐろ" data-p="명사">マグロ</span><span class="jw" data-r="どんぶり" data-p="명사">丼</span>で<span class="jw" data-r="ゆうめい" data-p="명사">有名</span>な<span class="jw" data-r="しょくどう" data-m="식당">食堂</span></span></td></tr>
                 </tbody></table>
-                <button class="yt-comments-btn" <div="" style="margin-top:12px">
+                <div class="real-review-section" style="margin-top:12px">
                     <h5>💬 이 영상의 댓글로 배우기</h5>
                     <div class="review-expr">
                         <div class="expr-original" data-jw-done="1">「もう<span class="jw" data-r="むしょうに" data-p="부사">無性に</span><span class="jw" data-r="かいせん" data-p="명사">海鮮</span><span class="jw" data-r="たべ" data-m="먹다" data-b="食べる">食べ</span>たくなっちゃいます！<span class="jw" data-r="ほたて" data-p="명사">ホタテ</span>、、、<span class="jw" data-r="まぐろ" data-p="명사">マグロ</span>、、、」</div>
@@ -2753,10 +2831,10 @@
                             <div class="note-desc" data-jw-done="1">「<span class="jw" data-r="めぐる" data-p="동사">巡る</span>」<span class="jw" data-b="*" data-p="명사">(</span>めぐる, 돌아다니다<span class="jw" data-b="*" data-p="명사">)</span>의 명사형. 「<span class="jw" data-r="おんせん" data-m="온천">温泉</span><span class="jw" data-r="めぐり" data-p="명사">巡り</span>」「<span class="jw" data-r="いざかや" data-m="이자카야 — 일본식 선술집">居酒屋</span><span class="jw" data-r="めぐり" data-p="명사">巡り</span>」「<span class="jw" data-r="ぱわー" data-p="명사">パワー</span><span class="jw" data-r="すぽっと" data-p="명사">スポット</span><span class="jw" data-r="めぐり" data-p="명사">巡り</span>」. 검색어로도 유용</div>
                         </div>
                     </div>
-                </button></div>
+                </div>
                 <button class="yt-comments-btn" onclick="openYtComments('9reJCnjY6Xg')">💬 YouTube 댓글 더보기</button>
             </div>
-        
+        </div>
     
 
     <!-- Day 2 Lunch -->
@@ -3084,7 +3162,7 @@
                     <tr><td data-jw-done="1"><a href="https://www.youtube.com/watch?v=bTPm0HWbKBw&amp;t=900s" target="_blank">15:00</a></td><td data-jw-done="1">あんこうの<span class="jw" data-r="きょうわ" data-p="명사">共和</span>え<span class="jw" data-b="*" data-p="명사">(</span>아귀 공화에<span class="jw" data-b="*" data-p="명사">)</span> <span class="jw" data-b="*" data-p="명사">+</span> 현지인과 대화 <span class="ja" data-jw-done="1">あんこうの<span class="jw" data-r="きょうわ" data-p="명사">共和</span>え＋<span class="jw" data-r="じもと" data-m="현지, 그 지역">地元</span>の<span class="jw" data-r="ひと" data-p="명사">人</span>と<span class="jw" data-r="かいわ" data-m="대화">会話</span></span></td></tr>
                     <tr><td data-jw-done="1"><a href="https://www.youtube.com/watch?v=bTPm0HWbKBw&amp;t=1140s" target="_blank">19:00</a></td><td data-jw-done="1"><span class="jw" data-r="ちゃめし" data-p="명사">茶飯</span><span class="jw" data-b="*" data-p="명사">(</span>차메시<span class="jw" data-b="*" data-p="명사">)</span>으로 〆 <span class="jw" data-b="*" data-p="명사">+</span> 마무리 소감 <span class="ja" data-jw-done="1"><span class="jw" data-r="ちゃめし" data-p="명사">茶飯</span>で〆＋まとめ<span class="jw" data-r="かんそう" data-p="명사">感想</span></span></td></tr>
                 </tbody></table>
-                <button class="yt-comments-btn" <div="" style="margin-top:12px">
+                <div class="real-review-section" style="margin-top:12px">
                     <h5>💬 이 영상의 댓글로 배우기</h5>
                     <div class="review-expr">
                         <div class="expr-original" data-jw-done="1">「つきだしで『さもだし』が<span class="jw" data-r="で" data-b="出る" data-p="동사">出</span>てくるお<span class="jw" data-r="みせ" data-m="가게">店</span>は<span class="jw" data-r="しんよう" data-p="명사">信用</span>できるっ！」</div>
@@ -3118,13 +3196,13 @@
                             <div class="note-desc" data-jw-done="1">음주의 <span class="jw" data-b="*" data-p="명사">'</span>마무리<span class="jw" data-b="*" data-p="명사">'</span> 식사. 라멘, 오차즈케, 주먹밥 등. 아오모리에서는 「<span class="jw" data-r="ちょうび" data-p="명사">長尾</span><span class="jw" data-r="ちゅうか" data-p="명사">中華</span>そば」가 시메 라멘의 대표</div>
                         </div>
                     </div>
-                </button></div>
+                </div>
                 <button class="yt-comments-btn" onclick="openYtComments('bTPm0HWbKBw')">💬 YouTube 댓글 더보기</button>
             </div>
 
 
         </div>
-    
+    </div>
 
         <!-- Day 2 Vocabulary -->
     <details class="vocab-section fade-in">
@@ -3456,7 +3534,7 @@
                     <tr><td data-jw-done="1"><a href="https://www.youtube.com/watch?v=MuAhhkbmOgY&amp;t=540s" target="_blank">9:00</a></td><td data-jw-done="1">단골손님 합류 — 현지인과 자연스러운 교류 <span class="ja" data-jw-done="1"><span class="jw" data-r="じょうれん" data-m="단골">常連</span>さん<span class="jw" data-r="ごうりゅう" data-p="명사">合流</span> — <span class="jw" data-r="じもと" data-m="현지, 그 지역">地元</span>の<span class="jw" data-r="ひと" data-p="명사">人</span>と<span class="jw" data-r="しぜん" data-m="자연">自然</span>な<span class="jw" data-r="こうりゅう" data-p="명사">交流</span></span></td></tr>
                     <tr><td data-jw-done="1"><a href="https://www.youtube.com/watch?v=MuAhhkbmOgY&amp;t=750s" target="_blank">12:30</a></td><td data-jw-done="1">마무리 — 퇴장 인사, 스낵바 체험 소감 <span class="ja" data-jw-done="1"><span class="jw" data-r="しめ" data-p="명사">締め</span> — <span class="jw" data-r="しさ" data-b="退る" data-p="동사">退</span><span class="jw" data-r="てん" data-m="가게">店</span>の<span class="jw" data-r="あいさつ" data-m="인사">挨拶</span>、<span class="jw" data-r="すなっく" data-m="스낵바">スナック</span><span class="jw" data-r="たいけん" data-m="체험">体験</span>の<span class="jw" data-r="かんそう" data-p="명사">感想</span></span></td></tr>
                 </tbody></table>
-                <button class="yt-comments-btn" <div="" style="margin-top:12px">
+                <div class="real-review-section" style="margin-top:12px">
                     <h5>💬 이 영상의 댓글로 배우기</h5>
                     <div class="review-expr">
                         <div class="expr-original" data-jw-done="1">「この<span class="jw" data-r="じもと" data-m="현지, 그 지역">地元</span><span class="jw" data-r="かん" data-p="명사">感</span>、すごく<span class="jw" data-r="よい" data-p="형용사">良い</span>ですね<span class="jw" data-b="*" data-p="명사">☺</span>️ <span class="jw" data-r="つがる" data-p="명사">津軽</span><span class="jw" data-r="べん" data-p="명사">弁</span>が<span class="jw" data-r="ここちよい" data-p="형용사">心地好い</span><span class="jw" data-r="なつかし" data-m="그리운" data-b="懐かしい">懐かし</span>さです」</div>
@@ -3465,11 +3543,11 @@
                         <div class="expr-point" data-jw-done="1">표현 포인트<span class="jw" data-b="*" data-p="명사">:</span> 「<span class="jw" data-r="じもと" data-m="현지, 그 지역">地元</span><span class="jw" data-r="かん" data-p="명사">感</span>」<span class="jw" data-b="*" data-p="명사">=</span> 현지감. 「<span class="jw" data-r="ここちよい" data-p="형용사">心地好い</span>」<span class="jw" data-b="*" data-p="명사">=</span> 편안한 <span class="jw" data-b="*" data-p="명사">(「</span><span class="jw" data-r="ここちよい" data-p="형용사">心地よい</span>」의 변형<span class="jw" data-b="*" data-p="명사">).</span> 「<span class="jw" data-r="なつかし" data-m="그리운" data-b="懐かしい">懐かし</span>さ」<span class="jw" data-b="*" data-p="명사">=</span> 그리움, 향수. 스낵바의 따뜻한 분위기를 표현</div>
                         <div class="expr-source">YouTube 댓글</div>
                     </div>
-                </button></div>
+                </div>
                 <button class="yt-comments-btn" onclick="openYtComments('MuAhhkbmOgY')">💬 YouTube 댓글 더보기</button>
             </div>
         </div>
-    </section></div>
+    </div>
 
     <!-- Day 3 Vocabulary -->
     <details class="vocab-section fade-in">
@@ -3518,8 +3596,8 @@
         <div class="sq-result" data-quiz="d3" style="display:none;"></div>
     </div>
 
-
-
+</section>
+</div>
 
 <!-- DAY 4 -->
 <div class="container">
@@ -3632,7 +3710,7 @@
                 <tr><td data-jw-done="1"><a href="https://www.youtube.com/watch?v=dDVFRg3R0AI&amp;t=90s" target="_blank">1:30</a></td><td data-jw-done="1">감정 표현 — <span class="jw" data-b="*" data-p="명사">"</span>わいは<span class="jw" data-b="*" data-p="명사">！"(</span>놀람<span class="jw" data-b="*" data-p="명사">),</span> <span class="jw" data-b="*" data-p="명사">"</span>けっぱれ<span class="jw" data-b="*" data-p="명사">"(</span>힘내<span class="jw" data-b="*" data-p="명사">)</span> 등 리액션 표현</td></tr>
                 <tr><td data-jw-done="1"><a href="https://www.youtube.com/watch?v=dDVFRg3R0AI&amp;t=180s" target="_blank">3:00</a></td><td data-jw-done="1">작별 인사 — <span class="jw" data-b="*" data-p="명사">"</span>せばだば、まだな<span class="jw" data-b="*" data-p="명사">！"(</span>그럼, 또 보자<span class="jw" data-b="*" data-p="명사">!)</span> 가게 나갈 때 사용</td></tr>
             </tbody></table>
-            <button class="yt-comments-btn" <div="" style="margin-top:12px; background:rgba(255,255,255,0.06); border-left-color:#f39c12;">
+            <div class="real-review-section" style="margin-top:12px; background:rgba(255,255,255,0.06); border-left-color:#f39c12;">
                 <h5 style="color:#f39c12">💬 이 영상의 댓글로 배우기</h5>
                 <div class="review-expr" style="background:rgba(255,255,255,0.04); border-color:rgba(243,156,18,0.2);">
                     <div class="expr-original" style="color:rgba(255,255,255,0.9)" data-jw-done="1">「<span class="jw" data-r="ふらんすご" data-p="명사">フランス語</span>を<span class="jw" data-r="はなす" data-p="동사">話す</span><span class="jw" data-r="ともだち" data-p="명사">友達</span>にこれ<span class="jw" data-r="みせ" data-b="見せる" data-p="동사">見せ</span>たら『<span class="jw" data-r="くち" data-p="명사">口</span>の<span class="jw" data-r="つかいかた" data-p="명사">使い方</span>が<span class="jw" data-r="まったく" data-p="부사">全く</span><span class="jw" data-r="おなじ" data-p="연체사">同じ</span>だ』と<span class="jw" data-r="しょうさん" data-p="명사">賞賛</span>すると共に<span class="jw" data-r="にほんご" data-p="명사">日本語</span>には<span class="jw" data-r="おもえ" data-b="思える" data-p="동사">思え</span>ないと<span class="jw" data-r="きも" data-p="명사">キモ</span>がっていた」</div>
@@ -3648,7 +3726,7 @@
                     <div class="expr-point" style="color:rgba(255,255,255,0.7)" data-jw-done="1">표현 포인트<span class="jw" data-b="*" data-p="명사">:</span> 「<span class="jw" data-r="けっきょく" data-p="명사">結局</span>」<span class="jw" data-b="*" data-p="명사">=</span> 결국. 「<span class="jw" data-r="なに" data-p="명사">何</span><span class="jw" data-r="いっ" data-m="말하다" data-b="言う">言っ</span>ても<span class="jw" data-b="*" data-p="명사">」=</span> 뭘 말해도. 「<span class="jw" data-r="えみ" data-p="명사">笑</span><span class="jw" data-r="えみ" data-p="명사">笑</span>」<span class="jw" data-b="*" data-p="명사">(</span>わらわら<span class="jw" data-b="*" data-p="명사">)</span> <span class="jw" data-b="*" data-p="명사">=</span> ㅋㅋ <span class="jw" data-b="*" data-p="명사">(</span>인터넷 웃음 표현, 「<span class="jw" data-b="*" data-p="명사">w</span>」또는 「<span class="jw" data-r="えみ" data-p="명사">笑</span>」<span class="jw" data-b="*" data-p="명사">)</span></div>
                     <div class="expr-source" style="color:rgba(243,156,18,0.6)">YouTube 댓글</div>
                 </div>
-            </button></div>
+            </div>
             <button class="yt-comments-btn" onclick="openYtComments('dDVFRg3R0AI')">💬 YouTube 댓글 더보기</button>
 
             <div class="video-embed">
@@ -3667,7 +3745,7 @@
                 <tr><td data-jw-done="1"><a href="https://www.youtube.com/watch?v=pHQkxdCKfbI&amp;t=60s" target="_blank">1:00</a></td><td data-jw-done="1">감정 표현 대사 — <span class="jw" data-b="*" data-p="명사">"</span>わいは<span class="jw" data-b="*" data-p="명사">！"</span> 등 감탄사가 쓰가루벤으로 어떻게 바뀌는지</td></tr>
                 <tr><td data-jw-done="1"><a href="https://www.youtube.com/watch?v=pHQkxdCKfbI&amp;t=120s" target="_blank">2:00</a></td><td data-jw-done="1">일상 대화 변환 — 표준어와 쓰가루벤 비교로 <span class="jw" data-b="*" data-p="명사">"</span>けやぐ<span class="jw" data-b="*" data-p="명사">"(</span>친구<span class="jw" data-b="*" data-p="명사">)</span> 등의 단어 학습</td></tr>
             </tbody></table>
-            <button class="yt-comments-btn" <div="" style="margin-top:12px; background:rgba(255,255,255,0.06); border-left-color:#f39c12;">
+            <div class="real-review-section" style="margin-top:12px; background:rgba(255,255,255,0.06); border-left-color:#f39c12;">
                 <h5 style="color:#f39c12">💬 이 영상의 댓글로 배우기</h5>
                 <div class="review-expr" style="background:rgba(255,255,255,0.04); border-color:rgba(243,156,18,0.2);">
                     <div class="expr-original" style="color:rgba(255,255,255,0.9)" data-jw-done="1">「<span class="jw" data-r="つがる" data-p="명사">津軽</span><span class="jw" data-r="べん" data-p="명사">弁</span>の<span class="jw" data-r="じょうげ" data-p="명사">上下</span><span class="jw" data-r="うんどう" data-p="명사">運動</span>が<span class="jw" data-r="はげし" data-b="激しい" data-p="형용사">激し</span>すぎて<span class="jw" data-r="まったく" data-p="부사">全く</span>わからず<span class="jw" data-r="しゅうきょう" data-p="명사">宗教</span><span class="jw" data-r="かんゆう" data-p="명사">勧誘</span>の<span class="jw" data-r="いんたーほん" data-p="명사">インターホン</span>に<span class="jw" data-r="で" data-b="出る" data-p="동사">出</span>ちゃったことある」</div>
@@ -3683,7 +3761,7 @@
                     <div class="expr-point" style="color:rgba(255,255,255,0.7)" data-jw-done="1">표현 포인트<span class="jw" data-b="*" data-p="명사">:</span> 「<span class="jw" data-r="き" data-p="명사">気</span><span class="jw" data-r="つける" data-p="동사">付ける</span>」<span class="jw" data-b="*" data-p="명사">=</span> 알아챌 수 있다. 같은 쓰가루 내에서도 미묘한 억양 차이가 있다는 현지인의 관찰</div>
                     <div class="expr-source" style="color:rgba(243,156,18,0.6)">YouTube 댓글</div>
                 </div>
-            </button></div>
+            </div>
             <button class="yt-comments-btn" onclick="openYtComments('pHQkxdCKfbI')">💬 YouTube 댓글 더보기</button>
 
             <div class="video-embed">
@@ -3702,7 +3780,7 @@
                 <tr><td data-jw-done="1"><a href="https://www.youtube.com/watch?v=EFPleQyonsk&amp;t=60s" target="_blank">1:00</a></td><td data-jw-done="1"><span class="jw" data-b="*" data-p="명사">"</span>どさ？ゆさ！<span class="jw" data-b="*" data-p="명사">"</span> 등 유명 쓰가루벤 짧은 대화가 코미디 소재로 등장</td></tr>
                 <tr><td data-jw-done="1"><a href="https://www.youtube.com/watch?v=EFPleQyonsk&amp;t=120s" target="_blank">2:00</a></td><td data-jw-done="1"><span class="jw" data-b="*" data-p="명사">"</span>なんぼ<span class="jw" data-b="*" data-p="명사">？"(</span>얼마<span class="jw" data-b="*" data-p="명사">?),</span> <span class="jw" data-b="*" data-p="명사">"</span>けっぱれ<span class="jw" data-b="*" data-p="명사">"(</span>힘내<span class="jw" data-b="*" data-p="명사">!)</span> 등 실용 표현을 콩트 맥락에서 학습</td></tr>
             </tbody></table>
-            <button class="yt-comments-btn" <div="" style="margin-top:12px; background:rgba(255,255,255,0.06); border-left-color:#f39c12;">
+            <div class="real-review-section" style="margin-top:12px; background:rgba(255,255,255,0.06); border-left-color:#f39c12;">
                 <h5 style="color:#f39c12">💬 이 영상의 댓글로 배우기</h5>
                 <div class="review-expr" style="background:rgba(255,255,255,0.04); border-color:rgba(243,156,18,0.2);">
                     <div class="expr-original" style="color:rgba(255,255,255,0.9)" data-jw-done="1">「<span class="jw" data-r="いわて" data-p="명사">岩手</span><span class="jw" data-r="けんみん" data-p="명사">県民</span>です。<span class="jw" data-r="じまく" data-p="명사">字幕</span><span class="jw" data-r="なし" data-p="명사">無し</span>でほぼ<span class="jw" data-r="わかり" data-b="分かる" data-p="동사">分かり</span>ます！」</div>
@@ -3718,7 +3796,7 @@
                     <div class="expr-point" style="color:rgba(255,255,255,0.7)" data-jw-done="1">표현 포인트<span class="jw" data-b="*" data-p="명사">:</span> 「<span class="jw" data-r="つぼ" data-p="명사">ツボ</span>」<span class="jw" data-b="*" data-p="명사">=</span> 웃음 포인트 <span class="jw" data-b="*" data-p="명사">(</span>원래 <span class="jw" data-b="*" data-p="명사">"</span>급소<span class="jw" data-b="*" data-p="명사">"</span>라는 뜻<span class="jw" data-b="*" data-p="명사">).</span> 「ばかこの<span class="jw" data-b="*" data-p="명사">」=</span> 쓰가루벤으로 <span class="jw" data-b="*" data-p="명사">"</span>이 바보야<span class="jw" data-b="*" data-p="명사">!"</span> <span class="jw" data-b="*" data-p="명사">(</span>표준어<span class="jw" data-b="*" data-p="명사">:</span> 「<span class="jw" data-r="ばか" data-p="접두사">バカ</span><span class="jw" data-b="*" data-p="명사">!」).</span> 「〜すぎる」<span class="jw" data-b="*" data-p="명사">=</span> 너무 <span class="jw" data-b="*" data-p="명사">~</span>하다</div>
                     <div class="expr-source" style="color:rgba(243,156,18,0.6)">YouTube 댓글</div>
                 </div>
-            </button></div>
+            </div>
             <button class="yt-comments-btn" onclick="openYtComments('EFPleQyonsk')">💬 YouTube 댓글 더보기</button>
 
             <table class="video-table" style="color:white;">
@@ -3738,8 +3816,8 @@
                     </tr>
                 </tbody>
             </table>
-        
-    
+        </div>
+    </div>
 
     <!-- Phrase List -->
     <h3 style="color:#f39c12; margin-bottom:16px; font-size:1.1em;" class="fade-in">이자카야에서 바로 쓰는 쓰가루벤</h3>
@@ -3833,7 +3911,7 @@
             <button class="quiz-btn" onclick="startQuiz()" style="margin-top:16px">다시 도전!</button>
         </div>
     </div>
-
+</div>
 </section>
 
 <!-- Tips -->
@@ -4064,6 +4142,34 @@
 </footer>
 
 <script>
+// Theme toggle
+function toggleTheme() {
+    const html = document.documentElement;
+    const isDark = html.getAttribute('data-theme') === 'dark';
+    if (isDark) {
+        html.removeAttribute('data-theme');
+        localStorage.setItem('theme', 'light');
+        document.getElementById('theme-icon').textContent = '🌙';
+        document.getElementById('theme-label').textContent = '다크';
+    } else {
+        html.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+        document.getElementById('theme-icon').textContent = '☀️';
+        document.getElementById('theme-label').textContent = '라이트';
+    }
+}
+// Restore saved theme
+(function() {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('theme-icon').textContent = '☀️';
+            document.getElementById('theme-label').textContent = '라이트';
+        });
+    }
+})();
+
 // Scroll animation
 const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
