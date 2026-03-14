@@ -371,6 +371,112 @@
             background: #d4e9fc;
         }
 
+        /* YouTube Comments Modal */
+        .yt-modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.88);
+            z-index: 10000;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+            padding: 20px 12px;
+        }
+        .yt-modal-overlay.active { display: block; }
+        .yt-modal {
+            width: 100%;
+            max-width: 680px;
+            margin: 0 auto;
+            padding: 0 0 40px 0;
+        }
+        .yt-modal-header {
+            position: sticky;
+            top: 0;
+            background: rgba(15,12,41,0.97);
+            backdrop-filter: blur(8px);
+            padding: 16px 0;
+            z-index: 1;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 16px;
+        }
+        .yt-modal-header h3 {
+            color: #f39c12;
+            font-size: 1rem;
+            margin: 0;
+            flex: 1;
+        }
+        .yt-modal-close {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: white;
+            font-size: 20px;
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            flex-shrink: 0;
+            margin-left: 12px;
+            transition: background 0.2s;
+        }
+        .yt-modal-close:hover { background: rgba(255,255,255,0.2); }
+        .yt-modal-count {
+            color: rgba(255,255,255,0.5);
+            font-size: 0.8rem;
+            margin-bottom: 12px;
+        }
+        .yt-comment-card {
+            background: rgba(255,255,255,0.06);
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 8px;
+            border-left: 3px solid rgba(243,156,18,0.4);
+            transition: border-color 0.2s;
+        }
+        .yt-comment-card:hover { border-left-color: #f39c12; }
+        .yt-comment-ja {
+            font-size: 0.95rem;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.9);
+            white-space: pre-wrap;
+        }
+        .yt-comment-ja .jw {
+            border-bottom: 1px dotted rgba(243,156,18,0.5);
+            cursor: pointer;
+        }
+        .yt-comment-ja .jw:hover, .yt-comment-ja .jw.active {
+            color: #f39c12;
+            border-bottom-color: #f39c12;
+        }
+        .yt-comment-likes {
+            font-size: 0.78rem;
+            color: rgba(243,156,18,0.6);
+            margin-top: 6px;
+        }
+        .yt-comments-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 7px 14px;
+            background: rgba(255,0,0,0.06);
+            border: 1px solid rgba(255,0,0,0.15);
+            border-radius: 8px;
+            color: #cc0000;
+            font-size: 0.82rem;
+            cursor: pointer;
+            margin-top: 8px;
+            transition: all 0.2s;
+        }
+        .yt-comments-btn:hover { background: rgba(255,0,0,0.12); }
+        /* Dialect section override */
+        .dialect-section .yt-comments-btn {
+            background: rgba(243,156,18,0.1);
+            border-color: rgba(243,156,18,0.3);
+            color: #f39c12;
+        }
+        .dialect-section .yt-comments-btn:hover { background: rgba(243,156,18,0.2); }
+
         /* YouTube Section */
         .video-section {
             margin-top: 16px;
@@ -1487,6 +1593,18 @@
 <div id="jw-loading" style="position:fixed;bottom:20px;right:20px;background:#1a1a2e;color:white;padding:10px 18px;border-radius:10px;font-size:0.85em;z-index:9999;box-shadow:0 4px 15px rgba(0,0,0,0.3);">📖 일본어 사전 로딩 중...</div>
 <div id="jw-popup"></div>
 
+<!-- YouTube Comments Modal Overlay -->
+<div id="yt-comments-overlay" class="yt-modal-overlay" onclick="if(event.target===this)closeYtComments()">
+    <div class="yt-modal">
+        <div class="yt-modal-header">
+            <h3 id="yt-modal-title">YouTube 댓글</h3>
+            <button class="yt-modal-close" onclick="closeYtComments()" aria-label="닫기">✕</button>
+        </div>
+        <div class="yt-modal-count" id="yt-modal-count"></div>
+        <div id="yt-modal-body"></div>
+    </div>
+</div>
+
 <!-- Hero -->
 <header class="hero">
     <div class="hero-badge">TRAVEL & STUDY GUIDE 2026</div>
@@ -1638,6 +1756,36 @@
             <tr><td><a href="https://www.youtube.com/watch?v=c3lW5qDZqgk&t=2364s" target="_blank">39:24</a></td><td>6차: 古川市場 — 아침 놋케동<br><span class="ja">6軒目：古川市場 — 朝のっけ丼</span></td></tr>
             <tr><td><a href="https://www.youtube.com/watch?v=c3lW5qDZqgk&t=2930s" target="_blank">48:50</a></td><td>마무리: 長尾中華そば — 〆라멘<br><span class="ja">締め：長尾中華そば — 〆ラーメン</span></td></tr>
         </table>
+        <button class="yt-comments-btn" 
+        <div class="real-review-section" style="margin-top:12px">
+            <h5>💬 이 영상의 댓글로 배우기</h5>
+            <div class="review-expr">
+                <div class="expr-original">「セルフ酢飯にカスタム可。券1枚でカニやエビ頭、海藻の味噌汁と交換できるよ」</div>
+                <div class="expr-reading">セルフ すめしに カスタムか。けん1まいで カニや エビあたま、かいそうの みそしると こうかんできるよ</div>
+                <div class="expr-meaning">셀프 초밥으로 커스텀 가능. 식권 1장으로 게나 새우 머리, 해조류 된장국으로 교환 가능</div>
+                <div class="expr-point">표현 포인트: 「カスタム可」= 커스텀 가능 (SNS 축약체). 「〜と交換できる」= ~으로 교환할 수 있다. 현지인만 아는 꿀팁!</div>
+                <div class="expr-source">YouTube 댓글</div>
+            </div>
+            <div class="review-expr">
+                <div class="expr-original">「初めて見たけど、ここまで豪快な食べっぷり、飲みっぷり見た事ない」</div>
+                <div class="expr-reading">はじめてみたけど、ここまで ごうかいな たべっぷり、のみっぷり みたことない</div>
+                <div class="expr-meaning">처음 봤는데, 이 정도로 호쾌한 먹는 모습, 마시는 모습은 본 적 없다</div>
+                <div class="expr-point">표현 포인트: 「〜っぷり」= ~하는 모습/방식 (食べっぷり=먹는 모습, 飲みっぷり=마시는 모습). 「豪快な」= 호쾌한, 시원시원한. 칭찬으로 많이 쓰임</div>
+                <div class="expr-source">YouTube 댓글</div>
+            </div>
+            <div class="review-lang-notes">
+                <h6>비표준/구어 표현 학습 노트</h6>
+                <div class="lang-note">
+                    <span class="note-expr">〜っぷり</span><span class="note-type">접미어</span>
+                    <div class="note-desc">동사의 ます형에 붙어 「~하는 모습/태도」를 나타냄. 「食べっぷり」(먹는 모습), 「飲みっぷり」(마시는 모습), 「男っぷり」(남자다움). 긍정적 뉘앙스가 강함. 리뷰에서 「食べっぷりが気持ちいい」= 시원시원하게 잘 먹는다</div>
+                </div>
+                <div class="lang-note">
+                    <span class="note-expr">カスタム可</span><span class="note-type">SNS 축약</span>
+                    <div class="note-desc">「カスタム可能」의 SNS 축약형. 리뷰/댓글에서 정보를 압축해서 전달. 비슷한 패턴: 「予約必須」(예약 필수), 「現金のみ」(현금만), 「テイクアウト可」(포장 가능)</div>
+                </div>
+            </div>
+        </div>
+        <button class="yt-comments-btn" onclick="openYtComments('c3lW5qDZqgk')">💬 YouTube 댓글 더보기</button>
 
         <div class="video-embed">
             <iframe src="https://www.youtube.com/embed/H3wL0KsvZr8" loading="lazy" allowfullscreen></iframe>
@@ -1657,6 +1805,36 @@
             <tr><td><a href="https://www.youtube.com/watch?v=H3wL0KsvZr8&t=510s" target="_blank">8:30</a></td><td>3차: 浜料理 さとや — 시라코, 타코<br><span class="ja">3軒目：浜料理 さとや — 白子西京焼き、たこ鉄板焼き</span></td></tr>
             <tr><td><a href="https://www.youtube.com/watch?v=H3wL0KsvZr8&t=690s" target="_blank">11:30</a></td><td>4차: 和食ダイニング 貴 — 마무리<br><span class="ja">4軒目：和食ダイニング 貴 — 稲村屋の地酒、おでん、うどんで締め</span></td></tr>
         </table>
+        <button class="yt-comments-btn" 
+        <div class="real-review-section" style="margin-top:12px">
+            <h5>💬 이 영상의 댓글로 배우기</h5>
+            <div class="review-expr">
+                <div class="expr-original">「青森は普通のレベルが最高得点なんですよね。何気なく入る店で驚かされる！」</div>
+                <div class="expr-reading">あおもりは ふつうのレベルが さいこうとくてん なんですよね。なにげなく はいるみせで おどろかされる！</div>
+                <div class="expr-meaning">아오모리는 보통 수준이 최고 득점이에요. 무심코 들어간 가게에서 놀라게 돼요!</div>
+                <div class="expr-point">표현 포인트: 「何気なく」= 무심코, 별 생각 없이. 「驚かされる」= 놀라게 되다 (사역수동). 아오모리 현지인의 자부심 표현</div>
+                <div class="expr-source">YouTube 댓글</div>
+            </div>
+            <div class="review-expr">
+                <div class="expr-original">「この常連さん素敵ですねー いい出会いでより楽しい動画でしたー」</div>
+                <div class="expr-reading">この じょうれんさん すてきですねー いいであいで より たのしい どうがでしたー</div>
+                <div class="expr-meaning">이 단골손님 멋지네요~ 좋은 만남으로 더 즐거운 영상이었어요~</div>
+                <div class="expr-point">표현 포인트: 「常連」= 단골. 이자카야에서 옆 사람과 친해지는 문화. 「出会い」= 만남. 이자카야의 매력을 보여주는 댓글</div>
+                <div class="expr-source">YouTube 댓글</div>
+            </div>
+            <div class="review-lang-notes">
+                <h6>비표준/구어 표현 학습 노트</h6>
+                <div class="lang-note">
+                    <span class="note-expr">何気なく</span><span class="note-type">부사</span>
+                    <div class="note-desc">「무심코, 별 생각 없이」. 원래 「何気ない」(의도 없는)의 부사형. 「何気なく入った店が当たりだった」= 무심코 들어간 가게가 대박이었다. 여행 리뷰의 단골 표현</div>
+                </div>
+                <div class="lang-note">
+                    <span class="note-expr">驚かされる</span><span class="note-type">사역수동</span>
+                    <div class="note-desc">「놀라게 되다」. 「驚く」(놀라다) → 「驚かす」(놀라게 하다) → 「驚かされる」(놀라게 되다). 일본어의 사역수동은 "~에 의해 ~당하다"의 뉘앙스. 칭찬으로 "이 가게에 놀라게 됐다"는 자연스러운 표현</div>
+                </div>
+            </div>
+        </div>
+        <button class="yt-comments-btn" onclick="openYtComments('H3wL0KsvZr8')">💬 YouTube 댓글 더보기</button>
     </div>
 </section>
 </div>
@@ -1784,6 +1962,18 @@
                     <tr><td><a href="https://www.youtube.com/watch?v=1m0mgp5I8Og&t=68s" target="_blank">1:08</a></td><td>식권 구매 방법<br><span class="ja">食券（チケット）購入方法 — 12枚¥2,200のシステム説明</span></td></tr>
                     <tr><td><a href="https://www.youtube.com/watch?v=1m0mgp5I8Og&t=642s" target="_blank">10:42</a></td><td>놋케동 완성! 시식<br><span class="ja">のっけ丼完成！トッピング選びの結果と試食</span></td></tr>
                 </table>
+                <button class="yt-comments-btn" 
+                <div class="real-review-section" style="margin-top:12px">
+                    <h5>💬 이 영상의 댓글로 배우기</h5>
+                    <div class="review-expr">
+                        <div class="expr-original">「初めてのっけ丼を食べました！又、のっけ丼を食べたいと思います！」</div>
+                        <div class="expr-reading">はじめて のっけどんを たべました！また、のっけどんを たべたいと おもいます！</div>
+                        <div class="expr-meaning">처음으로 놋케동을 먹었습니다! 또 놋케동을 먹고 싶습니다!</div>
+                        <div class="expr-point">표현 포인트: 「初めて〜を食べました」= 처음으로 ~를 먹었다 (여행 경험 공유). 「又〜たいと思います」= 또 ~하고 싶다 (재방문 의사)</div>
+                        <div class="expr-source">YouTube 댓글</div>
+                    </div>
+                </div>
+                <button class="yt-comments-btn" onclick="openYtComments('1m0mgp5I8Og')">💬 YouTube 댓글 더보기</button>
             </div>
         </div>
     </div>
@@ -1894,6 +2084,25 @@
                     <tr><td><a href="https://www.youtube.com/watch?v=GC3TKUjG9tk&t=514s" target="_blank">8:14</a></td><td>助六 — 역 근처 이자카야<br><span class="ja">助六 — 駅近くの居酒屋</span></td></tr>
                     <tr><td><a href="https://www.youtube.com/watch?v=GC3TKUjG9tk&t=636s" target="_blank">10:36</a></td><td>丸青食堂 재방문<br><span class="ja">丸青食堂 再訪問 — カレー注文</span></td></tr>
                 </table>
+                <button class="yt-comments-btn" 
+                <div class="real-review-section" style="margin-top:12px">
+                    <h5>💬 이 영상의 댓글로 배우기</h5>
+                    <div class="review-expr">
+                        <div class="expr-original">「雰囲気が良くて、それだけで満足感があるのに、ザッハトルテがあんなに美味しいとは」</div>
+                        <div class="expr-reading">ふんいきが よくて、それだけで まんぞくかんが あるのに、ザッハトルテが あんなに おいしいとは</div>
+                        <div class="expr-meaning">분위기가 좋아서 그것만으로도 만족감이 있는데, 자허토르테가 그렇게 맛있을 줄이야</div>
+                        <div class="expr-point">표현 포인트: 「〜のに」= ~인데도 (역접). 「あんなに〜とは」= 그렇게 ~일 줄이야 (예상 밖의 감탄)</div>
+                        <div class="expr-source">YouTube 댓글</div>
+                    </div>
+                    <div class="review-expr">
+                        <div class="expr-original">「素敵なチョイス。将来の一人旅の参考にします😊」</div>
+                        <div class="expr-reading">すてきな チョイス。しょうらいの ひとりたびの さんこうに します</div>
+                        <div class="expr-meaning">멋진 선택이네요. 미래 혼자 여행의 참고로 할게요</div>
+                        <div class="expr-point">표현 포인트: 「一人旅」= 혼자 여행 (ひとりたび). 「参考にする」= 참고하다. 「チョイス」= 선택 (영어 유래 구어)</div>
+                        <div class="expr-source">YouTube 댓글</div>
+                    </div>
+                </div>
+                <button class="yt-comments-btn" onclick="openYtComments('GC3TKUjG9tk')">💬 YouTube 댓글 더보기</button>
             </div>
         </div>
     </div>
@@ -2010,6 +2219,7 @@
                     <tr><td><a href="https://www.youtube.com/watch?v=DxO_gE7tFZI&t=153s" target="_blank">2:33</a></td><td>마이네부타 만들기<br><span class="ja">マイねぶた作りコーナー</span></td></tr>
                     <tr><td><a href="https://www.youtube.com/watch?v=DxO_gE7tFZI&t=186s" target="_blank">3:06</a></td><td>실물 대형 네부타 수레<br><span class="ja">実物大の大型ねぶた山車展示</span></td></tr>
                 </table>
+                <button class="yt-comments-btn" onclick="openYtComments('DxO_gE7tFZI')">💬 YouTube 댓글 더보기</button>
             </div>
         </div>
     </div>
@@ -2134,6 +2344,7 @@
                         <tr><td><a href="https://www.youtube.com/watch?v=VfAt-acu0OQ&t=100s" target="_blank">1:40</a></td><td>안주 도착 — 모츠니코미·꼬치 실물, 가성비 확인</td></tr>
                         <tr><td><a href="https://www.youtube.com/watch?v=VfAt-acu0OQ&t=150s" target="_blank">2:30</a></td><td>가게 분위기 — 현지인 손님들, 로컬 분위기</td></tr>
                     </table>
+                    <button class="yt-comments-btn" onclick="openYtComments('VfAt-acu0OQ')">💬 YouTube 댓글 더보기</button>
                 </div>
             </div>
             <div class="map-container">
@@ -2494,6 +2705,9 @@
                 <p class="ko"><strong>센토 문화:</strong> 일본의 공중목욕탕은 동네 사교장 같은 곳. 자연스럽게 인사를 나누거나 가벼운 대화가 오가는 분위기. 외국인이 드문 곳이라 호기심 어린 질문을 받을 수도.</p>
                 <p class="ja"><strong>銭湯文化:</strong> 日本の公衆浴場は町内の社交場のような場所。自然に挨拶を交わしたり軽い会話が生まれる雰囲気。外国人が珍しい場所なので、興味津々な質問を受けることも。</p>
             </div>
+
+                </div>
+            </div>
         </div>
         <div class="map-container">
             <iframe src="https://maps.google.com/maps?q=浅虫温泉駅&t=&z=14&ie=UTF8&iwloc=&output=embed" loading="lazy" allowfullscreen></iframe>
@@ -2520,6 +2734,36 @@
                     <tr><td><a href="https://www.youtube.com/watch?v=9reJCnjY6Xg&t=1368s" target="_blank">22:48</a></td><td>永井久慈良餅店 — 120년 전통 떡집 (명물 쿠지라모찌) <span class="ja">120年の伝統餅屋（名物くじら餅）</span></td></tr>
                     <tr><td><a href="https://www.youtube.com/watch?v=9reJCnjY6Xg&t=1454s" target="_blank">24:14</a></td><td>鶴亀屋食堂 — 초대형 참치 덮밥으로 유명한 식당 <span class="ja">超大盛りマグロ丼で有名な食堂</span></td></tr>
                 </table>
+                <button class="yt-comments-btn" 
+                <div class="real-review-section" style="margin-top:12px">
+                    <h5>💬 이 영상의 댓글로 배우기</h5>
+                    <div class="review-expr">
+                        <div class="expr-original">「もう無性に海鮮食べたくなっちゃいます！ホタテ、、、マグロ、、、」</div>
+                        <div class="expr-reading">もう むしょうに かいせん たべたく なっちゃいます！ホタテ、、、マグロ、、、</div>
+                        <div class="expr-meaning">이제 미치도록 해산물 먹고 싶어져요! 가리비... 참치...</div>
+                        <div class="expr-point">표현 포인트: 「無性に〜たくなる」= 맹렬하게 ~하고 싶어지다 (이유 없이 강렬한 감정). 「〜ちゃう」= 「〜てしまう」의 구어 축약</div>
+                        <div class="expr-source">YouTube 댓글</div>
+                    </div>
+                    <div class="review-expr">
+                        <div class="expr-original">「温泉巡り、旅巡りは秋や冬は特に良いですね」</div>
+                        <div class="expr-reading">おんせんめぐり、たびめぐりは あきや ふゆは とくに いいですね</div>
+                        <div class="expr-meaning">온천 순례, 여행 순례는 가을이나 겨울이 특히 좋지요</div>
+                        <div class="expr-point">표현 포인트: 「〜巡り」(めぐり) = ~순례, ~투어. 여행에서 자주 쓰임. 「温泉巡り」「居酒屋巡り」「食べ歩き」</div>
+                        <div class="expr-source">YouTube 댓글</div>
+                    </div>
+                    <div class="review-lang-notes">
+                        <h6>비표준/구어 표현 학습 노트</h6>
+                        <div class="lang-note">
+                            <span class="note-expr">無性に〜たい</span><span class="note-type">감정 부사</span>
+                            <div class="note-desc">「무성하게/맹렬하게 ~하고 싶다」. SNS/댓글에서 매우 빈번. 비슷한 표현: 「やたらと」(마구), 「めっちゃ」(엄청)</div>
+                        </div>
+                        <div class="lang-note">
+                            <span class="note-expr">〜巡り</span><span class="note-type">여행 용어</span>
+                            <div class="note-desc">「巡る」(めぐる, 돌아다니다)의 명사형. 「温泉巡り」「居酒屋巡り」「パワースポット巡り」. 검색어로도 유용</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="yt-comments-btn" onclick="openYtComments('9reJCnjY6Xg')">💬 YouTube 댓글 더보기</button>
             </div>
         </div>
     </div>
@@ -2759,6 +3003,7 @@
                         <tr><td><a href="https://www.youtube.com/watch?v=c0WmS3Px2rg&t=300s" target="_blank">5:00</a></td><td>지자케 시음 — 아오모리 현산 지자케 셀렉션 <span class="ja">地酒利き酒 — 青森県産地酒セレクション</span></td></tr>
                         <tr><td><a href="https://www.youtube.com/watch?v=c0WmS3Px2rg&t=480s" target="_blank">8:00</a></td><td>해산물·고기 안주 — 사시미, 고기 요리 실물 <span class="ja">海鮮・肉おつまみ — 刺身、肉料理の実物</span></td></tr>
                     </table>
+                    <button class="yt-comments-btn" onclick="openYtComments('c0WmS3Px2rg')">💬 YouTube 댓글 더보기</button>
                 </div>
             </div>
             <div class="map-container">
@@ -2848,11 +3093,50 @@
                     <tr><td><a href="https://www.youtube.com/watch?v=bTPm0HWbKBw&t=900s" target="_blank">15:00</a></td><td>あんこうの共和え(아귀 공화에) + 현지인과 대화 <span class="ja">あんこうの共和え＋地元の人と会話</span></td></tr>
                     <tr><td><a href="https://www.youtube.com/watch?v=bTPm0HWbKBw&t=1140s" target="_blank">19:00</a></td><td>茶飯(차메시)으로 〆 + 마무리 소감 <span class="ja">茶飯で〆＋まとめ感想</span></td></tr>
                 </table>
+                <button class="yt-comments-btn" 
+                <div class="real-review-section" style="margin-top:12px">
+                    <h5>💬 이 영상의 댓글로 배우기</h5>
+                    <div class="review-expr">
+                        <div class="expr-original">「つきだしで『さもだし』が出てくるお店は信用できるっ！」</div>
+                        <div class="expr-reading">つきだしで「さもだし」が でてくるおみせは しんようできるっ！</div>
+                        <div class="expr-meaning">오토시(기본 안주)로 '사모다시(나라타케)'가 나오는 가게는 신뢰할 수 있어!</div>
+                        <div class="expr-point">표현 포인트: 「つきだし」= 이자카야 기본 안주 (お通し). 「さもだし」= 나라타케 버섯 (아오모리 향토 식재료). 기본 안주로 가게의 질을 판단하는 현지인의 안목</div>
+                        <div class="expr-source">YouTube 댓글</div>
+                    </div>
+                    <div class="review-expr">
+                        <div class="expr-original">「友達と飲んで締めのラーメン行って風呂行って帰る、当たり前だった」</div>
+                        <div class="expr-reading">ともだちと のんで しめの ラーメンいって ふろいって かえる、あたりまえだった</div>
+                        <div class="expr-meaning">친구랑 마시고 마무리 라멘 먹고 목욕탕 가고 집에 가는 게 당연했다</div>
+                        <div class="expr-point">표현 포인트: 「締め」= 마무리 식사. 아오모리 밤 루틴: 이자카야 → 시메 라멘 → 센토. 「当たり前だった」= 당연했었다 (고향 향수)</div>
+                        <div class="expr-source">YouTube 댓글</div>
+                    </div>
+                    <div class="review-expr">
+                        <div class="expr-original">「県産食材と郷土料理、取り上げてくださってありがとうございました！」</div>
+                        <div class="expr-reading">けんさんしょくざいと きょうどりょうり、とりあげてくださって ありがとうございました</div>
+                        <div class="expr-meaning">현산 식재료와 향토 요리를 다뤄주셔서 감사합니다!</div>
+                        <div class="expr-point">표현 포인트: 「県産食材」= 현산 식재료. 「取り上げてくださって」= 다뤄주셔서 (정중한 감사). 아오모리 현민의 자부심이 담긴 댓글</div>
+                        <div class="expr-source">YouTube 댓글</div>
+                    </div>
+                    <div class="review-lang-notes">
+                        <h6>비표준/구어 표현 학습 노트</h6>
+                        <div class="lang-note">
+                            <span class="note-expr">つきだし / お通し</span><span class="note-type">이자카야 용어</span>
+                            <div class="note-desc">이자카야 기본 안주 (¥300~500). 서일본=「つきだし」, 동일본=「お通し」. 좌석료 성격으로 거부 불가능한 경우가 대부분</div>
+                        </div>
+                        <div class="lang-note">
+                            <span class="note-expr">締め (しめ)</span><span class="note-type">음주 문화</span>
+                            <div class="note-desc">음주의 '마무리' 식사. 라멘, 오차즈케, 주먹밥 등. 아오모리에서는 「長尾中華そば」가 시메 라멘의 대표</div>
+                        </div>
+                    </div>
+                </div>
+                <button class="yt-comments-btn" onclick="openYtComments('bTPm0HWbKBw')">💬 YouTube 댓글 더보기</button>
             </div>
+
+
         </div>
     </div>
 
-    <!-- Day 2 Vocabulary -->
+        <!-- Day 2 Vocabulary -->
     <details class="vocab-section fade-in">
         <summary>Day 2 이자카야 & 온천 일본어 단어/표현 (14개)</summary>
         <table class="vocab-table">
@@ -3182,6 +3466,18 @@
                     <tr><td><a href="https://www.youtube.com/watch?v=MuAhhkbmOgY&t=540s" target="_blank">9:00</a></td><td>단골손님 합류 — 현지인과 자연스러운 교류 <span class="ja">常連さん合流 — 地元の人と自然な交流</span></td></tr>
                     <tr><td><a href="https://www.youtube.com/watch?v=MuAhhkbmOgY&t=750s" target="_blank">12:30</a></td><td>마무리 — 퇴장 인사, 스낵바 체험 소감 <span class="ja">締め — 退店の挨拶、スナック体験の感想</span></td></tr>
                 </table>
+                <button class="yt-comments-btn" 
+                <div class="real-review-section" style="margin-top:12px">
+                    <h5>💬 이 영상의 댓글로 배우기</h5>
+                    <div class="review-expr">
+                        <div class="expr-original">「この地元感、すごく良いですね☺️ 津軽弁が心地好い懐かしさです」</div>
+                        <div class="expr-reading">この じもとかん、すごくいいですね。つがるべんが ここちよい なつかしさです</div>
+                        <div class="expr-meaning">이 현지 느낌, 정말 좋네요. 쓰가루벤이 편안한 그리움(향수)입니다</div>
+                        <div class="expr-point">표현 포인트: 「地元感」= 현지감. 「心地好い」= 편안한 (「心地よい」의 변형). 「懐かしさ」= 그리움, 향수. 스낵바의 따뜻한 분위기를 표현</div>
+                        <div class="expr-source">YouTube 댓글</div>
+                    </div>
+                </div>
+                <button class="yt-comments-btn" onclick="openYtComments('MuAhhkbmOgY')">💬 YouTube 댓글 더보기</button>
             </div>
         </div>
     </div>
@@ -3347,6 +3643,25 @@
                 <tr><td><a href="https://www.youtube.com/watch?v=dDVFRg3R0AI&t=90s" target="_blank">1:30</a></td><td>감정 표현 — "わいは！"(놀람), "けっぱれ"(힘내) 등 리액션 표현</td></tr>
                 <tr><td><a href="https://www.youtube.com/watch?v=dDVFRg3R0AI&t=180s" target="_blank">3:00</a></td><td>작별 인사 — "せばだば、まだな！"(그럼, 또 보자!) 가게 나갈 때 사용</td></tr>
             </table>
+            <button class="yt-comments-btn" 
+            <div class="real-review-section" style="margin-top:12px; background:rgba(255,255,255,0.06); border-left-color:#f39c12;">
+                <h5 style="color:#f39c12">💬 이 영상의 댓글로 배우기</h5>
+                <div class="review-expr" style="background:rgba(255,255,255,0.04); border-color:rgba(243,156,18,0.2);">
+                    <div class="expr-original" style="color:rgba(255,255,255,0.9)">「フランス語を話す友達にこれ見せたら『口の使い方が全く同じだ』と賞賛すると共に日本語には思えないとキモがっていた」</div>
+                    <div class="expr-reading" style="color:rgba(255,255,255,0.5)">フランスごを はなす ともだちに これみせたら「くちの つかいかたが まったく おなじだ」と しょうさんするとともに にほんごには おもえないと キモがっていた</div>
+                    <div class="expr-meaning" style="color:rgba(255,255,255,0.7)">프랑스어 하는 친구에게 이거 보여줬더니 "입 사용법이 완전히 같다"고 칭찬함과 동시에 일본어로는 안 들린다며 기분 나빠했다</div>
+                    <div class="expr-point" style="color:rgba(255,255,255,0.7)">표현 포인트: 「キモがる」= 기분 나빠하다/징그럽다고 하다 (キモい의 동사화). 「賞賛する」= 칭찬하다. 쓰가루벤이 실제로 외국어처럼 들리는 것을 외국인이 증언한 댓글</div>
+                    <div class="expr-source" style="color:rgba(243,156,18,0.6)">YouTube 댓글</div>
+                </div>
+                <div class="review-expr" style="background:rgba(255,255,255,0.04); border-color:rgba(243,156,18,0.2);">
+                    <div class="expr-original" style="color:rgba(255,255,255,0.9)">「結局津軽弁は何言っても外国語笑笑」</div>
+                    <div class="expr-reading" style="color:rgba(255,255,255,0.5)">けっきょく つがるべんは なにいっても がいこくご わらわら</div>
+                    <div class="expr-meaning" style="color:rgba(255,255,255,0.7)">결국 쓰가루벤은 뭘 말해도 외국어 ㅋㅋ</div>
+                    <div class="expr-point" style="color:rgba(255,255,255,0.7)">표현 포인트: 「結局」= 결국. 「何言っても」= 뭘 말해도. 「笑笑」(わらわら) = ㅋㅋ (인터넷 웃음 표현, 「w」또는 「笑」)</div>
+                    <div class="expr-source" style="color:rgba(243,156,18,0.6)">YouTube 댓글</div>
+                </div>
+            </div>
+            <button class="yt-comments-btn" onclick="openYtComments('dDVFRg3R0AI')">💬 YouTube 댓글 더보기</button>
 
             <div class="video-embed">
                 <iframe src="https://www.youtube.com/embed/pHQkxdCKfbI" loading="lazy" allowfullscreen></iframe>
@@ -3364,6 +3679,25 @@
                 <tr><td><a href="https://www.youtube.com/watch?v=pHQkxdCKfbI&t=60s" target="_blank">1:00</a></td><td>감정 표현 대사 — "わいは！" 등 감탄사가 쓰가루벤으로 어떻게 바뀌는지</td></tr>
                 <tr><td><a href="https://www.youtube.com/watch?v=pHQkxdCKfbI&t=120s" target="_blank">2:00</a></td><td>일상 대화 변환 — 표준어와 쓰가루벤 비교로 "けやぐ"(친구) 등의 단어 학습</td></tr>
             </table>
+            <button class="yt-comments-btn" 
+            <div class="real-review-section" style="margin-top:12px; background:rgba(255,255,255,0.06); border-left-color:#f39c12;">
+                <h5 style="color:#f39c12">💬 이 영상의 댓글로 배우기</h5>
+                <div class="review-expr" style="background:rgba(255,255,255,0.04); border-color:rgba(243,156,18,0.2);">
+                    <div class="expr-original" style="color:rgba(255,255,255,0.9)">「津軽弁の上下運動が激しすぎて全くわからず宗教勧誘のインターホンに出ちゃったことある」</div>
+                    <div class="expr-reading" style="color:rgba(255,255,255,0.5)">つがるべんの じょうげうんどうが はげしすぎて まったく わからず しゅうきょうかんゆうの インターホンに でちゃったことある</div>
+                    <div class="expr-meaning" style="color:rgba(255,255,255,0.7)">쓰가루벤의 억양 상하 운동이 너무 격렬해서 전혀 못 알아듣고 종교 권유 인터폰에 나가버린 적 있다</div>
+                    <div class="expr-point" style="color:rgba(255,255,255,0.7)">표현 포인트: 「上下運動が激しい」= 억양의 오르내림이 심하다. 쓰가루벤 특유의 극적인 피치 변화를 유머러스하게 표현. 「〜ちゃった」= ~해버렸다 (의도치 않은 행동)</div>
+                    <div class="expr-source" style="color:rgba(243,156,18,0.6)">YouTube 댓글</div>
+                </div>
+                <div class="review-expr" style="background:rgba(255,255,255,0.04); border-color:rgba(243,156,18,0.2);">
+                    <div class="expr-original" style="color:rgba(255,255,255,0.9)">「同じ津軽でもこうして気付けるのも面白いです😃」</div>
+                    <div class="expr-reading" style="color:rgba(255,255,255,0.5)">おなじ つがるでも こうして きづけるのも おもしろいです</div>
+                    <div class="expr-meaning" style="color:rgba(255,255,255,0.7)">같은 쓰가루 지방에서도 이렇게 차이를 알아챌 수 있다니 재미있네요</div>
+                    <div class="expr-point" style="color:rgba(255,255,255,0.7)">표현 포인트: 「気付ける」= 알아챌 수 있다. 같은 쓰가루 내에서도 미묘한 억양 차이가 있다는 현지인의 관찰</div>
+                    <div class="expr-source" style="color:rgba(243,156,18,0.6)">YouTube 댓글</div>
+                </div>
+            </div>
+            <button class="yt-comments-btn" onclick="openYtComments('pHQkxdCKfbI')">💬 YouTube 댓글 더보기</button>
 
             <div class="video-embed">
                 <iframe src="https://www.youtube.com/embed/EFPleQyonsk" loading="lazy" allowfullscreen></iframe>
@@ -3381,6 +3715,25 @@
                 <tr><td><a href="https://www.youtube.com/watch?v=EFPleQyonsk&t=60s" target="_blank">1:00</a></td><td>"どさ？ゆさ！" 등 유명 쓰가루벤 짧은 대화가 코미디 소재로 등장</td></tr>
                 <tr><td><a href="https://www.youtube.com/watch?v=EFPleQyonsk&t=120s" target="_blank">2:00</a></td><td>"なんぼ？"(얼마?), "けっぱれ"(힘내!) 등 실용 표현을 콩트 맥락에서 학습</td></tr>
             </table>
+            <button class="yt-comments-btn" 
+            <div class="real-review-section" style="margin-top:12px; background:rgba(255,255,255,0.06); border-left-color:#f39c12;">
+                <h5 style="color:#f39c12">💬 이 영상의 댓글로 배우기</h5>
+                <div class="review-expr" style="background:rgba(255,255,255,0.04); border-color:rgba(243,156,18,0.2);">
+                    <div class="expr-original" style="color:rgba(255,255,255,0.9)">「岩手県民です。字幕無しでほぼ分かります！」</div>
+                    <div class="expr-reading" style="color:rgba(255,255,255,0.5)">いわてけんみんです。じまくなしで ほぼ わかります！</div>
+                    <div class="expr-meaning" style="color:rgba(255,255,255,0.7)">이와테 현민입니다. 자막 없이 거의 알아들어요!</div>
+                    <div class="expr-point" style="color:rgba(255,255,255,0.7)">표현 포인트: 「県民」= 현민 (해당 현의 주민). 「字幕無し」= 자막 없이. 「ほぼ」= 거의. 이웃 이와테현은 쓰가루벤을 거의 이해할 수 있다는 방언 이해도 관계도</div>
+                    <div class="expr-source" style="color:rgba(243,156,18,0.6)">YouTube 댓글</div>
+                </div>
+                <div class="review-expr" style="background:rgba(255,255,255,0.04); border-color:rgba(243,156,18,0.2);">
+                    <div class="expr-original" style="color:rgba(255,255,255,0.9)">「『ばかこの』がツボ🤣 寝方のレクチャーが可愛すぎる」</div>
+                    <div class="expr-reading" style="color:rgba(255,255,255,0.5)">「ばかこの」が ツボ。ねかたの レクチャーが かわいすぎる</div>
+                    <div class="expr-meaning" style="color:rgba(255,255,255,0.7)">"바카코노(이 바보!)"가 웃음 포인트. 자는 법 강의가 너무 귀엽다</div>
+                    <div class="expr-point" style="color:rgba(255,255,255,0.7)">표현 포인트: 「ツボ」= 웃음 포인트 (원래 "급소"라는 뜻). 「ばかこの」= 쓰가루벤으로 "이 바보야!" (표준어: 「バカ!」). 「〜すぎる」= 너무 ~하다</div>
+                    <div class="expr-source" style="color:rgba(243,156,18,0.6)">YouTube 댓글</div>
+                </div>
+            </div>
+            <button class="yt-comments-btn" onclick="openYtComments('EFPleQyonsk')">💬 YouTube 댓글 더보기</button>
 
             <table class="video-table" style="color:white;">
                 <thead>
@@ -4327,6 +4680,28 @@ const koDict = {
     '馴染み':'나지미 — 익숙한, 단골의','いい思い出':'좋은 추억',
     '帆立':'호타테 — 가리비','海鮮':'해산물','公衆浴場':'공중목욕탕',
     '味噌焼き':'된장구이','2次会':'2차 (가게를 옮겨서)',
+    // YouTube 댓글 학습 표현
+    '無性に':'맹렬하게, 무성하게 — ~하고 싶어 견딜 수 없는','豪快':'호쾌한',
+    '締め':'시메 — 마무리 음식','つきだし':'츠키다시 — 기본 안주 (=お通し)',
+    '県産':'현산 — 현(県) 지역 생산','当たり前':'당연한, 당연하게',
+    '懐かしさ':'그리움, 향수','地元感':'현지 느낌','字幕':'자막',
+    '県民':'현민 — 현(県) 주민','ツボ':'츠보 — 급소, 웃음 포인트',
+    '賞賛':'칭찬, 찬사','酢飯':'스메시 — 초밥용 식초밥','交換':'교환',
+    '信用':'신뢰, 신용','予習':'예습','辿り着く':'더듬어 도달하다',
+    '満足感':'만족감','氷':'얼음','作法':'작법, 예법',
+    '佇まい':'분위기, 풍채','一本釣り':'잇폰즈리 — 외줄낚시',
+    '漁師':'어부','目利き':'감별, 안목','仕入れ':'매입, 구매',
+    '鮮度':'선도 — 신선도','抜群':'발군 — 뛰어난','職人':'장인',
+    '贅沢':'사치, 호사','盛り合わせ':'모리아와세 — 모둠 (여러 종류 합침)',
+    '一品':'잇핀 — 한 가지 요리','湯気':'김, 수증기',
+    '本場':'본고장, 본바닥','味わう':'맛보다, 음미하다',
+    '焼き鳥':'야키토리 — 닭꼬치','居酒屋めし':'이자카야 밥 — 술안주 겸 식사',
+    '大将':'다이쇼 — 주방장 (이자카야/스시집)','生ビール':'나마비루 — 생맥주',
+    '熱燗':'아쓰칸 — 뜨거운 사케','飲み比べ':'노미쿠라베 — 비교 시음',
+    '家庭的':'가정적','アットホーム':'앳홈 — 가정적인 분위기',
+    '居心地':'이고코치 — 있기 편한 느낌','呑兵衛':'논베 — 술꾼, 술고래',
+    '酔っ払い':'요파라이 — 취한 사람','ご当地':'고토치 — 해당 지역의, 현지의',
+    '名産':'명산 — 명물 특산품','方言':'방언, 사투리',
 };
 
 // 품사 한국어 매핑 (koDict에 없을 때 fallback)
@@ -4626,6 +5001,96 @@ progRender();
     };
     document.head.appendChild(script);
 })();
+
+// === YouTube Comments Modal ===
+let ytCommentCache = null;
+
+function openYtComments(videoId) {
+    const overlay = document.getElementById('yt-comments-overlay');
+    const title = document.getElementById('yt-modal-title');
+    const count = document.getElementById('yt-modal-count');
+    const body = document.getElementById('yt-modal-body');
+
+    function render(data) {
+        const vid = data[videoId];
+        if (!vid) { body.innerHTML = '<p style="color:#aaa">댓글이 없습니다.</p>'; return; }
+
+        title.textContent = vid.label + ' — YouTube 댓글';
+        count.textContent = `일본어 댓글 ${vid.count}개 (좋아요 순)`;
+
+        let html = '';
+        vid.comments.forEach(c => {
+            const text = c.h ? c.h.replace(/\n/g,'<br>') : c.t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\n/g,'<br>');
+            html += '<div class="yt-comment-card"><div class="yt-comment-ja">' + text + '</div>';
+            if (c.l > 0) html += '<div class="yt-comment-likes">👍 ' + c.l + '</div>';
+            html += '</div>';
+        });
+        body.innerHTML = html;
+
+        // Apply kuromoji tooltips to rendered comments
+        if (window._jwTokenizer) {
+            body.querySelectorAll('.yt-comment-ja').forEach(el => {
+                if (el.dataset.jwDone) return;
+                el.dataset.jwDone = '1';
+                const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT, null, false);
+                const textNodes = [];
+                let node;
+                while (node = walker.nextNode()) {
+                    if (node.parentElement.closest('.jw')) continue;
+                    textNodes.push(node);
+                }
+                textNodes.forEach(textNode => {
+                    const text = textNode.textContent;
+                    if (!text.trim() || !/[\u3000-\u9FFF\uF900-\uFAFF]/.test(text)) return;
+                    const tokens = window._jwTokenizer.tokenize(text);
+                    let h = '';
+                    tokens.forEach(token => {
+                        const escaped = escapeHtml(token.surface_form);
+                        if (shouldShowTip(token)) {
+                            const d = buildTipData(token);
+                            const attrs = [];
+                            if (d.reading && d.reading !== d.surface) attrs.push('data-r="' + escapeHtml(d.reading) + '"');
+                            if (d.ko) attrs.push('data-m="' + escapeHtml(d.ko) + '"');
+                            if (d.basic) attrs.push('data-b="' + escapeHtml(d.basic) + '"');
+                            if (d.pos) attrs.push('data-p="' + escapeHtml(d.pos) + '"');
+                            h += '<span class="jw" ' + attrs.join(' ') + '>' + escaped + '</span>';
+                        } else {
+                            h += escaped;
+                        }
+                    });
+                    const span = document.createElement('span');
+                    span.innerHTML = h;
+                    textNode.parentNode.replaceChild(span, textNode);
+                });
+            });
+        }
+    }
+
+    overlay.classList.add('active');
+    document.body.style.overflow = 'hidden';
+
+    if (ytCommentCache) {
+        render(ytCommentCache);
+    } else {
+        body.innerHTML = '<p style="color:#aaa">댓글 로딩 중...</p>';
+        fetch('yt-comments.json')
+            .then(r => r.json())
+            .then(data => { ytCommentCache = data; render(data); })
+            .catch(() => { body.innerHTML = '<p style="color:#f66">댓글을 불러올 수 없습니다.</p>'; });
+    }
+}
+
+function closeYtComments() {
+    document.getElementById('yt-comments-overlay').classList.remove('active');
+    document.body.style.overflow = '';
+    hidePopup();
+}
+// ESC key to close
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.getElementById('yt-comments-overlay').classList.contains('active')) {
+        closeYtComments();
+    }
+});
 </script>
 
 </body>

@@ -279,7 +279,22 @@ async function main() {
         console.log(`✅ sqData 퀴즈 ${Object.keys(sqData).length}개 Day 토큰화 완료`);
     }
 
-    // 3. 런타임 kuromoji 관련 코드 제거
+    // 3. yt-comments.json 프리토큰화
+    const ytCommentsPath = path.join(__dirname, 'yt-comments.json');
+    if (fs.existsSync(ytCommentsPath)) {
+        const ytData = JSON.parse(fs.readFileSync(ytCommentsPath, 'utf8'));
+        let commentCount = 0;
+        for (const videoId of Object.keys(ytData)) {
+            for (const c of ytData[videoId].comments) {
+                c.h = tokenizeText(c.t, tokenizer); // h = pre-tokenized HTML
+                commentCount++;
+            }
+        }
+        fs.writeFileSync(ytCommentsPath, JSON.stringify(ytData), 'utf8');
+        console.log(`✅ yt-comments.json ${commentCount}개 댓글 토큰화 완료`);
+    }
+
+    // 4. 런타임 kuromoji 관련 코드 제거
     let outputHtml = $.html();
 
     // #jw-loading 인디케이터 제거
