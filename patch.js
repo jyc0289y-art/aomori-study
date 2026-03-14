@@ -1,7 +1,20 @@
 #!/usr/bin/env node
 /**
- * patch.js — index.src.html에 모든 수정사항을 한번에 적용
+ * patch.js — [DEPRECATED / 폐기됨]
+ *
+ * 이 스크립트의 모든 패치는 index.src.html에 이미 직접 적용되어 있습니다.
+ * 실행하면 CSS가 중복 추가되므로 실행하지 마세요.
+ *
+ * 현재 올바른 빌드 워크플로우:
+ *   1. index.src.html 직접 편집 (소스)
+ *   2. node build.js (토큰화 → index.html 출력)
+ *   3. git commit + push (GitHub Actions → Pages 배포)
+ *
+ * 이 파일은 기록용으로만 보존합니다. (P5.8wc에서 폐기 결정)
  */
+console.error('⚠️  patch.js는 폐기되었습니다. index.src.html을 직접 편집하세요.');
+console.error('빌드: node build.js');
+process.exit(1);
 const fs = require('fs');
 let html = fs.readFileSync('index.src.html', 'utf8');
 let changes = 0;

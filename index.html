@@ -465,6 +465,25 @@
             object-fit: cover;
             display: block;
         }
+        .iz-maps-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            width: 100%;
+            height: 56px;
+            background: linear-gradient(135deg, #e8f0fe 0%, #d2e3fc 100%);
+            color: #1a73e8;
+            text-decoration: none;
+            font-size: 0.88em;
+            font-weight: 600;
+            transition: background 0.2s;
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+        }
+        .iz-maps-link:hover {
+            background: linear-gradient(135deg, #d2e3fc 0%, #aecbfa 100%);
+            color: #174ea6;
+        }
         .izakaya-card.snack {
             border-left-color: var(--warm);
         }
@@ -1311,6 +1330,99 @@
             opacity: 1;
             transform: translateY(0);
         }
+
+        /* ===== 학습 진도 트래커 ===== */
+        .progress-tracker {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            border-radius: 16px;
+            padding: 28px 24px;
+            margin: 32px auto;
+            max-width: 800px;
+            color: white;
+        }
+        .progress-tracker h3 {
+            text-align: center;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+        }
+        .progress-overall {
+            background: rgba(255,255,255,0.1);
+            border-radius: 12px;
+            height: 28px;
+            overflow: hidden;
+            margin-bottom: 24px;
+            position: relative;
+        }
+        .progress-overall-bar {
+            height: 100%;
+            background: linear-gradient(90deg, #e74c3c, #f39c12, #27ae60);
+            border-radius: 12px;
+            transition: width 0.8s ease;
+            min-width: 0;
+        }
+        .progress-overall-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 0.85em;
+            font-weight: 700;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+        }
+        .progress-days {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 14px;
+        }
+        .progress-day-card {
+            background: rgba(255,255,255,0.08);
+            border-radius: 12px;
+            padding: 16px;
+            text-align: center;
+        }
+        .progress-day-card h4 {
+            margin-bottom: 10px;
+            font-size: 1em;
+        }
+        .progress-day-card .pdc-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.85em;
+            margin-bottom: 6px;
+            color: rgba(255,255,255,0.8);
+        }
+        .progress-day-card .pdc-row .pdc-val {
+            font-weight: 600;
+            color: white;
+        }
+        .pdc-bar {
+            background: rgba(255,255,255,0.15);
+            border-radius: 6px;
+            height: 8px;
+            overflow: hidden;
+            margin-top: 8px;
+        }
+        .pdc-bar-fill {
+            height: 100%;
+            border-radius: 6px;
+            transition: width 0.6s ease;
+        }
+        .progress-reset {
+            display: block;
+            margin: 18px auto 0;
+            background: rgba(255,255,255,0.12);
+            border: 1px solid rgba(255,255,255,0.2);
+            color: rgba(255,255,255,0.7);
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.8em;
+        }
+        .progress-reset:hover {
+            background: rgba(231,76,60,0.3);
+            color: white;
+        }
     </style>
 </head>
 <body>
@@ -1879,7 +1991,7 @@
     <div class="izakaya-grid">
         <!-- Idobata -->
         <div class="izakaya-card fade-in">
-            <img class="iz-hero-img" src="images/izakaya_alley.jpg" alt="이자카야 골목 분위기" loading="lazy">
+            <a class="iz-maps-link" href="https://www.google.com/maps/search/?api=1&amp;query=いどばた+青森市+安方" target="_blank" rel="noopener">📍 Google Maps에서 사진 보기 — いどばた</a>
             <div class="izakaya-inner">
                 <h4>이도바타 (정통 대중 이자카야)</h4>
                 <p class="jp-sub">井戸端 | 安方 1-3-24 | 아오모리역 도보 2분</p>
@@ -1970,7 +2082,7 @@
 
         <!-- Icchoku -->
         <div class="izakaya-card fade-in">
-            <img class="iz-hero-img" src="images/small_izakaya.jpg" alt="소규모 이자카야 외관" loading="lazy">
+            <a class="iz-maps-link" href="https://www.google.com/maps/search/?api=1&amp;query=いっちょく+青森市+安方" target="_blank" rel="noopener">📍 Google Maps에서 사진 보기 — いっちょく</a>
             <div class="izakaya-inner">
                 <h4>잇초쿠 (카운터석 특화)</h4>
                 <p class="jp-sub">一直 | 安方 2-3-17</p>
@@ -2023,7 +2135,7 @@
 
         <!-- Tsugaru Joppari -->
         <div class="izakaya-card fade-in">
-            <img class="iz-hero-img" src="images/tsugaru_shamisen.jpg" alt="쓰가루 샤미센 라이브 공연" loading="lazy">
+            <a class="iz-maps-link" href="https://www.google.com/maps/search/?api=1&amp;query=津軽じょっぱり+青森市" target="_blank" rel="noopener">📍 Google Maps에서 사진 보기 — 津軽じょっぱり</a>
             <div class="izakaya-inner">
                 <h4>쓰가루 좃파리 료야사카바 (쓰가루 샤미센 라이브)</h4>
                 <p class="jp-sub">津軽じょっぱり漁屋酒場 青森本町店</p>
@@ -2094,7 +2206,7 @@
 
         <!-- Snack: New Michiko -->
         <div class="izakaya-card snack fade-in">
-            <img class="iz-hero-img" src="images/snackbar_exterior.jpg" alt="스낵바 외관" loading="lazy">
+            <a class="iz-maps-link" href="https://www.google.com/maps/search/?api=1&amp;query=スナック+ニューミチコ+青森市+本町" target="_blank" rel="noopener">📍 Google Maps에서 사진 보기 — ニューミチコ</a>
             <div class="izakaya-inner">
                 <h4>스낵 뉴미치코 (첫날 밤 추천)</h4>
                 <p class="jp-sub">スナック ニューみちこ | 安方 1-4-12 | 아오모리역 도보 5분</p>
@@ -2170,7 +2282,7 @@
 
         <!-- Snack: Daphne -->
         <div class="izakaya-card snack fade-in">
-            <img class="iz-hero-img" src="images/bar_interior.jpg" alt="일본 바 내부" loading="lazy">
+            <a class="iz-maps-link" href="https://www.google.com/maps/search/?api=1&amp;query=スナック+ダフネ+青森市+本町" target="_blank" rel="noopener">📍 Google Maps에서 사진 보기 — ダフネ</a>
             <div class="izakaya-inner">
                 <h4>다프네 (40년 베테랑 마마상)</h4>
                 <p class="jp-sub">ダフネ | 安方 1-10-19 | 아오모리역 도보 8분</p>
@@ -2386,7 +2498,7 @@
     <div class="izakaya-grid">
         <!-- Nebuta no kuni Takakyu -->
         <div class="izakaya-card fade-in">
-            <img class="iz-hero-img" src="images/izakaya_private.jpg" alt="이자카야 개인실 분위기" loading="lazy">
+            <a class="iz-maps-link" href="https://www.google.com/maps/search/?api=1&amp;query=ねぶたの国+たか久+青森市" target="_blank" rel="noopener">📍 Google Maps에서 사진 보기 — ねぶたの国 たか久</a>
             <div class="izakaya-inner">
                 <h4>네부타노쿠니 다카큐 (대형 향토요리 이자카야)</h4>
                 <p class="jp-sub">ねぶたの國 たか久 | 本町 5-6-11</p>
@@ -2454,7 +2566,7 @@
 
         <!-- Mitsuishi -->
         <div class="izakaya-card fade-in">
-            <img class="iz-hero-img" src="images/sake_bottles.jpg" alt="사케 보틀 디스플레이" loading="lazy">
+            <a class="iz-maps-link" href="https://www.google.com/maps/search/?api=1&amp;query=みつ石+青森市" target="_blank" rel="noopener">📍 Google Maps에서 사진 보기 — みつ石</a>
             <div class="izakaya-inner">
                 <h4>미츠이시 (지자케 전문)</h4>
                 <p class="jp-sub">酒肴旬 三ツ石 | 安方 2-7-33</p>
@@ -2526,7 +2638,7 @@
 
         <!-- Ninosuke -->
         <div class="izakaya-card fade-in">
-            <img class="iz-hero-img" src="images/traditional_izakaya.jpg" alt="전통 이자카야 외관" loading="lazy">
+            <a class="iz-maps-link" href="https://www.google.com/maps/search/?api=1&amp;query=にの助+青森市" target="_blank" rel="noopener">📍 Google Maps에서 사진 보기 — にの助</a>
             <div class="izakaya-inner">
                 <h4>니노스케 (영어메뉴 있음)</h4>
                 <p class="jp-sub">魚・肉・地酒 弐乃助 | 新町 1-9-19</p>
@@ -2594,7 +2706,7 @@
 
         <!-- Snack: MyBoo -->
         <div class="izakaya-card snack fade-in">
-            <img class="iz-hero-img" src="images/snack_exterior2.jpg" alt="스낵바 외관" loading="lazy">
+            <a class="iz-maps-link" href="https://www.google.com/maps/search/?api=1&amp;query=スナック+MyBoo+青森市+本町" target="_blank" rel="noopener">📍 Google Maps에서 사진 보기 — MyBoo</a>
             <div class="izakaya-inner">
                 <h4>마이부 — 대화 중심 스낵바 (재방문 추천)</h4>
                 <p class="jp-sub">mini club MyBoo | 本町 2-6-4 フェニックスビルB1F</p>
@@ -2679,30 +2791,28 @@
     </div>
 
     <!-- Day 2 Vocabulary -->
-    <div class="vocab-section fade-in">
-        <details>
-            <summary>📖 Day 2 단어표 (클릭하여 펼치기)</summary>
-            <table class="vocab-table">
-                <thead><tr><th>日本語</th><th>よみかた</th><th>한국어 설명</th><th>한자 음훈</th></tr></thead>
-                <tbody>
-                    <tr><td data-jw-done="1"><span class="jw" data-r="おんせん" data-m="온천">温泉</span></td><td>おんせん</td><td>온천. 화산 지대에서 나오는 뜨거운 물</td><td>온(溫) 샘(泉)</td></tr>
-                    <tr><td data-jw-done="1"><span class="jw" data-r="こうしゅう" data-p="명사">公衆</span><span class="jw" data-r="よくじょう" data-p="명사">浴場</span></td><td>こうしゅうよくじょう</td><td>공중목욕탕. 동네 센토(銭湯)도 이에 포함</td><td>공(公) 중(衆) 목욕(浴) 장(場)</td></tr>
-                    <tr><td data-jw-done="1"><span class="jw" data-r="ひる" data-p="명사">昼</span><span class="jw" data-r="のみ" data-m="마시기" data-b="飲む">飲み</span></td><td>ひるのみ</td><td>낮술. 점심시간부터 술 마시는 것</td><td>낮(昼) 마시다(飲)</td></tr>
-                    <tr><td data-jw-done="1"><span class="jw" data-r="きょうど" data-m="향토">郷土</span><span class="jw" data-r="りょうり" data-m="요리">料理</span></td><td>きょうどりょうり</td><td>향토 요리. 그 지역 고유의 전통 음식</td><td>향(郷) 토(土) 요리(料理)</td></tr>
-                    <tr><td data-jw-done="1"><span class="jw" data-r="じざけ" data-m="지자케 — 그 지역 양조 술">地酒</span></td><td>じざけ</td><td>지역 술. 그 지방에서 양조한 일본주</td><td>땅(地) 술(酒)</td></tr>
-                    <tr><td data-jw-done="1"><span class="jw" data-r="いざかや" data-m="이자카야 — 일본식 선술집">居酒屋</span></td><td>いざかや</td><td>이자카야. 일본식 선술집/술집</td><td>거(居) 주(酒) 옥(屋)</td></tr>
-                    <tr><td data-jw-done="1"><span class="jw" data-r="しゃみせん" data-m="샤미센 — 일본 전통 악기">三味線</span></td><td>しゃみせん</td><td>샤미센. 일본 전통 3현 악기</td><td>삼(三) 맛(味) 줄(線)</td></tr>
-                    <tr><td data-jw-done="1"><span class="jw" data-r="さしみ" data-m="사시미 — 생선회">刺身</span></td><td>さしみ</td><td>사시미. 회, 날생선 요리</td><td>찌르다(刺) 몸(身)</td></tr>
-                    <tr><td data-jw-done="1"><span class="jw" data-r="ほ" data-p="명사">帆</span><span class="jw" data-r="りつ" data-p="명사">立</span></td><td>ほたて</td><td>가리비. 아오모리 무쓰만의 특산물</td><td>돛(帆) 세우다(立)</td></tr>
-                    <tr><td data-jw-done="1"><span class="jw" data-r="じょうれん" data-m="단골">常連</span></td><td>じょうれん</td><td>단골. 자주 찾아오는 손님</td><td>항상(常) 연결(連)</td></tr>
-                    <tr><td data-jw-done="1"><span class="jw" data-r="のみ" data-m="마시기" data-b="飲む">飲み</span><span class="jw" data-r="ほうだい" data-p="명사">放題</span></td><td>のみほうだい</td><td>음료 무제한. 정해진 시간 동안 마음껏</td><td>마시다(飲) 놓아두다(放) 제목(題)</td></tr>
-                    <tr><td data-jw-done="1"><span class="jw" data-r="よやく" data-m="예약">予約</span></td><td>よやく</td><td>예약</td><td>미리(予) 약속(約)</td></tr>
-                    <tr><td data-jw-done="1"><span class="jw" data-r="かいせん" data-p="명사">海鮮</span></td><td>かいせん</td><td>해산물. 바다에서 나는 식재료</td><td>바다(海) 싱싱한(鮮)</td></tr>
-                    <tr><td data-jw-done="1"><span class="jw" data-r="あしゆ" data-m="족탕 — 발만 담그는 온천">足湯</span></td><td>あしゆ</td><td>족탕. 발만 담그는 온천</td><td>발(足) 탕(湯)</td></tr>
-                </tbody>
-            </table>
-        </details>
-    </div>
+    <details class="vocab-section fade-in">
+        <summary>Day 2 이자카야 &amp; 온천 일본어 단어/표현 (14개)</summary>
+        <table class="vocab-table">
+            <thead><tr><th>日本語</th><th>よみかた</th><th>한국어 설명</th><th>한자 음훈</th></tr></thead>
+            <tbody>
+                <tr><td data-jw-done="1"><span class="jw" data-r="おんせん" data-m="온천">温泉</span></td><td>おんせん</td><td>온천 — 화산 지대에서 솟는 뜨거운 물. 아사무시 온천은 아오모리 대표 온천지</td><td class="kanji-col">따뜻할 온(温), 샘 천(泉)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="こうしゅう" data-p="명사">公衆</span><span class="jw" data-r="よくじょう" data-p="명사">浴場</span></td><td>こうしゅうよくじょう</td><td>공중목욕탕 — 동네 센토(銭湯)도 이에 포함. 지역 커뮤니티 공간</td><td class="kanji-col">공변될 공(公), 무리 중(衆), 목욕할 욕(浴), 마당 장(場)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="ひる" data-p="명사">昼</span><span class="jw" data-r="のみ" data-m="마시기" data-b="飲む">飲み</span></td><td>ひるのみ</td><td>낮술 — 점심시간부터 술 마시는 것. 아사무시 온천 후 낮술은 최고의 사치</td><td class="kanji-col">낮 주(昼), 마실 음(飲)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="きょうど" data-m="향토">郷土</span><span class="jw" data-r="りょうり" data-m="요리">料理</span></td><td>きょうどりょうり</td><td>향토 요리 — 그 지역 고유의 전통 음식. 아오모리는 せんべい汁, 石焼料理 등</td><td class="kanji-col">시골 향(郷), 흙 토(土), 헤아릴 료(料), 다스릴 리(理)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="じざけ" data-m="지자케 — 그 지역 양조 술">地酒</span></td><td>じざけ</td><td>지역 술 — 그 지방에서 양조한 일본주. 「この辺の地酒ありますか？」로 주문</td><td class="kanji-col">땅 지(地), 술 주(酒)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="いざかや" data-m="이자카야 — 일본식 선술집">居酒屋</span></td><td>いざかや</td><td>이자카야 — 일본식 선술집. 안주와 술을 함께 즐기는 곳</td><td class="kanji-col">있을 거(居), 술 주(酒), 집 옥(屋)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="しゃみせん" data-m="샤미센 — 일본 전통 악기">三味線</span></td><td>しゃみせん</td><td>샤미센 — 일본 전통 3현 악기. 쓰가루 샤미센은 빠르고 격렬한 연주로 유명</td><td class="kanji-col">석 삼(三), 맛 미(味), 줄 선(線)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="さしみ" data-m="사시미 — 생선회">刺身</span></td><td>さしみ</td><td>사시미 — 생선회. 아오모리는 ヒラメ(광어)와 ホタテ(가리비) 사시미가 유명</td><td class="kanji-col">찌를 자(刺), 몸 신(身)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="ほ" data-p="명사">帆</span><span class="jw" data-r="りつ" data-p="명사">立</span></td><td>ほたて</td><td>가리비 — 아오모리 무쓰만의 특산물. 호타테 사시미·구이 모두 절품</td><td class="kanji-col">돛 범(帆), 설 립(立)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="じょうれん" data-m="단골">常連</span></td><td>じょうれん</td><td>단골 — 자주 찾아오는 손님. 3박이면 같은 가게 재방문으로 단골 가능</td><td class="kanji-col">항상 상(常), 이을 련(連)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="のみ" data-m="마시기" data-b="飲む">飲み</span><span class="jw" data-r="ほうだい" data-p="명사">放題</span></td><td>のみほうだい</td><td>음료 무제한 — 정해진 시간 동안 마음껏 마시는 시스템. みゅう는 120분 ¥4,000</td><td class="kanji-col">마실 음(飲), 놓을 방(放), 제목 제(題)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="よやく" data-m="예약">予約</span></td><td>よやく</td><td>예약 — 인기 이자카야는 予約必須(예약 필수). 호텔 프론트에 부탁하면 전화 예약 가능</td><td class="kanji-col">미리 예(予), 약속할 약(約)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="かいせん" data-p="명사">海鮮</span></td><td>かいせん</td><td>해산물 — 바다에서 나는 식재료. 아오모리는 津軽海峡의 해산물이 풍부</td><td class="kanji-col">바다 해(海), 고울 선(鮮)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="あしゆ" data-m="족탕 — 발만 담그는 온천">足湯</span></td><td>あしゆ</td><td>족탕 — 발만 담그는 온천. 아사무시온천역 근처에 무료 족탕 있음</td><td class="kanji-col">발 족(足), 뜨거울 탕(湯)</td></tr>
+            </tbody>
+        </table>
+    </details>
 
     <!-- Day 2 Transport -->
     <div class="transport-card fade-in">
@@ -2808,7 +2918,7 @@
     <div class="izakaya-grid">
         <!-- Fukuro -->
         <div class="izakaya-card fade-in">
-            <img class="iz-hero-img" src="images/izakaya_alley.jpg" alt="대중 이자카야 거리" loading="lazy">
+            <a class="iz-maps-link" href="https://www.google.com/maps/search/?api=1&amp;query=ふくろう+居酒屋+青森市" target="_blank" rel="noopener">📍 Google Maps에서 사진 보기 — ふくろう</a>
             <div class="izakaya-inner">
                 <h4>후쿠로 (43년 전통 대중 이자카야)</h4>
                 <p class="jp-sub">ふくろう | 아오모리역 근처</p>
@@ -2877,7 +2987,7 @@
 
         <!-- Ishiyaki -->
         <div class="izakaya-card fade-in">
-            <img class="iz-hero-img" src="images/traditional_izakaya.jpg" alt="전통 이자카야 외관" loading="lazy">
+            <a class="iz-maps-link" href="https://www.google.com/maps/search/?api=1&amp;query=石やき+青森市" target="_blank" rel="noopener">📍 Google Maps에서 사진 보기 — 石やき</a>
             <div class="izakaya-inner">
                 <h4>이시야키요리 전문점 (돌구이 해산물)</h4>
                 <p class="jp-sub">石焼料理 | 아오모리 향토 요리</p>
@@ -2929,7 +3039,7 @@
 
         <!-- Snack: Lounge Bar Myu (new) + revisit -->
         <div class="izakaya-card snack fade-in">
-            <img class="iz-hero-img" src="images/bar_interior.jpg" alt="라운지바 내부" loading="lazy">
+            <a class="iz-maps-link" href="https://www.google.com/maps/search/?api=1&amp;query=ラウンジバー+みゅう+青森市+本町" target="_blank" rel="noopener">📍 Google Maps에서 사진 보기 — ラウンジバーみゅう</a>
             <div class="izakaya-inner">
                 <h4>라운지바 みゅう (마지막 밤 새 도전)</h4>
                 <p class="jp-sub">ラウンジバー みゅう | 本町 5-3-1 たかみつビル1F</p>
@@ -3014,28 +3124,26 @@
     </div>
 
     <!-- Day 3 Vocabulary -->
-    <div class="vocab-section fade-in">
-        <details>
-            <summary>📖 Day 3 단어표 (클릭하여 펼치기)</summary>
-            <table class="vocab-table">
-                <thead><tr><th>日本語</th><th>よみかた</th><th>한국어 설명</th><th>한자 음훈</th></tr></thead>
-                <tbody>
-                    <tr><td data-jw-done="1"><span class="jw" data-r="せんとう" data-m="센토 — 동네 공중목욕탕">銭湯</span></td><td>せんとう</td><td>센토. 동네 공중목욕탕 (입장료 ¥350~450)</td><td>돈(銭) 탕(湯)</td></tr>
-                    <tr><td data-jw-done="1"><span class="jw" data-r="あさぶろ" data-m="아사부로 — 아침 목욕">朝風呂</span></td><td>あさぶろ</td><td>아침 목욕. 아침 일찍 센토에서 입욕</td><td>아침(朝) 목욕(風呂)</td></tr>
-                    <tr><td data-jw-done="1"><span class="jw" data-r="きっさてん" data-m="킷사텐 — 옛날 스타일 다방">喫茶店</span></td><td>きっさてん</td><td>킷사텐. 옛날 스타일 다방/카페</td><td>마시다(喫) 차(茶) 가게(店)</td></tr>
-                    <tr><td data-jw-done="1"><span class="jw" data-r="おとおし" data-m="오토시 — 이자카야 기본 안주">お通し</span></td><td>おとおし</td><td>오토시. 이자카야 기본 안주 (좌석료 포함)</td><td>—</td></tr>
-                    <tr><td data-jw-done="1"><span class="jw" data-r="しぶい" data-m="떫은 / 시크한, 멋지게 낡은 (칭찬)">渋い</span></td><td>しぶい</td><td>시부이. 떫은→멋지게 낡은, 시크한 (칭찬)</td><td>떫을(渋)</td></tr>
-                    <tr><td data-jw-done="1"><span class="jw" data-r="いし" data-p="명사">石</span><span class="jw" data-r="しょう" data-p="명사">焼</span></td><td>いしやき</td><td>돌구이. 뜨거운 돌 위에서 조리</td><td>돌(石) 굽다(焼)</td></tr>
-                    <tr><td data-jw-done="1"><span class="jw" data-r="みそ" data-m="미소 — 된장">味噌</span></td><td>みそ</td><td>된장. 일본 발효 조미료의 대표</td><td>맛(味) 장(噌)</td></tr>
-                    <tr><td data-jw-done="1"><span class="jw" data-r="じょうれん" data-m="단골">常連</span></td><td>じょうれん</td><td>단골 손님</td><td>항상(常) 연결(連)</td></tr>
-                    <tr><td data-jw-done="1"><span class="jw" data-r="そうべつ" data-p="명사">送別</span><span class="jw" data-r="かい" data-p="명사">会</span></td><td>そうべつかい</td><td>송별회. 떠나는 사람을 위한 모임</td><td>보내다(送) 이별(別) 모임(会)</td></tr>
-                    <tr><td data-jw-done="1"><span class="jw" data-r="あっかん" data-m="압권 — 압도적으로 훌륭한">圧巻</span></td><td>あっかん</td><td>압권. 압도적으로 훌륭한 장면</td><td>누르다(圧) 책(巻)</td></tr>
-                    <tr><td data-jw-done="1"><span class="jw" data-r="びじゅつかん" data-m="미술관">美術館</span></td><td>びじゅつかん</td><td>미술관</td><td>아름다울(美) 기술(術) 관(館)</td></tr>
-                    <tr><td data-jw-done="1"><span class="jw" data-r="みやげ" data-p="명사">土産</span></td><td>みやげ</td><td>기념품, 선물 (お土産)</td><td>흙(土) 낳다(産)</td></tr>
-                </tbody>
-            </table>
-        </details>
-    </div>
+    <details class="vocab-section fade-in">
+        <summary>Day 3 센토 &amp; 이자카야 &amp; 스낵바 일본어 단어/표현 (12개)</summary>
+        <table class="vocab-table">
+            <thead><tr><th>日本語</th><th>よみかた</th><th>한국어 설명</th><th>한자 음훈</th></tr></thead>
+            <tbody>
+                <tr><td data-jw-done="1"><span class="jw" data-r="せんとう" data-m="센토 — 동네 공중목욕탕">銭湯</span></td><td>せんとう</td><td>센토 — 동네 공중목욕탕. 입장료 ¥350~450으로 저렴. 지역 커뮤니티 공간</td><td class="kanji-col">돈 전(銭), 뜨거울 탕(湯)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="あさぶろ" data-m="아사부로 — 아침 목욕">朝風呂</span></td><td>あさぶろ</td><td>아침 목욕 — 아침 일찍 센토에서 입욕하는 것. 전날 술 마신 후 최고의 해장</td><td class="kanji-col">아침 조(朝), 바람 풍(風), 어조사 려(呂)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="きっさてん" data-m="킷사텐 — 옛날 스타일 다방">喫茶店</span></td><td>きっさてん</td><td>킷사텐 — 옛날 스타일 다방/카페. 소와(昭和) 분위기의 레트로 공간</td><td class="kanji-col">마실 끽(喫), 차 다(茶), 가게 점(店)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="おとおし" data-m="오토시 — 이자카야 기본 안주">お通し</span></td><td>おとおし</td><td>오토시 — 이자카야 착석 시 자동으로 나오는 기본 안주. 좌석료 겸용 (¥300~500)</td><td class="kanji-col">—</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="しぶい" data-m="떫은 / 시크한, 멋지게 낡은 (칭찬)">渋い</span></td><td>しぶい</td><td>시부이 — 원래 '떫은'이지만, 멋지게 낡은·시크한의 뉘앙스로 사용. 오래된 이자카야 칭찬 시</td><td class="kanji-col">떫을 삽(渋)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="いし" data-p="명사">石</span><span class="jw" data-r="しょう" data-p="명사">焼</span></td><td>いしやき</td><td>돌구이 — 뜨거운 돌 위에서 조리하는 방식. いし焼ニノ助의 대표 조리법</td><td class="kanji-col">돌 석(石), 구울 소(焼)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="みそ" data-m="미소 — 된장">味噌</span></td><td>みそ</td><td>된장 — 일본 발효 조미료의 대표. 味噌焼き(된장구이)는 이자카야 인기 메뉴</td><td class="kanji-col">맛 미(味), 된장 조(噌)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="じょうれん" data-m="단골">常連</span></td><td>じょうれん</td><td>단골 — 자주 찾아오는 손님. Day 3이면 재방문으로 「常連みたいだね」라고 들을 수 있음</td><td class="kanji-col">항상 상(常), 이을 련(連)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="そうべつ" data-p="명사">送別</span><span class="jw" data-r="かい" data-p="명사">会</span></td><td>そうべつかい</td><td>송별회 — 떠나는 사람을 위한 모임. 마지막 밤 스낵바에서 자연스러운 작별 분위기</td><td class="kanji-col">보낼 송(送), 나눌 별(別), 모일 회(会)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="あっかん" data-m="압권 — 압도적으로 훌륭한">圧巻</span></td><td>あっかん</td><td>압권 — 압도적으로 훌륭한 장면. 네부타 와랏세의 실물 네부타를 보고 자주 쓰는 표현</td><td class="kanji-col">누를 압(圧), 책 권(巻)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="びじゅつかん" data-m="미술관">美術館</span></td><td>びじゅつかん</td><td>미술관 — 아오모리 현립미술관은 나라 요시토모의 「あおもり犬」으로 유명</td><td class="kanji-col">아름다울 미(美), 재주 술(術), 집 관(館)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="みやげ" data-p="명사">土産</span></td><td>みやげ</td><td>기념품 — お土産(おみやげ). A-FACTORY에서 시드르·사과 과자 등 구매</td><td class="kanji-col">흙 토(土), 낳을 산(産)</td></tr>
+            </tbody>
+        </table>
+    </details>
 
     <!-- Day 3 Transport -->
     <div class="transport-card fade-in">
@@ -3116,6 +3224,34 @@
             <p class="ja" data-jw-done="1"><strong><span class="jw" data-r="たくしー" data-m="택시">タクシー</span><span class="jw" data-r="だいたい" data-p="명사">代替</span><span class="jw" data-b="*" data-p="명사">:</span></strong> <span class="jw" data-r="あおもり" data-m="아오모리">青森</span><span class="jw" data-r="えき" data-m="역">駅</span>→<span class="jw" data-r="くうこう" data-m="공항">空港</span> <span class="jw" data-r="やく" data-m="약, 대략">約</span>30<span class="jw" data-r="ふん" data-m="분">分</span>、<span class="jw" data-b="*" data-p="명사">¥</span>4,000〜5,000。<span class="jw" data-r="にもつ" data-m="짐">荷物</span>が<span class="jw" data-r="おおい" data-m="많은">多い</span><span class="jw" data-r="とき" data-p="명사">時</span>や<span class="jw" data-r="じかん" data-m="시간">時間</span>が<span class="jw" data-r="ぎりぎり" data-m="겨우겨우, 아슬아슬">ギリギリ</span>の<span class="jw" data-r="とき" data-p="명사">時</span>に。</p>
         </div>
     </div>
+
+    <details class="vocab-section fade-in">
+        <summary>Day 4 출발 &amp; 마무리 일본어 단어/표현 (10개)</summary>
+        <table class="vocab-table">
+            <thead><tr><th>日本語</th><th>よみかた</th><th>한국어 설명</th><th>한자 음훈</th></tr></thead>
+            <tbody>
+                <tr><td data-jw-done="1"><span class="jw" data-r="しゅっぱつ" data-p="명사">出発</span></td><td>しゅっぱつ</td><td>출발 — 旅の出発, 여행의 출발. 공항 안내판에서 자주 볼 수 있는 단어</td><td class="kanji-col">날 출(出), 칠 발(発)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="くうこう" data-m="공항">空港</span></td><td>くうこう</td><td>공항 — 아오모리 공항은 시내에서 버스 35분 거리</td><td class="kanji-col">빌 공(空), 항구 항(港)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="とうじょう" data-p="명사">搭乗</span></td><td>とうじょう</td><td>탑승 — 搭乗口(탑승구), 搭乗券(탑승권)으로 자주 사용</td><td class="kanji-col">탈 탑(搭), 탈 승(乗)</td></tr>
+                <tr><td data-jw-done="1">お<span class="jw" data-r="みやげ" data-p="명사">土産</span></td><td>おみやげ</td><td>기념품 — 일본 여행의 필수 문화. A-FACTORY에서 사과 과자·시드르 추천</td><td class="kanji-col">흙 토(土), 낳을 산(産)</td></tr>
+                <tr><td data-jw-done="1">また<span class="jw" data-r="き" data-b="来る" data-p="동사">来</span>ます</td><td>またきます</td><td>또 올게요 — 가게를 나갈 때 쓰는 인사. 주인장이 기뻐하는 마법의 한마디</td><td class="kanji-col">올 래(来)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="おせわ" data-p="명사">お世話</span>になりました</td><td>おせわになりました</td><td>신세 졌습니다 — 호텔 체크아웃, 가게 마지막 방문 시 감사 인사</td><td class="kanji-col">세상 세(世), 이야기 화(話)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="にもつ" data-m="짐">荷物</span></td><td>にもつ</td><td>짐 — 手荷物(てにもつ) = 기내 수하물, 預け荷物 = 위탁 수하물</td><td class="kanji-col">짐 하(荷), 물건 물(物)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="なごりおしい" data-p="형용사">名残惜しい</span></td><td>なごりおしい</td><td>아쉽다 — 헤어짐이 아쉬울 때. 여행 마지막 날의 감정을 표현하는 단어</td><td class="kanji-col">이름 명(名), 남을 잔(残), 아까울 석(惜)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="おもいで" data-p="명사">思い出</span></td><td>おもいで</td><td>추억 — 여행의 思い出(추억). 「いい思い出になりました」= 좋은 추억이 되었습니다</td><td class="kanji-col">생각할 사(思), 날 출(出)</td></tr>
+                <tr><td data-jw-done="1"><span class="jw" data-r="き" data-p="명사">気</span>をつけて</td><td>きをつけて</td><td>조심해서 — 작별 인사로 자주 쓰임. 「気をつけて帰ってね」= 조심해서 돌아가</td><td class="kanji-col">기운 기(気)</td></tr>
+            </tbody>
+        </table>
+    </details>
+
+    <div class="section-quiz fade-in" id="d4-quiz">
+        <h4>📝 Day 4 복습 퀴즈</h4>
+        <p style="color:#666; font-size:0.88em; margin-bottom:16px;">마지막 날! 출발과 작별 인사 일본어를 확인해보세요.</p>
+        <div class="sq-area" data-quiz="d4"></div>
+        <button class="sq-start" onclick="sqStart('d4')">퀴즈 시작! (8문제)</button>
+        <div class="sq-result" data-quiz="d4" style="display:none;"></div>
+    </div>
+
 </section>
 </div>
 
@@ -3301,43 +3437,46 @@
 <div class="container">
 <section id="tips" class="section">
     <h2 class="section-title fade-in"><span class="emoji">📖</span> 아오모리 로컬 문화 가이드</h2>
-    <p class="section-desc fade-in">아오모리의 이자카야·스낵바·센토 문화를 자연스럽게 즐기기 위한 가이드</p>
+    <div class="bilingual">
+        <p class="ko section-desc fade-in">아오모리의 이자카야·스낵바·센토 문화를 자연스럽게 즐기기 위한 가이드</p>
+        <p class="ja section-desc fade-in" data-jw-done="1"><span class="jw" data-r="あおもり" data-m="아오모리">青森</span>の<span class="jw" data-r="いざかや" data-m="이자카야 — 일본식 선술집">居酒屋</span>・<span class="jw" data-r="すなっく" data-m="스낵바">スナック</span>・<span class="jw" data-r="せんとう" data-m="센토 — 동네 공중목욕탕">銭湯</span><span class="jw" data-r="ぶんか" data-m="문화">文化</span>を<span class="jw" data-r="しぜん" data-m="자연">自然</span>に<span class="jw" data-r="たのしむ" data-p="동사">楽しむ</span>ための<span class="jw" data-r="がいど" data-p="명사">ガイド</span></p>
+    </div>
 
     <div class="tip-box fade-in">
-        <h4>카운터석의 매력</h4>
-        <ul><li>아오모리의 이자카야는 소규모 카운터식이 많음. 카운터에 앉으면 주인장과 직접 소통할 수 있고, 분위기도 한층 로컬해짐.</li></ul>
+        <div class="bilingual"><h4 class="ko">카운터석의 매력</h4><h4 class="ja" data-jw-done="1"><span class="jw" data-r="かうんたー" data-m="카운터">カウンター</span><span class="jw" data-r="せき" data-m="좌석">席</span>の<span class="jw" data-r="みりょく" data-p="명사">魅力</span></h4></div>
+        <ul><li><div class="bilingual"><span class="ko">아오모리의 이자카야는 소규모 카운터식이 많음. 카운터에 앉으면 주인장과 직접 소통할 수 있고, 분위기도 한층 로컬해짐.</span><p class="ja" data-jw-done="1"><span class="jw" data-r="あおもり" data-m="아오모리">青森</span>の<span class="jw" data-r="いざかや" data-m="이자카야 — 일본식 선술집">居酒屋</span>は<span class="jw" data-r="しょうきぼ" data-m="소규모">小規模</span><span class="jw" data-r="かうんたー" data-m="카운터">カウンター</span><span class="jw" data-r="しき" data-p="명사">式</span>が<span class="jw" data-r="おおい" data-m="많은">多い</span>。<span class="jw" data-r="かうんたー" data-m="카운터">カウンター</span>に<span class="jw" data-r="すわる" data-m="앉다">座る</span>と<span class="jw" data-r="たいしょう" data-p="명사">大将</span>と<span class="jw" data-r="ちょくせつ" data-p="명사">直接</span><span class="jw" data-r="こみゅにけーしょん" data-p="명사">コミュニケーション</span>でき、<span class="jw" data-r="ふんいき" data-m="분위기">雰囲気</span>もぐっと<span class="jw" data-r="ろーかる" data-m="로컬, 현지">ローカル</span>に。</p></div></li></ul>
     </div>
     <div class="tip-box fade-in">
-        <h4>"おすすめは？" — 만능 주문 표현</h4>
-        <ul><li>뭘 시킬지 모르겠으면 추천을 구하면 됨. 그날 좋은 재료나 자신 있는 메뉴를 알려줌.</li></ul>
+        <div class="bilingual"><h4 class="ko">"おすすめは？" — 만능 주문 표현</h4><h4 class="ja" data-jw-done="1">「<span class="jw" data-m="추천">おすすめ</span>は<span class="jw" data-b="*" data-p="명사">？」—</span> <span class="jw" data-r="ばんのう" data-p="명사">万能</span><span class="jw" data-r="おーだー" data-p="명사">オーダー</span><span class="jw" data-r="ひょうげん" data-p="명사">表現</span></h4></div>
+        <ul><li><div class="bilingual"><span class="ko">뭘 시킬지 모르겠으면 추천을 구하면 됨. 그날 좋은 재료나 자신 있는 메뉴를 알려줌.</span><p class="ja" data-jw-done="1"><span class="jw" data-r="なに" data-p="명사">何</span>を<span class="jw" data-r="ちゅうもん" data-m="주문">注文</span>するか<span class="jw" data-r="まよっ" data-m="헤매다, 고민하다" data-b="迷う">迷っ</span>たら<span class="jw" data-m="추천">おすすめ</span>を<span class="jw" data-r="きけ" data-m="듣다" data-b="聞く">聞け</span>ば<span class="jw" data-b="*" data-p="명사">OK</span>。その<span class="jw" data-r="ひ" data-p="명사">日</span>の<span class="jw" data-r="よい" data-p="형용사">良い</span><span class="jw" data-r="しょくざい" data-p="명사">食材</span>や<span class="jw" data-r="じしん" data-p="명사">自信</span>の<span class="jw" data-r="めにゅー" data-m="메뉴">メニュー</span>を<span class="jw" data-r="おしえ" data-b="教える" data-p="동사">教え</span>てくれる。</p></div></li></ul>
     </div>
     <div class="tip-box fade-in">
-        <h4>스낵바의 카라오케 문화</h4>
-        <ul><li>스낵바에서 카라오케는 기본 문화. 분위기에 맞춰 한 곡 부르면 자연스러움.</li><li>아오모리 관련 추천곡: 津軽海峡冬景色(쓰가루해협 겨울풍경) — 현지 배경의 명곡!</li></ul>
+        <div class="bilingual"><h4 class="ko">스낵바의 카라오케 문화</h4><h4 class="ja" data-jw-done="1"><span class="jw" data-r="すなっく" data-m="스낵바">スナック</span>の<span class="jw" data-r="からおけ" data-m="가라오케">カラオケ</span><span class="jw" data-r="ぶんか" data-m="문화">文化</span></h4></div>
+        <ul><li><div class="bilingual"><span class="ko">스낵바에서 카라오케는 기본 문화. 분위기에 맞춰 한 곡 부르면 자연스러움.</span><p class="ja" data-jw-done="1"><span class="jw" data-r="すなっく" data-m="스낵바">スナック</span>で<span class="jw" data-r="からおけ" data-m="가라오케">カラオケ</span>は<span class="jw" data-r="きほん" data-p="명사">基本</span><span class="jw" data-r="ぶんか" data-m="문화">文化</span>。<span class="jw" data-r="ふんいき" data-m="분위기">雰囲気</span>に<span class="jw" data-r="あわせ" data-b="合わせる" data-p="동사">合わせ</span>て<span class="jw" data-r="いち" data-p="명사">一</span><span class="jw" data-r="きょく" data-p="명사">曲</span><span class="jw" data-r="うたえ" data-b="歌う" data-p="동사">歌え</span>ば<span class="jw" data-r="しぜん" data-m="자연">自然</span>に<span class="jw" data-r="なじめる" data-p="동사">馴染める</span>。</p></div></li><li><div class="bilingual"><span class="ko">아오모리 관련 추천곡: 津軽海峡冬景色(쓰가루해협 겨울풍경) — 현지 배경의 명곡!</span><p class="ja" data-jw-done="1"><span class="jw" data-r="あおもり" data-m="아오모리">青森</span><span class="jw" data-r="かんれん" data-p="명사">関連</span><span class="jw" data-m="추천">おすすめ</span><span class="jw" data-r="きょく" data-p="명사">曲</span>：<span class="jw" data-r="つがるかいきょう" data-p="명사">津軽海峡</span><span class="jw" data-r="ふゆ" data-p="명사">冬</span><span class="jw" data-r="けしき" data-p="명사">景色</span> — ご<span class="jw" data-r="とうち" data-p="명사">当地</span>の<span class="jw" data-r="めいきょく" data-p="명사">名曲</span>！</p></div></li></ul>
     </div>
     <div class="tip-box fade-in">
-        <h4>재방문의 효과</h4>
-        <ul><li>같은 가게에 다시 가면 기억해주는 경우가 많음. 3박이면 자연스럽게 단골 분위기를 느낄 수 있음.</li></ul>
+        <div class="bilingual"><h4 class="ko">재방문의 효과</h4><h4 class="ja" data-jw-done="1"><span class="jw" data-r="さい" data-p="접두사">再</span><span class="jw" data-r="ほうもん" data-p="명사">訪問</span>の<span class="jw" data-r="こうか" data-p="명사">効果</span></h4></div>
+        <ul><li><div class="bilingual"><span class="ko">같은 가게에 다시 가면 기억해주는 경우가 많음. 3박이면 자연스럽게 단골 분위기를 느낄 수 있음.</span><p class="ja" data-jw-done="1"><span class="jw" data-r="おなじ" data-p="연체사">同じ</span><span class="jw" data-r="みせ" data-m="가게">店</span>に<span class="jw" data-r="さいほう" data-p="명사">再訪</span>すると<span class="jw" data-r="おぼえ" data-b="覚える" data-p="동사">覚え</span>てくれることが<span class="jw" data-r="おおい" data-m="많은">多い</span>。3<span class="jw" data-r="はく" data-p="명사">泊</span>あれば<span class="jw" data-r="しぜん" data-m="자연">自然</span>と<span class="jw" data-r="じょうれん" data-m="단골">常連</span><span class="jw" data-r="きぶん" data-p="명사">気分</span>を<span class="jw" data-r="あじわえる" data-m="맛볼 수 있다">味わえる</span>。</p></div></li></ul>
     </div>
     <div class="tip-box fade-in">
-        <h4>센토·온천 이용하기</h4>
-        <ul><li>일본의 공중목욕탕은 동네 커뮤니티 공간. 가벼운 인사나 짧은 대화가 자연스러운 장소.</li></ul>
+        <div class="bilingual"><h4 class="ko">센토·온천 이용하기</h4><h4 class="ja" data-jw-done="1"><span class="jw" data-r="せんとう" data-m="센토 — 동네 공중목욕탕">銭湯</span>・<span class="jw" data-r="おんせん" data-m="온천">温泉</span>を<span class="jw" data-r="りよう" data-m="이용">利用</span>する</h4></div>
+        <ul><li><div class="bilingual"><span class="ko">일본의 공중목욕탕은 동네 커뮤니티 공간. 가벼운 인사나 짧은 대화가 자연스러운 장소.</span><p class="ja" data-jw-done="1"><span class="jw" data-r="にっぽん" data-p="명사">日本</span>の<span class="jw" data-r="せんとう" data-m="센토 — 동네 공중목욕탕">銭湯</span>は<span class="jw" data-r="ちいき" data-m="지역">地域</span>の<span class="jw" data-r="こみゅにてぃ" data-p="명사">コミュニティ</span><span class="jw" data-r="くうかん" data-m="공간">空間</span>。<span class="jw" data-r="かるい" data-p="형용사">軽い</span><span class="jw" data-r="あいさつ" data-m="인사">挨拶</span>やちょっとした<span class="jw" data-r="かいわ" data-m="대화">会話</span>が<span class="jw" data-r="しぜん" data-m="자연">自然</span>な<span class="jw" data-r="ばしょ" data-p="명사">場所</span>。</p></div></li></ul>
     </div>
     <div class="tip-box fade-in">
-        <h4>네부타 — 아오모리의 자부심</h4>
-        <ul><li>네부타 축제에 대해 물어보면 아오모리 사람들은 기꺼이 이야기해줌. 좋은 대화 소재.</li></ul>
+        <div class="bilingual"><h4 class="ko">네부타 — 아오모리의 자부심</h4><h4 class="ja" data-jw-done="1"><span class="jw" data-m="네부타 — 아오모리의 대표 축제">ねぶた</span> — <span class="jw" data-r="あおもり" data-m="아오모리">青森</span>の<span class="jw" data-r="ほこり" data-p="명사">誇り</span></h4></div>
+        <ul><li><div class="bilingual"><span class="ko">네부타 축제에 대해 물어보면 아오모리 사람들은 기꺼이 이야기해줌. 좋은 대화 소재.</span><p class="ja" data-jw-done="1"><span class="jw" data-m="네부타 — 아오모리의 대표 축제">ねぶた</span><span class="jw" data-r="まつり" data-m="축제">祭り</span>について<span class="jw" data-r="きく" data-m="듣다">聞く</span>と<span class="jw" data-r="あおもり" data-m="아오모리">青森</span>の<span class="jw" data-r="ひと" data-p="명사">人</span>は<span class="jw" data-r="よろこん" data-b="喜ぶ" data-p="동사">喜ん</span>で<span class="jw" data-r="はなし" data-b="話す" data-p="동사">話し</span>てくれる。<span class="jw" data-r="よい" data-p="형용사">良い</span><span class="jw" data-r="かいわ" data-m="대화">会話</span>のきっかけに。</p></div></li></ul>
     </div>
     <div class="tip-box fade-in">
-        <h4>아오모리 3대 지자케(地酒)</h4>
-        <ul><li>田酒(덴슈), 豊盃(호하이), 陸奥八仙(무쓰핫센) — 지역 술을 시키면 주인장이 기뻐하며 추천해줌.</li><li>"この辺の地酒ありますか？"로 주문하면 자연스럽게 대화가 이어짐.</li></ul>
+        <div class="bilingual"><h4 class="ko">아오모리 3대 지자케(地酒)</h4><h4 class="ja" data-jw-done="1"><span class="jw" data-r="あおもり" data-m="아오모리">青森</span>3<span class="jw" data-r="だいち" data-p="명사">大地</span><span class="jw" data-r="しゅ" data-m="술">酒</span></h4></div>
+        <ul><li><div class="bilingual"><span class="ko">田酒(덴슈), 豊盃(호하이), 陸奥八仙(무쓰핫센) — 지역 술을 시키면 주인장이 기뻐하며 추천해줌.</span><p class="ja" data-jw-done="1"><span class="jw" data-r="た" data-p="명사">田</span><span class="jw" data-r="しゅ" data-m="술">酒</span>、<span class="jw" data-r="ゆたか" data-p="명사">豊</span><span class="jw" data-r="さかずき" data-p="명사">盃</span>、<span class="jw" data-r="みちのく" data-p="명사">陸奥</span><span class="jw" data-r="はち" data-p="명사">八</span><span class="jw" data-r="せん" data-p="명사">仙</span> — <span class="jw" data-r="じざけ" data-m="지자케 — 그 지역 양조 술">地酒</span>を<span class="jw" data-r="ちゅうもん" data-m="주문">注文</span>すると<span class="jw" data-r="たいしょう" data-p="명사">大将</span>が<span class="jw" data-r="よろこん" data-b="喜ぶ" data-p="동사">喜ん</span>で<span class="jw" data-m="추천">おすすめ</span>してくれる。</p></div></li><li><div class="bilingual"><span class="ko">"この辺の地酒ありますか？"로 주문하면 자연스럽게 대화가 이어짐.</span><p class="ja" data-jw-done="1">「この<span class="jw" data-r="あたり" data-p="명사">辺</span>の<span class="jw" data-r="じざけ" data-m="지자케 — 그 지역 양조 술">地酒</span>ありますか？」と<span class="jw" data-r="ちゅうもん" data-m="주문">注文</span>すると<span class="jw" data-r="しぜん" data-m="자연">自然</span>に<span class="jw" data-r="かいわ" data-m="대화">会話</span>が<span class="jw" data-r="ひろがる" data-m="퍼지다, 넓어지다">広がる</span>。</p></div></li></ul>
     </div>
     <div class="tip-box fade-in">
-        <h4>유용한 일본어 표현</h4>
+        <div class="bilingual"><h4 class="ko">유용한 일본어 표현</h4><h4 class="ja" data-jw-done="1"><span class="jw" data-r="やくだつ" data-p="동사">役立つ</span><span class="jw" data-r="にほんご" data-p="명사">日本語</span><span class="jw" data-r="ひょうげん" data-p="명사">表現</span></h4></div>
         <ul>
-            <li>"初めてなんですけど…" (처음인데요…) — 스낵바 입장 시</li>
-            <li>"おすすめの地酒ありますか？" — 지자케 주문 시</li>
-            <li>"ねぶた祭り行ってみたいんです" — 대화 소재로</li>
-            <li>"また来ます！" (또 올게요!) — 가게를 나갈 때</li>
+            <li><div class="bilingual"><span class="ko">"初めてなんですけど…" (처음인데요…) — 스낵바 입장 시</span><p class="ja" data-jw-done="1">「<span class="jw" data-r="はじめて" data-m="처음">初めて</span>なんですけど…<span class="jw" data-b="*" data-p="명사">」—</span> <span class="jw" data-r="すなっく" data-m="스낵바">スナック</span><span class="jw" data-r="いり" data-p="명사">入</span><span class="jw" data-r="てん" data-m="가게">店</span><span class="jw" data-r="じ" data-p="명사">時</span>に</p></div></li>
+            <li><div class="bilingual"><span class="ko">"おすすめの地酒ありますか？" — 지자케 주문 시</span><p class="ja" data-jw-done="1">「<span class="jw" data-m="추천">おすすめ</span>の<span class="jw" data-r="じざけ" data-m="지자케 — 그 지역 양조 술">地酒</span>ありますか<span class="jw" data-b="*" data-p="명사">？」—</span> <span class="jw" data-r="じざけ" data-m="지자케 — 그 지역 양조 술">地酒</span>を<span class="jw" data-r="ちゅうもん" data-m="주문">注文</span>する<span class="jw" data-r="とき" data-p="명사">時</span></p></div></li>
+            <li><div class="bilingual"><span class="ko">"ねぶた祭り行ってみたいんです" — 대화 소재로</span><p class="ja" data-jw-done="1">「<span class="jw" data-m="네부타 — 아오모리의 대표 축제">ねぶた</span><span class="jw" data-r="まつり" data-m="축제">祭り</span><span class="jw" data-r="いっ" data-b="行く" data-p="동사">行っ</span>てみたいんです」— <span class="jw" data-r="かいわ" data-m="대화">会話</span>の<span class="jw" data-r="ねた" data-p="명사">ネタ</span>に</p></div></li>
+            <li><div class="bilingual"><span class="ko">"また来ます！" (또 올게요!) — 가게를 나갈 때</span><p class="ja" data-jw-done="1">「また<span class="jw" data-r="き" data-b="来る" data-p="동사">来</span>ます！<span class="jw" data-b="*" data-p="명사">」—</span> お<span class="jw" data-r="みせ" data-m="가게">店</span>を<span class="jw" data-r="でる" data-p="동사">出る</span><span class="jw" data-r="とき" data-p="명사">時</span>に</p></div></li>
         </ul>
     </div>
 </section>
@@ -3347,29 +3486,32 @@
 <div class="container">
 <section id="transport" class="section">
     <h2 class="section-title fade-in"><span class="emoji">🚃</span> 교통 가이드</h2>
-    <p class="section-desc fade-in">아오모리 공항 도착부터 시내 이동, 아사무시 온천까지 — 교통 완전 가이드</p>
+    <div class="bilingual">
+        <p class="ko section-desc fade-in">아오모리 공항 도착부터 시내 이동, 아사무시 온천까지 — 교통 완전 가이드</p>
+        <p class="ja section-desc fade-in" data-jw-done="1"><span class="jw" data-r="あおもり" data-m="아오모리">青森</span><span class="jw" data-r="くうこう" data-m="공항">空港</span><span class="jw" data-r="とうちゃく" data-m="도착">到着</span>から<span class="jw" data-r="しない" data-m="시내">市内</span><span class="jw" data-r="いどう" data-m="이동">移動</span>、<span class="jw" data-r="あさむしおんせん" data-p="명사">浅虫温泉</span>まで — <span class="jw" data-r="こうつう" data-m="교통">交通</span><span class="jw" data-r="かんぜん" data-p="명사">完全</span><span class="jw" data-r="がいど" data-p="명사">ガイド</span></p>
+    </div>
 
     <!-- Airport to City -->
     <div class="card fade-in">
         <div class="card-body" style="padding-top:20px">
-            <h3 style="margin-bottom:12px">✈️ 공항 → 시내 (아오모리 공항 리무진버스)</h3>
+            <div class="bilingual"><h3 class="ko" style="margin-bottom:12px">✈️ 공항 → 시내 (아오모리 공항 리무진버스)</h3><h3 class="ja" style="margin-bottom:12px" data-jw-done="1"><span class="jw" data-b="*" data-p="명사">✈</span>️ <span class="jw" data-r="くうこう" data-m="공항">空港</span> → <span class="jw" data-r="しない" data-m="시내">市内</span>（<span class="jw" data-r="あおもり" data-m="아오모리">青森</span><span class="jw" data-r="くうこう" data-m="공항">空港</span><span class="jw" data-r="りむじん" data-p="명사">リムジン</span><span class="jw" data-r="ばす" data-m="버스">バス</span>）</h3></div>
             <div class="transport-card" style="margin-top:12px; border-left:none; background:#f0f7ff; padding:14px 18px;">
                 <div class="route-line">
-                    <span class="route-stop">아오모리 공항</span>
+                    <span class="route-stop"><div class="bilingual"><span class="ko">아오모리 공항</span><span class="ja" data-jw-done="1"><span class="jw" data-r="あおもり" data-m="아오모리">青森</span><span class="jw" data-r="くうこう" data-m="공항">空港</span></span></div></span>
                     <span class="route-arrow">→</span>
                     <span class="route-stop">新町一丁目</span>
                     <span class="route-arrow">→</span>
-                    <span class="route-stop">아오모리역</span>
+                    <span class="route-stop"><div class="bilingual"><span class="ko">아오모리역</span><span class="ja" data-jw-done="1"><span class="jw" data-r="あおもり" data-m="아오모리">青森</span><span class="jw" data-r="えき" data-m="역">駅</span></span></div></span>
                 </div>
-                <p style="margin-top:8px"><strong>소요시간:</strong> 약 35분 | <strong>요금:</strong> ¥710 | <strong>결제:</strong> Suica/PASMO/현금</p>
+                <p style="margin-top:8px"></p><div class="bilingual"><span class="ko"><strong>소요시간:</strong> 약 35분 | <strong>요금:</strong> ¥710 | <strong>결제:</strong> Suica/PASMO/현금</span><span class="ja" data-jw-done="1"><strong><span class="jw" data-r="しょよう" data-p="명사">所要</span><span class="jw" data-r="じかん" data-m="시간">時間</span><span class="jw" data-b="*" data-p="명사">:</span></strong> <span class="jw" data-r="やく" data-m="약, 대략">約</span>35<span class="jw" data-r="ふん" data-m="분">分</span> <span class="jw" data-b="*" data-p="명사">|</span> <strong><span class="jw" data-r="りょうきん" data-m="요금">料金</span><span class="jw" data-b="*" data-p="명사">:</span></strong> ¥710 | <strong><span class="jw" data-r="けっさい" data-p="명사">決済</span><span class="jw" data-b="*" data-p="명사">:</span></strong> <span class="jw" data-b="*" data-p="명사">Suica</span><span class="jw" data-b="*" data-p="명사">/</span><span class="jw" data-b="*" data-p="명사">PASMO</span><span class="jw" data-b="*" data-p="명사">/</span><span class="jw" data-r="げんきん" data-m="현금">現金</span></span></div><p></p>
             </div>
             <ul style="padding-left:18px; font-size:0.9em; color:#555; margin-top:12px">
-                <li>항공편 도착에 맞춰 운행 (대부분의 도착편에 연결)</li>
-                <li>공항 출구 나오면 바로 앞 <strong>1번 정류장</strong>에서 "青森駅" 행 탑승</li>
-                <li>新町一丁目(신마치잇초메) 하차 → 아오모리역 도보 3분</li>
-                <li>호텔이 역 근처면 아오모리역 종점까지 탑승</li>
+                <li><div class="bilingual"><span class="ko">항공편 도착에 맞춰 운행 (대부분의 도착편에 연결)</span><span class="ja" data-jw-done="1"><span class="jw" data-r="こうくう" data-p="명사">航空</span><span class="jw" data-r="びん" data-p="명사">便</span>の<span class="jw" data-r="とうちゃく" data-m="도착">到着</span>に<span class="jw" data-r="あわせ" data-b="合わせる" data-p="동사">合わせ</span>て<span class="jw" data-r="うんこう" data-m="운행">運行</span>（ほとんどの<span class="jw" data-r="とうちゃく" data-m="도착">到着</span><span class="jw" data-r="びん" data-p="명사">便</span>に<span class="jw" data-r="れんらく" data-p="명사">連絡</span>）</span></div></li>
+                <li><div class="bilingual"><span class="ko">공항 출구 나오면 바로 앞 <strong>1번 정류장</strong>에서 "青森駅" 행 탑승</span><span class="ja" data-jw-done="1"><span class="jw" data-r="くうこう" data-m="공항">空港</span><span class="jw" data-r="でぐち" data-p="명사">出口</span>を<span class="jw" data-r="で" data-b="出る" data-p="동사">出</span>てすぐ<span class="jw" data-r="まえ" data-m="앞">前</span>の<strong>1<span class="jw" data-r="ばん" data-p="명사">番</span><span class="jw" data-r="のりば" data-m="승강장">乗り場</span></strong>から「<span class="jw" data-r="あおもり" data-m="아오모리">青森</span><span class="jw" data-r="えき" data-m="역">駅</span>」<span class="jw" data-r="いき" data-p="명사">行き</span>に<span class="jw" data-r="じょうしゃ" data-m="승차">乗車</span></span></div></li>
+                <li><div class="bilingual"><span class="ko">新町一丁目(신마치잇초메) 하차 → 아오모리역 도보 3분</span><span class="ja" data-jw-done="1"><span class="jw" data-r="しんまち" data-p="명사">新町</span><span class="jw" data-r="いち" data-p="명사">一</span><span class="jw" data-r="ちょうめ" data-p="명사">丁目</span><span class="jw" data-r="げしゃ" data-p="명사">下車</span> → <span class="jw" data-r="あおもり" data-m="아오모리">青森</span><span class="jw" data-r="えき" data-m="역">駅</span>まで<span class="jw" data-r="とほ" data-m="도보">徒歩</span>3<span class="jw" data-r="ふん" data-m="분">分</span></span></div></li>
+                <li><div class="bilingual"><span class="ko">호텔이 역 근처면 아오모리역 종점까지 탑승</span><span class="ja" data-jw-done="1"><span class="jw" data-r="ほてる" data-p="명사">ホテル</span>が<span class="jw" data-r="えき" data-m="역">駅</span><span class="jw" data-r="ちかく" data-m="근처">近く</span>なら<span class="jw" data-r="あおもり" data-m="아오모리">青森</span><span class="jw" data-r="えき" data-m="역">駅</span><span class="jw" data-r="しゅうてん" data-p="명사">終点</span>まで<span class="jw" data-r="じょうしゃ" data-m="승차">乗車</span></span></div></li>
             </ul>
-            <a class="photo-link" href="https://www.google.com/maps/place/青森空港" target="_blank" style="margin-top:12px; display:inline-flex;">📸 아오모리 공항 위치</a>
+            <a class="photo-link" href="https://www.google.com/maps/place/青森空港" target="_blank" style="margin-top:12px; display:inline-flex;">📸 <span class="bilingual"><span class="ko">아오모리 공항 위치</span><span class="ja" data-jw-done="1"><span class="jw" data-r="あおもり" data-m="아오모리">青森</span><span class="jw" data-r="くうこう" data-m="공항">空港</span>の<span class="jw" data-r="ばしょ" data-p="명사">場所</span></span></span></a>
         </div>
         <div class="map-container">
             <iframe src="https://maps.google.com/maps?q=青森空港&amp;t=&amp;z=12&amp;ie=UTF8&amp;iwloc=&amp;output=embed" loading="lazy" allowfullscreen=""></iframe>
@@ -3379,20 +3521,20 @@
     <!-- Aoimori Railway -->
     <div class="card fade-in">
         <div class="card-body" style="padding-top:20px">
-            <h3 style="margin-bottom:12px">🚃 아오모리역 ↔ 아사무시 온천 (아오이모리 철도)</h3>
+            <div class="bilingual"><h3 class="ko" style="margin-bottom:12px">🚃 아오모리역 ↔ 아사무시 온천 (아오이모리 철도)</h3><h3 class="ja" style="margin-bottom:12px" data-jw-done="1">🚃 <span class="jw" data-r="あおもり" data-m="아오모리">青森</span><span class="jw" data-r="えき" data-m="역">駅</span> <span class="jw" data-b="*" data-p="명사">↔</span> <span class="jw" data-r="あさむしおんせん" data-p="명사">浅虫温泉</span>（<span class="jw" data-r="あおい" data-p="형용사">青い</span><span class="jw" data-r="もり" data-p="명사">森</span><span class="jw" data-r="てつどう" data-p="명사">鉄道</span>）</h3></div>
             <div class="transport-card" style="margin-top:12px; border-left:none; background:#f0f7ff; padding:14px 18px;">
                 <div class="route-line">
-                    <span class="route-stop">아오모리역</span>
+                    <span class="route-stop"><div class="bilingual"><span class="ko">아오모리역</span><span class="ja" data-jw-done="1"><span class="jw" data-r="あおもり" data-m="아오모리">青森</span><span class="jw" data-r="えき" data-m="역">駅</span></span></div></span>
                     <span class="route-arrow">→</span>
-                    <span class="route-stop">아사무시온천역</span>
+                    <span class="route-stop"><div class="bilingual"><span class="ko">아사무시온천역</span><span class="ja" data-jw-done="1"><span class="jw" data-r="あさむしおんせん" data-p="명사">浅虫温泉</span><span class="jw" data-r="えき" data-m="역">駅</span></span></div></span>
                 </div>
-                <p style="margin-top:8px"><strong>소요시간:</strong> 약 20분 | <strong>요금:</strong> ¥420 | <strong>결제:</strong> Suica/PASMO/현금</p>
+                <p style="margin-top:8px"></p><div class="bilingual"><span class="ko"><strong>소요시간:</strong> 약 20분 | <strong>요금:</strong> ¥420 | <strong>결제:</strong> Suica/PASMO/현금</span><span class="ja" data-jw-done="1"><strong><span class="jw" data-r="しょよう" data-p="명사">所要</span><span class="jw" data-r="じかん" data-m="시간">時間</span><span class="jw" data-b="*" data-p="명사">:</span></strong> <span class="jw" data-r="やく" data-m="약, 대략">約</span>20<span class="jw" data-r="ふん" data-m="분">分</span> <span class="jw" data-b="*" data-p="명사">|</span> <strong><span class="jw" data-r="りょうきん" data-m="요금">料金</span><span class="jw" data-b="*" data-p="명사">:</span></strong> ¥420 | <strong><span class="jw" data-r="けっさい" data-p="명사">決済</span><span class="jw" data-b="*" data-p="명사">:</span></strong> <span class="jw" data-b="*" data-p="명사">Suica</span><span class="jw" data-b="*" data-p="명사">/</span><span class="jw" data-b="*" data-p="명사">PASMO</span><span class="jw" data-b="*" data-p="명사">/</span><span class="jw" data-r="げんきん" data-m="현금">現金</span></span></div><p></p>
             </div>
             <ul style="padding-left:18px; font-size:0.9em; color:#555; margin-top:12px">
-                <li>아오모리역 4번 홈에서 탑승 (하행 방향)</li>
-                <li>약 30분~1시간 간격 운행. 시각표는 역에서 확인</li>
-                <li>아사무시온천역 하차 후 온천가·해변 모두 도보 10분 이내</li>
-                <li>무쓰만 해안선을 따라 달리는 차창 풍경이 아름다움</li>
+                <li><div class="bilingual"><span class="ko">아오모리역 4번 홈에서 탑승 (하행 방향)</span><span class="ja" data-jw-done="1"><span class="jw" data-r="あおもり" data-m="아오모리">青森</span><span class="jw" data-r="えき" data-m="역">駅</span>4<span class="jw" data-r="ばん" data-p="명사">番</span><span class="jw" data-r="ほーむ" data-p="명사">ホーム</span>から<span class="jw" data-r="じょうしゃ" data-m="승차">乗車</span>（<span class="jw" data-r="くだり" data-p="접두사">下り</span><span class="jw" data-r="ほうめん" data-p="명사">方面</span>）</span></div></li>
+                <li><div class="bilingual"><span class="ko">약 30분~1시간 간격 운행. 시각표는 역에서 확인</span><span class="ja" data-jw-done="1"><span class="jw" data-r="やく" data-m="약, 대략">約</span>30<span class="jw" data-r="ふん" data-m="분">分</span><span class="jw" data-b="*" data-p="명사">~</span>1<span class="jw" data-r="じかん" data-m="시간">時間</span><span class="jw" data-r="かんかく" data-p="명사">間隔</span>で<span class="jw" data-r="うんこう" data-m="운행">運行</span>。<span class="jw" data-r="じこく" data-p="명사">時刻</span><span class="jw" data-r="ひょう" data-p="명사">表</span>は<span class="jw" data-r="えき" data-m="역">駅</span>で<span class="jw" data-r="かくにん" data-p="명사">確認</span></span></div></li>
+                <li><div class="bilingual"><span class="ko">아사무시온천역 하차 후 온천가·해변 모두 도보 10분 이내</span><span class="ja" data-jw-done="1"><span class="jw" data-r="あさむしおんせん" data-p="명사">浅虫温泉</span><span class="jw" data-r="えき" data-m="역">駅</span><span class="jw" data-r="げしゃ" data-p="명사">下車</span><span class="jw" data-r="ご" data-p="명사">後</span>、<span class="jw" data-r="おんせん" data-m="온천">温泉</span><span class="jw" data-r="がい" data-p="명사">街</span>・<span class="jw" data-r="かいがん" data-p="명사">海岸</span>とも<span class="jw" data-r="とほ" data-m="도보">徒歩</span>10<span class="jw" data-r="ふん" data-m="분">分</span><span class="jw" data-r="いない" data-p="명사">以内</span></span></div></li>
+                <li><div class="bilingual"><span class="ko">무쓰만 해안선을 따라 달리는 차창 풍경이 아름다움</span><span class="ja" data-jw-done="1"><span class="jw" data-r="むつわん" data-p="명사">陸奥湾</span>の<span class="jw" data-r="かいがん" data-p="명사">海岸</span><span class="jw" data-r="せん" data-p="명사">線</span>に<span class="jw" data-r="そっ" data-b="沿う" data-p="동사">沿っ</span>て<span class="jw" data-r="はしる" data-p="동사">走る</span><span class="jw" data-r="しゃそう" data-p="명사">車窓</span><span class="jw" data-r="ふうけい" data-p="명사">風景</span>が<span class="jw" data-r="うつくしい" data-p="형용사">美しい</span></span></div></li>
             </ul>
         </div>
     </div>
@@ -3400,13 +3542,13 @@
     <!-- City Transport -->
     <div class="card fade-in">
         <div class="card-body" style="padding-top:20px">
-            <h3 style="margin-bottom:12px">🚶 시내 이동</h3>
+            <div class="bilingual"><h3 class="ko" style="margin-bottom:12px">🚶 시내 이동</h3><h3 class="ja" style="margin-bottom:12px" data-jw-done="1">🚶 <span class="jw" data-r="しない" data-m="시내">市内</span><span class="jw" data-r="いどう" data-m="이동">移動</span></h3></div>
             <ul style="padding-left:18px; font-size:0.9em; color:#555">
-                <li><strong>도보 중심:</strong> 후루카와 시장·A-FACTORY·와랏세·이자카야(安方) 모두 아오모리역 도보 2~5분</li>
-                <li><strong>혼마치(스낵바 거리):</strong> 아오모리역에서 도보 10분 또는 택시 ¥700~1,000</li>
-                <li><strong>아오모리 현립미술관 / 산나이마루야마 유적:</strong> 시영 버스 약 20분, ¥310. 아오모리역 동구 6번 정류장</li>
-                <li><strong>야간 택시:</strong> 혼마치→역 ¥700~1,000. 아오모리는 택시비가 저렴한 편</li>
-                <li><strong>IC 카드:</strong> Suica/PASMO가 버스·전철 모두 사용 가능. 미리 충전해두면 편리</li>
+                <li><div class="bilingual"><span class="ko"><strong>도보 중심:</strong> 후루카와 시장·A-FACTORY·와랏세·이자카야(安方) 모두 아오모리역 도보 2~5분</span><span class="ja" data-jw-done="1"><strong><span class="jw" data-r="とほ" data-m="도보">徒歩</span><span class="jw" data-r="ちゅうしん" data-m="중심">中心</span><span class="jw" data-b="*" data-p="명사">:</span></strong> <span class="jw" data-r="ふるかわ" data-m="후루카와">古川</span><span class="jw" data-r="しじょう" data-m="시장">市場</span>・<span class="jw" data-b="*" data-p="명사">A</span><span class="jw" data-b="*" data-p="명사">-</span><span class="jw" data-b="*" data-p="명사">FACTORY</span>・<span class="jw" data-b="*" data-p="명사">ワ・ラッセ・</span><span class="jw" data-r="いざかや" data-m="이자카야 — 일본식 선술집">居酒屋</span>（<span class="jw" data-r="やすかた" data-m="야스카타">安方</span>）すべて<span class="jw" data-r="あおもり" data-m="아오모리">青森</span><span class="jw" data-r="えき" data-m="역">駅</span>から<span class="jw" data-r="とほ" data-m="도보">徒歩</span>2<span class="jw" data-b="*" data-p="명사">~</span>5<span class="jw" data-r="ふん" data-m="분">分</span></span></div></li>
+                <li><div class="bilingual"><span class="ko"><strong>혼마치(스낵바 거리):</strong> 아오모리역에서 도보 10분 또는 택시 ¥700~1,000</span><span class="ja" data-jw-done="1"><strong><span class="jw" data-r="ほんまち" data-m="혼마치">本町</span>（<span class="jw" data-r="すなっく" data-m="스낵바">スナック</span><span class="jw" data-r="がい" data-p="명사">街</span>）<span class="jw" data-b="*" data-p="명사">:</span></strong> <span class="jw" data-r="あおもり" data-m="아오모리">青森</span><span class="jw" data-r="えき" data-m="역">駅</span>から<span class="jw" data-r="とほ" data-m="도보">徒歩</span>10<span class="jw" data-r="ふん" data-m="분">分</span>または<span class="jw" data-r="たくしー" data-m="택시">タクシー</span> <span class="jw" data-b="*" data-p="명사">¥</span>700<span class="jw" data-b="*" data-p="명사">~</span>1,000</span></div></li>
+                <li><div class="bilingual"><span class="ko"><strong>아오모리 현립미술관 / 산나이마루야마 유적:</strong> 시영 버스 약 20분, ¥310. 아오모리역 동구 6번 정류장</span><span class="ja" data-jw-done="1"><strong><span class="jw" data-r="あおもり" data-m="아오모리">青森</span><span class="jw" data-r="けんりつ" data-p="명사">県立</span><span class="jw" data-r="びじゅつかん" data-m="미술관">美術館</span> <span class="jw" data-b="*" data-p="명사">/</span> <span class="jw" data-r="さん" data-p="명사">三</span><span class="jw" data-r="ない" data-p="명사">内</span><span class="jw" data-r="まるやま" data-p="명사">丸山</span><span class="jw" data-r="いせき" data-m="유적">遺跡</span><span class="jw" data-b="*" data-p="명사">:</span></strong> <span class="jw" data-r="しえい" data-p="명사">市営</span><span class="jw" data-r="ばす" data-m="버스">バス</span><span class="jw" data-r="やく" data-m="약, 대략">約</span>20<span class="jw" data-r="ふん" data-m="분">分</span>、<span class="jw" data-b="*" data-p="명사">¥</span>310。<span class="jw" data-r="あおもり" data-m="아오모리">青森</span><span class="jw" data-r="えき" data-m="역">駅</span><span class="jw" data-r="ひがしぐち" data-p="명사">東口</span>6<span class="jw" data-r="ばん" data-p="명사">番</span><span class="jw" data-r="のりば" data-m="승강장">乗り場</span></span></div></li>
+                <li><div class="bilingual"><span class="ko"><strong>야간 택시:</strong> 혼마치→역 ¥700~1,000. 아오모리는 택시비가 저렴한 편</span><span class="ja" data-jw-done="1"><strong><span class="jw" data-r="やかん" data-p="명사">夜間</span><span class="jw" data-r="たくしー" data-m="택시">タクシー</span><span class="jw" data-b="*" data-p="명사">:</span></strong> <span class="jw" data-r="ほんまち" data-m="혼마치">本町</span>→<span class="jw" data-r="えき" data-m="역">駅</span> <span class="jw" data-b="*" data-p="명사">¥</span>700<span class="jw" data-b="*" data-p="명사">~</span>1,000。<span class="jw" data-r="あおもり" data-m="아오모리">青森</span>は<span class="jw" data-r="たくしー" data-m="택시">タクシー</span><span class="jw" data-r="だい" data-p="명사">代</span>が<span class="jw" data-r="やすい" data-p="형용사">安い</span><span class="jw" data-r="ほう" data-p="명사">方</span></span></div></li>
+                <li><div class="bilingual"><span class="ko"><strong>IC 카드:</strong> Suica/PASMO가 버스·전철 모두 사용 가능. 미리 충전해두면 편리</span><span class="ja" data-jw-done="1"><strong><span class="jw" data-b="*" data-p="명사">IC</span><span class="jw" data-r="かーど" data-p="명사">カード</span><span class="jw" data-b="*" data-p="명사">:</span></strong> <span class="jw" data-b="*" data-p="명사">Suica</span><span class="jw" data-b="*" data-p="명사">/</span><span class="jw" data-b="*" data-p="명사">PASMO</span>が<span class="jw" data-r="ばす" data-m="버스">バス</span>・<span class="jw" data-r="でんしゃ" data-m="전차">電車</span>どちらも<span class="jw" data-r="しよう" data-p="명사">使用</span><span class="jw" data-r="かのう" data-m="가능">可能</span>。<span class="jw" data-r="じぜん" data-p="명사">事前</span><span class="jw" data-r="ちゃーじ" data-p="명사">チャージ</span>が<span class="jw" data-r="べんり" data-p="명사">便利</span></span></div></li>
             </ul>
         </div>
     </div>
@@ -3417,24 +3559,27 @@
 <div class="container">
 <section id="budget" class="section">
     <h2 class="section-title fade-in"><span class="emoji">💰</span> 예상 비용 (1인, 3박 4일)</h2>
-    <p class="section-desc">항공편 제외. 환율 100엔 ≈ 900원 기준</p>
+    <div class="bilingual">
+        <p class="ko section-desc">항공편 제외. 환율 100엔 ≈ 900원 기준</p>
+        <p class="ja section-desc" data-jw-done="1"><span class="jw" data-r="こうくう" data-p="명사">航空</span><span class="jw" data-r="けん" data-p="명사">券</span><span class="jw" data-r="じょがい" data-p="명사">除外</span>。<span class="jw" data-r="かわせ" data-p="명사">為替</span><span class="jw" data-r="れーと" data-p="명사">レート</span>100<span class="jw" data-r="えん" data-m="엔">円</span> <span class="jw" data-b="*" data-p="명사">≈</span> 900<span class="jw" data-r="うぉん" data-p="명사">ウォン</span><span class="jw" data-r="きじゅん" data-p="명사">基準</span></p>
+    </div>
 
     <div class="card fade-in">
         <div class="card-body" style="padding-top:20px">
             <table class="budget-table">
                 <thead>
-                    <tr><th>항목</th><th>예상 비용 (¥)</th><th>비고</th></tr>
+                    <tr><th><div class="bilingual"><span class="ko">항목</span><span class="ja" data-jw-done="1"><span class="jw" data-r="こうもく" data-m="항목">項目</span></span></div></th><th><div class="bilingual"><span class="ko">예상 비용 (¥)</span><span class="ja" data-jw-done="1"><span class="jw" data-r="よそう" data-p="명사">予想</span><span class="jw" data-r="ひよう" data-p="명사">費用</span> <span class="jw" data-b="*" data-p="명사">(¥)</span></span></div></th><th><div class="bilingual"><span class="ko">비고</span><span class="ja" data-jw-done="1"><span class="jw" data-r="びこう" data-p="명사">備考</span></span></div></th></tr>
                 </thead>
                 <tbody>
-                    <tr><td>숙소 (비즈니스호텔 3박)</td><td>¥18,000~27,000</td><td>역 근처 비즈니스호텔 기준</td></tr>
-                    <tr><td>식사 (아침·점심 × 4일)</td><td>¥8,000~12,000</td><td>놋케동, 식당 등</td></tr>
-                    <tr><td>이자카야 (3회)</td><td>¥9,000~15,000</td><td>1회 ¥3,000~5,000</td></tr>
-                    <tr><td>스낵바 (3회)</td><td>¥9,000~15,000</td><td>1회 ¥3,000~5,000</td></tr>
-                    <tr><td>교통 (시내+아사무시)</td><td>¥4,000~6,000</td><td>공항버스+전철+버스</td></tr>
-                    <tr><td>온천/센토 (3~4회)</td><td>¥1,500~2,000</td><td>1회 ¥350~500</td></tr>
-                    <tr><td>입장료 (와랏세 등)</td><td>¥1,000~2,000</td><td></td></tr>
-                    <tr><td>기념품·기타</td><td>¥3,000~5,000</td><td>A-FACTORY 쇼핑 등</td></tr>
-                    <tr><td><strong>합계</strong></td><td><strong>¥53,500~84,000</strong></td><td><strong>약 48~75만원</strong></td></tr>
+                    <tr><td><div class="bilingual"><span class="ko">숙소 (비즈니스호텔 3박)</span><span class="ja" data-jw-done="1"><span class="jw" data-r="しゅくはく" data-m="숙박">宿泊</span>（<span class="jw" data-r="びじねす" data-p="명사">ビジネス</span><span class="jw" data-r="ほてる" data-p="명사">ホテル</span>3<span class="jw" data-r="はく" data-p="명사">泊</span>）</span></div></td><td>¥18,000~27,000</td><td><div class="bilingual"><span class="ko">역 근처 비즈니스호텔 기준</span><span class="ja" data-jw-done="1"><span class="jw" data-r="えき" data-m="역">駅</span><span class="jw" data-r="きん" data-p="접두사">近</span><span class="jw" data-r="びじねす" data-p="명사">ビジネス</span><span class="jw" data-r="ほてる" data-p="명사">ホテル</span><span class="jw" data-r="きじゅん" data-p="명사">基準</span></span></div></td></tr>
+                    <tr><td><div class="bilingual"><span class="ko">식사 (아침·점심 × 4일)</span><span class="ja" data-jw-done="1"><span class="jw" data-r="しょくじ" data-p="명사">食事</span>（<span class="jw" data-r="あさ" data-p="명사">朝</span>・<span class="jw" data-r="ひる" data-p="명사">昼</span> × 4<span class="jw" data-r="にち" data-p="명사">日</span>）</span></div></td><td>¥8,000~12,000</td><td><div class="bilingual"><span class="ko">놋케동, 식당 등</span><span class="ja" data-jw-done="1">のっけ<span class="jw" data-r="どんぶり" data-p="명사">丼</span>、<span class="jw" data-r="しょくどう" data-m="식당">食堂</span><span class="jw" data-r="とう" data-p="명사">等</span></span></div></td></tr>
+                    <tr><td><div class="bilingual"><span class="ko">이자카야 (3회)</span><span class="ja" data-jw-done="1"><span class="jw" data-r="いざかや" data-m="이자카야 — 일본식 선술집">居酒屋</span>（3<span class="jw" data-r="かい" data-p="명사">回</span>）</span></div></td><td>¥9,000~15,000</td><td><div class="bilingual"><span class="ko">1회 ¥3,000~5,000</span><span class="ja" data-jw-done="1">1<span class="jw" data-r="かい" data-p="명사">回</span> <span class="jw" data-b="*" data-p="명사">¥</span>3,000<span class="jw" data-b="*" data-p="명사">~</span>5,000</span></div></td></tr>
+                    <tr><td><div class="bilingual"><span class="ko">스낵바 (3회)</span><span class="ja" data-jw-done="1"><span class="jw" data-r="すなっく" data-m="스낵바">スナック</span>（3<span class="jw" data-r="かい" data-p="명사">回</span>）</span></div></td><td>¥9,000~15,000</td><td><div class="bilingual"><span class="ko">1회 ¥3,000~5,000</span><span class="ja" data-jw-done="1">1<span class="jw" data-r="かい" data-p="명사">回</span> <span class="jw" data-b="*" data-p="명사">¥</span>3,000<span class="jw" data-b="*" data-p="명사">~</span>5,000</span></div></td></tr>
+                    <tr><td><div class="bilingual"><span class="ko">교통 (시내+아사무시)</span><span class="ja" data-jw-done="1"><span class="jw" data-r="こうつう" data-m="교통">交通</span>（<span class="jw" data-r="しない" data-m="시내">市内</span><span class="jw" data-b="*" data-p="명사">+</span><span class="jw" data-r="あさむし" data-m="아사무시 — 아오모리시의 온천 지구">浅虫</span>）</span></div></td><td>¥4,000~6,000</td><td><div class="bilingual"><span class="ko">공항버스+전철+버스</span><span class="ja" data-jw-done="1"><span class="jw" data-r="くうこう" data-m="공항">空港</span><span class="jw" data-r="ばす" data-m="버스">バス</span><span class="jw" data-b="*" data-p="명사">+</span><span class="jw" data-r="でんしゃ" data-m="전차">電車</span><span class="jw" data-b="*" data-p="명사">+</span><span class="jw" data-r="ばす" data-m="버스">バス</span></span></div></td></tr>
+                    <tr><td><div class="bilingual"><span class="ko">온천/센토 (3~4회)</span><span class="ja" data-jw-done="1"><span class="jw" data-r="おんせん" data-m="온천">温泉</span><span class="jw" data-b="*" data-p="명사">/</span><span class="jw" data-r="せんとう" data-m="센토 — 동네 공중목욕탕">銭湯</span>（3<span class="jw" data-b="*" data-p="명사">~</span>4<span class="jw" data-r="かい" data-p="명사">回</span>）</span></div></td><td>¥1,500~2,000</td><td><div class="bilingual"><span class="ko">1회 ¥350~500</span><span class="ja" data-jw-done="1">1<span class="jw" data-r="かい" data-p="명사">回</span> <span class="jw" data-b="*" data-p="명사">¥</span>350<span class="jw" data-b="*" data-p="명사">~</span>500</span></div></td></tr>
+                    <tr><td><div class="bilingual"><span class="ko">입장료 (와랏세 등)</span><span class="ja" data-jw-done="1"><span class="jw" data-r="にゅうじょう" data-p="명사">入場</span><span class="jw" data-r="りょう" data-p="명사">料</span>（<span class="jw" data-b="*" data-p="명사">ワ・ラッセ</span><span class="jw" data-r="とう" data-p="명사">等</span>）</span></div></td><td>¥1,000~2,000</td><td></td></tr>
+                    <tr><td><div class="bilingual"><span class="ko">기념품·기타</span><span class="ja" data-jw-done="1">お<span class="jw" data-r="みやげ" data-p="명사">土産</span>・<span class="jw" data-r="そのた" data-p="명사">その他</span></span></div></td><td>¥3,000~5,000</td><td><div class="bilingual"><span class="ko">A-FACTORY 쇼핑 등</span><span class="ja" data-jw-done="1"><span class="jw" data-b="*" data-p="명사">A</span><span class="jw" data-b="*" data-p="명사">-</span><span class="jw" data-b="*" data-p="명사">FACTORY</span> <span class="jw" data-r="しょっぴんぐ" data-p="명사">ショッピング</span><span class="jw" data-r="とう" data-p="명사">等</span></span></div></td></tr>
+                    <tr><td><strong><div class="bilingual"><span class="ko">합계</span><span class="ja" data-jw-done="1"><span class="jw" data-r="ごうけい" data-p="명사">合計</span></span></div></strong></td><td><strong>¥53,500~84,000</strong></td><td><strong><div class="bilingual"><span class="ko">약 48~75만원</span><span class="ja" data-jw-done="1"><span class="jw" data-r="やく" data-m="약, 대략">約</span>48<span class="jw" data-b="*" data-p="명사">~</span>75<span class="jw" data-r="まん" data-p="명사">万</span><span class="jw" data-r="うぉん" data-p="명사">ウォン</span></span></div></strong></td></tr>
                 </tbody>
             </table>
         </div>
@@ -3495,6 +3640,17 @@
         </div>
     </div>
 </section>
+</div>
+
+<!-- 학습 진도 트래커 -->
+<div class="progress-tracker" id="progress-tracker">
+    <h3>📊 학습 진도</h3>
+    <div class="progress-overall">
+        <div class="progress-overall-bar" id="prog-bar" style="width:0%"></div>
+        <div class="progress-overall-text" id="prog-text">0%</div>
+    </div>
+    <div class="progress-days" id="prog-days"></div>
+    <button class="progress-reset" onclick="progressReset()">진도 초기화</button>
 </div>
 
 <!-- Footer -->
@@ -4570,6 +4726,173 @@ const sqData = {
             ],
             "expHtml": "「せばだば、まだな<span class=\"jw\" data-b=\"*\" data-p=\"명사\">！」=</span> 그럼, 또 보자<span class=\"jw\" data-b=\"*\" data-p=\"명사\">!</span> 단골 가게에서 마지막 인사로 최적."
         }
+    ],
+    "d4": [
+        {
+            "q": "가게를 나갈 때 \"또 올게요!\"는 일본어로?",
+            "hint": "またきます",
+            "options": [
+                "ありがとう！",
+                "また来ます！",
+                "さようなら！",
+                "お会計！"
+            ],
+            "answer": 1,
+            "exp": "「また来ます！」= 또 올게요! 주인장이 가장 기뻐하는 마법의 한마디.",
+            "qHtml": "가게를 나갈 때 &quot;또 올게요!&quot;는 일본어로?",
+            "hintHtml": "またきます",
+            "optionsHtml": [
+                "ありがとう！",
+                "また<span class=\"jw\" data-r=\"き\" data-b=\"来る\" data-p=\"동사\">来</span>ます！",
+                "さようなら！",
+                "お<span class=\"jw\" data-r=\"かいけい\" data-p=\"명사\">会計</span>！"
+            ],
+            "expHtml": "「また<span class=\"jw\" data-r=\"き\" data-b=\"来る\" data-p=\"동사\">来</span>ます！<span class=\"jw\" data-b=\"*\" data-p=\"명사\">」=</span> 또 올게요<span class=\"jw\" data-b=\"*\" data-p=\"명사\">!</span> 주인장이 가장 기뻐하는 마법의 한마디."
+        },
+        {
+            "q": "お土産(おみやげ)의 뜻은?",
+            "hint": "おみやげ",
+            "options": [
+                "기념품",
+                "식사",
+                "숙소",
+                "교통"
+            ],
+            "answer": 0,
+            "exp": "お土産 = 기념품. 일본 여행에서 お土産를 사오는 것은 중요한 문화입니다.",
+            "qHtml": "お<span class=\"jw\" data-r=\"みやげ\" data-p=\"명사\">土産</span><span class=\"jw\" data-b=\"*\" data-p=\"명사\">(</span>おみやげ<span class=\"jw\" data-b=\"*\" data-p=\"명사\">)</span>의 뜻은<span class=\"jw\" data-b=\"*\" data-p=\"명사\">?</span>",
+            "hintHtml": "おみやげ",
+            "optionsHtml": [
+                "기념품",
+                "식사",
+                "숙소",
+                "교통"
+            ],
+            "expHtml": "お<span class=\"jw\" data-r=\"みやげ\" data-p=\"명사\">土産</span> <span class=\"jw\" data-b=\"*\" data-p=\"명사\">=</span> 기념품. 일본 여행에서 お<span class=\"jw\" data-r=\"みやげ\" data-p=\"명사\">土産</span>를 사오는 것은 중요한 문화입니다."
+        },
+        {
+            "q": "아오모리 공항까지 리무진버스 소요시간은?",
+            "options": [
+                "약 15분",
+                "약 25분",
+                "약 35분",
+                "약 50분"
+            ],
+            "answer": 2,
+            "exp": "아오모리역에서 공항까지 리무진버스로 약 35분, ¥710입니다.",
+            "qHtml": "아오모리 공항까지 리무진버스 소요시간은?",
+            "hintHtml": "",
+            "optionsHtml": [
+                "약 15분",
+                "약 25분",
+                "약 35분",
+                "약 50분"
+            ],
+            "expHtml": "아오모리역에서 공항까지 리무진버스로 약 35분, ¥710입니다."
+        },
+        {
+            "q": "搭乗口(とうじょうぐち)의 뜻은?",
+            "hint": "とうじょうぐち",
+            "options": [
+                "출구",
+                "탑승구",
+                "입구",
+                "비상구"
+            ],
+            "answer": 1,
+            "exp": "搭乗口 = 탑승구(boarding gate). 공항에서 반드시 확인해야 하는 표지판.",
+            "qHtml": "<span class=\"jw\" data-r=\"とうじょう\" data-p=\"명사\">搭乗</span><span class=\"jw\" data-r=\"ぐち\" data-p=\"명사\">口</span><span class=\"jw\" data-b=\"*\" data-p=\"명사\">(</span>とうじょうぐち<span class=\"jw\" data-b=\"*\" data-p=\"명사\">)</span>의 뜻은<span class=\"jw\" data-b=\"*\" data-p=\"명사\">?</span>",
+            "hintHtml": "とうじょうぐち",
+            "optionsHtml": [
+                "출구",
+                "탑승구",
+                "입구",
+                "비상구"
+            ],
+            "expHtml": "<span class=\"jw\" data-r=\"とうじょう\" data-p=\"명사\">搭乗</span><span class=\"jw\" data-r=\"ぐち\" data-p=\"명사\">口</span> <span class=\"jw\" data-b=\"*\" data-p=\"명사\">=</span> 탑승구<span class=\"jw\" data-b=\"*\" data-p=\"명사\">(</span><span class=\"jw\" data-b=\"*\" data-p=\"명사\">boarding</span> <span class=\"jw\" data-b=\"*\" data-p=\"명사\">gate</span><span class=\"jw\" data-b=\"*\" data-p=\"명사\">).</span> 공항에서 반드시 확인해야 하는 표지판."
+        },
+        {
+            "q": "호텔 체크아웃 시 감사 인사는?",
+            "options": [
+                "いただきます",
+                "お世話になりました",
+                "ごちそうさま",
+                "おやすみなさい"
+            ],
+            "answer": 1,
+            "exp": "「お世話になりました」= 신세 졌습니다. 호텔, 료칸 체크아웃 시 프론트에 하는 정중한 인사.",
+            "qHtml": "호텔 체크아웃 시 감사 인사는?",
+            "hintHtml": "",
+            "optionsHtml": [
+                "いただきます",
+                "<span class=\"jw\" data-r=\"おせわ\" data-p=\"명사\">お世話</span>になりました",
+                "ごちそうさま",
+                "おやすみなさい"
+            ],
+            "expHtml": "「<span class=\"jw\" data-r=\"おせわ\" data-p=\"명사\">お世話</span>になりました」<span class=\"jw\" data-b=\"*\" data-p=\"명사\">=</span> 신세 졌습니다. 호텔, 료칸 체크아웃 시 프론트에 하는 정중한 인사."
+        },
+        {
+            "q": "名残惜しい(なごりおしい)의 뜻은?",
+            "hint": "なごりおしい",
+            "options": [
+                "기쁘다",
+                "아쉽다",
+                "설레다",
+                "무섭다"
+            ],
+            "answer": 1,
+            "exp": "名残惜しい = 헤어짐이 아쉬운. 여행 마지막 날의 감정을 정확하게 표현하는 단어.",
+            "qHtml": "<span class=\"jw\" data-r=\"なごりおしい\" data-p=\"형용사\">名残惜しい</span><span class=\"jw\" data-b=\"*\" data-p=\"명사\">(</span>なごりおしい<span class=\"jw\" data-b=\"*\" data-p=\"명사\">)</span>의 뜻은<span class=\"jw\" data-b=\"*\" data-p=\"명사\">?</span>",
+            "hintHtml": "なごりおしい",
+            "optionsHtml": [
+                "기쁘다",
+                "아쉽다",
+                "설레다",
+                "무섭다"
+            ],
+            "expHtml": "<span class=\"jw\" data-r=\"なごりおしい\" data-p=\"형용사\">名残惜しい</span> <span class=\"jw\" data-b=\"*\" data-p=\"명사\">=</span> 헤어짐이 아쉬운. 여행 마지막 날의 감정을 정확하게 표현하는 단어."
+        },
+        {
+            "q": "「気をつけて帰ってね」의 뜻은?",
+            "options": [
+                "빨리 돌아가",
+                "기분 좋게 가",
+                "조심해서 돌아가",
+                "나중에 다시 와"
+            ],
+            "answer": 2,
+            "exp": "気をつけて = 조심해서. 帰ってね = 돌아가. 가게 주인이나 친구가 작별 시 해주는 따뜻한 인사.",
+            "qHtml": "「<span class=\"jw\" data-r=\"き\" data-p=\"명사\">気</span>をつけて<span class=\"jw\" data-r=\"かえっ\" data-b=\"帰る\" data-p=\"동사\">帰っ</span>てね」의 뜻은<span class=\"jw\" data-b=\"*\" data-p=\"명사\">?</span>",
+            "hintHtml": "",
+            "optionsHtml": [
+                "빨리 돌아가",
+                "기분 좋게 가",
+                "조심해서 돌아가",
+                "나중에 다시 와"
+            ],
+            "expHtml": "<span class=\"jw\" data-r=\"き\" data-p=\"명사\">気</span>をつけて <span class=\"jw\" data-b=\"*\" data-p=\"명사\">=</span> 조심해서. <span class=\"jw\" data-r=\"かえっ\" data-b=\"帰る\" data-p=\"동사\">帰っ</span>てね <span class=\"jw\" data-b=\"*\" data-p=\"명사\">=</span> 돌아가. 가게 주인이나 친구가 작별 시 해주는 따뜻한 인사."
+        },
+        {
+            "q": "思い出(おもいで)의 뜻은?",
+            "hint": "おもいで",
+            "options": [
+                "출발",
+                "기억",
+                "추억",
+                "감정"
+            ],
+            "answer": 2,
+            "exp": "思い出 = 추억. 「いい思い出になりました」(좋은 추억이 되었습니다)는 여행 마지막에 자주 쓰는 표현.",
+            "qHtml": "<span class=\"jw\" data-r=\"おもいで\" data-p=\"명사\">思い出</span><span class=\"jw\" data-b=\"*\" data-p=\"명사\">(</span>おもいで<span class=\"jw\" data-b=\"*\" data-p=\"명사\">)</span>의 뜻은<span class=\"jw\" data-b=\"*\" data-p=\"명사\">?</span>",
+            "hintHtml": "おもいで",
+            "optionsHtml": [
+                "출발",
+                "기억",
+                "추억",
+                "감정"
+            ],
+            "expHtml": "<span class=\"jw\" data-r=\"おもいで\" data-p=\"명사\">思い出</span> <span class=\"jw\" data-b=\"*\" data-p=\"명사\">=</span> 추억. 「いい<span class=\"jw\" data-r=\"おもいで\" data-p=\"명사\">思い出</span>になりました」<span class=\"jw\" data-b=\"*\" data-p=\"명사\">(</span>좋은 추억이 되었습니다<span class=\"jw\" data-b=\"*\" data-p=\"명사\">)</span>는 여행 마지막에 자주 쓰는 표현."
+        }
     ]
 };
 
@@ -4713,6 +5036,8 @@ function sqResult(id) {
         <div class="desc">${desc}</div>
         <button class="sq-retry" onclick="sqStart('${id}')">다시 도전!</button>
     </div>`;
+    // 진도 트래커에 점수 저장
+    if (typeof progSaveQuiz === 'function') progSaveQuiz(id, s.score, s.shuffled.length);
 }
 
 // ===== HOVER DICTIONARY — 빌드 타임 토큰화 완료, 런타임 코드 제거됨 =====
@@ -4790,6 +5115,104 @@ document.addEventListener('click', function(e) {
         hidePopup();
     }
 });
+
+// ===== 학습 진도 트래커 (localStorage) =====
+const PROG_KEY = 'aomori_progress';
+const DAY_IDS = ['d1', 'd2', 'd3', 'd4'];
+const DAY_LABELS = { d1: 'Day 1', d2: 'Day 2', d3: 'Day 3', d4: 'Day 4' };
+
+function progLoad() {
+    try {
+        return JSON.parse(localStorage.getItem(PROG_KEY)) || {};
+    } catch { return {}; }
+}
+
+function progSave(data) {
+    localStorage.setItem(PROG_KEY, JSON.stringify(data));
+}
+
+// 퀴즈 완료 시 점수 저장 (sqResult에서 호출)
+function progSaveQuiz(dayId, score, total) {
+    const data = progLoad();
+    if (!data.quiz) data.quiz = {};
+    const prev = data.quiz[dayId];
+    // 최고 점수만 저장
+    if (!prev || score > prev.score) {
+        data.quiz[dayId] = { score, total, date: new Date().toISOString().slice(0, 10) };
+    }
+    progSave(data);
+    progRender();
+}
+
+// 단어표 열기 추적
+function progTrackVocab() {
+    const data = progLoad();
+    if (!data.vocab) data.vocab = {};
+    document.querySelectorAll('details.vocab-section').forEach((el, i) => {
+        el.addEventListener('toggle', function() {
+            if (this.open) {
+                const d = progLoad();
+                if (!d.vocab) d.vocab = {};
+                d.vocab['v' + i] = true;
+                progSave(d);
+                progRender();
+            }
+        });
+    });
+}
+
+// 진도 UI 렌더링
+function progRender() {
+    const data = progLoad();
+    const quiz = data.quiz || {};
+    const vocab = data.vocab || {};
+    const totalVocab = document.querySelectorAll('details.vocab-section').length;
+    const openedVocab = Object.keys(vocab).length;
+
+    // Day별 카드
+    const daysEl = document.getElementById('prog-days');
+    let html = '';
+    let totalScore = 0, totalQuestions = 0, quizDone = 0;
+
+    DAY_IDS.forEach(id => {
+        const q = quiz[id];
+        const score = q ? q.score : 0;
+        const total = q ? q.total : (sqData[id] ? sqData[id].length : 0);
+        const pct = q ? Math.round((q.score / q.total) * 100) : 0;
+        const color = pct >= 80 ? '#27ae60' : pct >= 50 ? '#f39c12' : '#e74c3c';
+
+        if (q) { totalScore += q.score; totalQuestions += q.total; quizDone++; }
+        else { totalQuestions += total; }
+
+        html += `<div class="progress-day-card">
+            <h4>${DAY_LABELS[id]}</h4>
+            <div class="pdc-row"><span>퀴즈</span><span class="pdc-val">${q ? score + '/' + q.total : '미응시'}</span></div>
+            <div class="pdc-bar"><div class="pdc-bar-fill" style="width:${pct}%;background:${color}"></div></div>
+            ${q ? `<div class="pdc-row" style="margin-top:4px"><span>최고 기록</span><span class="pdc-val">${q.date}</span></div>` : ''}
+        </div>`;
+    });
+
+    daysEl.innerHTML = html;
+
+    // 전체 진도: 퀴즈 70% + 단어표 30%
+    const quizPct = totalQuestions > 0 ? (totalScore / totalQuestions) * 100 : 0;
+    const vocabPct = totalVocab > 0 ? (openedVocab / totalVocab) * 100 : 0;
+    const overall = Math.round(quizPct * 0.7 + vocabPct * 0.3);
+
+    document.getElementById('prog-bar').style.width = overall + '%';
+    document.getElementById('prog-text').textContent = overall + '%';
+}
+
+function progressReset() {
+    if (confirm('학습 진도를 초기화하시겠습니까?')) {
+        localStorage.removeItem(PROG_KEY);
+        progRender();
+    }
+}
+
+// 초기화
+progTrackVocab();
+progRender();
 
 // kuromoji.js — 빌드 타임에 토큰화 완료, 런타임 로드 불필요
 </script>
