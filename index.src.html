@@ -1335,6 +1335,37 @@
             font-size: 0.75em;
             font-weight: 600;
         }
+        /* Day mini progress */
+        .day-mini-progress {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin: 12px auto 0;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.12);
+            border-radius: 10px;
+            font-size: 0.82em;
+            color: rgba(255,255,255,0.85);
+            max-width: 420px;
+        }
+        .day-mini-progress .dmp-label { font-weight: 600; white-space: nowrap; }
+        .day-mini-progress .dmp-bar {
+            flex: 1;
+            height: 6px;
+            background: rgba(255,255,255,0.15);
+            border-radius: 3px;
+            overflow: hidden;
+        }
+        .day-mini-progress .dmp-bar-fill {
+            height: 100%;
+            border-radius: 3px;
+            transition: width 0.3s;
+        }
+        .day-mini-progress .dmp-val {
+            font-weight: 700;
+            min-width: 36px;
+            text-align: right;
+        }
 
         /* Mobile responsive for new elements */
         @media (max-width: 768px) {
@@ -1653,6 +1684,7 @@
         <div class="bilingual">
             <p class="day-theme">도착 & 첫인사 | 시장에서 아침, 워터프런트 산책, 첫 이자카야</p>
             <p class="ja" style="border-left-color:rgba(255,255,255,0.3);background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.8)">到着＆初めての挨拶 | 市場で朝食、ウォーターフロント散歩、初めての居酒屋</p>
+        <div class="day-mini-progress" id="dmp-d1"></div>
         </div>
     </div>
 
@@ -2436,6 +2468,7 @@
         <div class="chapter-num">Chapter 02</div>
         <h2>Day 2 — 4/3(금)</h2>
         <p class="day-theme">아사무시 온천 소풍 & "단골" 되기 작전</p>
+        <div class="day-mini-progress" id="dmp-d2"></div>
     </div>
 
     <!-- Asamushi Onsen -->
@@ -2886,6 +2919,7 @@
         <div class="chapter-num">Chapter 03</div>
         <h2>Day 3 — 4/4(토)</h2>
         <p class="day-theme">로컬처럼 하루 보내기 & 마지막 밤 풀파워</p>
+        <div class="day-mini-progress" id="dmp-d3"></div>
     </div>
 
     <!-- Morning Sento -->
@@ -3210,6 +3244,7 @@
         <div class="chapter-num">Chapter 04</div>
         <h2>Day 4 — 4/5(일)</h2>
         <p class="day-theme">아침 여유 & 출발</p>
+        <div class="day-mini-progress" id="dmp-d4"></div>
     </div>
 
     <div class="card fade-in">
@@ -4547,6 +4582,20 @@ function progRender() {
 
     document.getElementById('prog-bar').style.width = overall + '%';
     document.getElementById('prog-text').textContent = overall + '%';
+
+    // Day별 미니 진도 바 (각 Day header에 표시)
+    DAY_IDS.forEach(id => {
+        const el = document.getElementById('dmp-' + id);
+        if (!el) return;
+        const q = (data.quiz || {})[id];
+        const score = q ? q.score : 0;
+        const total = q ? q.total : (sqData[id] ? sqData[id].length : 0);
+        const pct = q ? Math.round((score / total) * 100) : 0;
+        const color = pct >= 80 ? '#66bb6a' : pct >= 50 ? '#ffa726' : '#ef5350';
+        el.innerHTML = q
+            ? `<span class="dmp-label">📊 퀴즈</span><div class="dmp-bar"><div class="dmp-bar-fill" style="width:${pct}%;background:${color}"></div></div><span class="dmp-val">${score}/${total}</span>`
+            : `<span class="dmp-label">📊 퀴즈</span><span style="opacity:0.6">미응시 — 아래에서 도전!</span>`;
+    });
 }
 
 function progressReset() {
