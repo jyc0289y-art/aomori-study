@@ -1661,6 +1661,277 @@
             background: rgba(231,76,60,0.3);
             color: white;
         }
+
+        /* ===== 심화학습 — 단어 도감 + 뱃지 + 일일 챌린지 ===== */
+        .dex-section {
+            background: linear-gradient(135deg, #0f2027 0%, #203a43 50%, #2c5364 100%);
+            border-radius: 16px;
+            padding: 28px 24px;
+            margin: 32px auto;
+            max-width: 900px;
+            color: white;
+        }
+        .dex-section h3 {
+            text-align: center;
+            font-size: 1.4em;
+            margin-bottom: 6px;
+        }
+        .dex-subtitle {
+            text-align: center;
+            font-size: 0.85em;
+            color: rgba(255,255,255,0.55);
+            margin-bottom: 20px;
+        }
+
+        /* 도감 총 진행 바 */
+        .dex-total {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 22px;
+        }
+        .dex-total-bar {
+            flex: 1;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            height: 22px;
+            overflow: hidden;
+            position: relative;
+        }
+        .dex-total-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #00b894, #00cec9, #0984e3);
+            border-radius: 10px;
+            transition: width 0.8s ease;
+        }
+        .dex-total-text {
+            font-size: 0.9em;
+            font-weight: 700;
+            white-space: nowrap;
+            min-width: 80px;
+            text-align: right;
+        }
+
+        /* 뱃지 그리드 */
+        .dex-badges {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            justify-content: center;
+            margin-bottom: 24px;
+        }
+        .dex-badge {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 10px 14px;
+            text-align: center;
+            min-width: 100px;
+            transition: all 0.3s;
+            opacity: 0.4;
+        }
+        .dex-badge.earned {
+            opacity: 1;
+            border-color: rgba(255,215,0,0.5);
+            background: rgba(255,215,0,0.08);
+            box-shadow: 0 0 12px rgba(255,215,0,0.15);
+        }
+        .dex-badge .badge-icon { font-size: 1.8em; }
+        .dex-badge .badge-name { font-size: 0.75em; margin-top: 4px; font-weight: 600; }
+        .dex-badge .badge-req { font-size: 0.65em; color: rgba(255,255,255,0.5); margin-top: 2px; }
+
+        /* 카테고리 그리드 */
+        .dex-cats {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+        .dex-cat {
+            background: rgba(255,255,255,0.06);
+            border-radius: 12px;
+            padding: 14px 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+        .dex-cat:hover {
+            background: rgba(255,255,255,0.12);
+            transform: translateY(-2px);
+        }
+        .dex-cat .cat-icon { font-size: 1.6em; }
+        .dex-cat .cat-name { font-size: 0.8em; margin-top: 6px; font-weight: 500; }
+        .dex-cat .cat-count { font-size: 0.7em; color: rgba(255,255,255,0.5); margin-top: 3px; }
+        .dex-cat .cat-bar {
+            background: rgba(255,255,255,0.1);
+            border-radius: 4px;
+            height: 5px;
+            margin-top: 8px;
+            overflow: hidden;
+        }
+        .dex-cat .cat-bar-fill {
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.6s ease;
+        }
+
+        /* 카테고리 상세 모달 */
+        .dex-detail-overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.75);
+            z-index: 10000;
+            overflow-y: auto;
+            padding: 40px 16px;
+        }
+        .dex-detail-overlay.active { display: flex; justify-content: center; align-items: flex-start; }
+        .dex-detail-box {
+            background: #1a2332;
+            border-radius: 16px;
+            padding: 28px 24px;
+            max-width: 600px;
+            width: 100%;
+            color: white;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .dex-detail-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 18px;
+        }
+        .dex-detail-header h4 { font-size: 1.2em; margin: 0; }
+        .dex-detail-close {
+            background: none;
+            border: none;
+            color: rgba(255,255,255,0.6);
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+        .dex-word-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+            gap: 8px;
+        }
+        .dex-word {
+            background: rgba(255,255,255,0.05);
+            border-radius: 8px;
+            padding: 8px 10px;
+            font-size: 0.85em;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        .dex-word.discovered {
+            background: rgba(0,184,148,0.15);
+            border: 1px solid rgba(0,184,148,0.3);
+        }
+        .dex-word.undiscovered {
+            color: rgba(255,255,255,0.2);
+            font-style: italic;
+        }
+        .dex-word .dw-ja { font-weight: 600; }
+        .dex-word .dw-ko { font-size: 0.75em; color: rgba(255,255,255,0.6); margin-top: 2px; }
+
+        /* 일일 챌린지 */
+        .dex-challenge {
+            background: rgba(255,255,255,0.06);
+            border-radius: 14px;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        .dex-challenge h4 {
+            font-size: 1.05em;
+            margin-bottom: 14px;
+        }
+        .dex-challenge .streak {
+            font-size: 0.85em;
+            color: rgba(255,255,255,0.6);
+            margin-bottom: 12px;
+        }
+        .dc-question {
+            font-size: 1.1em;
+            margin-bottom: 16px;
+            line-height: 1.6;
+        }
+        .dc-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            max-width: 420px;
+            margin: 0 auto 16px;
+        }
+        .dc-opt {
+            background: rgba(255,255,255,0.08);
+            border: 1px solid rgba(255,255,255,0.15);
+            border-radius: 10px;
+            padding: 12px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.2s;
+            color: white;
+        }
+        .dc-opt:hover { background: rgba(255,255,255,0.15); }
+        .dc-opt.correct { background: rgba(39,174,96,0.3); border-color: #27ae60; }
+        .dc-opt.wrong { background: rgba(231,76,60,0.3); border-color: #e74c3c; }
+        .dc-opt.disabled { pointer-events: none; opacity: 0.6; }
+        .dc-result {
+            font-size: 0.95em;
+            margin-top: 12px;
+            padding: 10px;
+            border-radius: 8px;
+            display: none;
+        }
+        .dc-result.show { display: block; }
+        .dc-next {
+            margin-top: 14px;
+            background: rgba(9,132,227,0.3);
+            border: 1px solid rgba(9,132,227,0.5);
+            color: white;
+            padding: 10px 28px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 0.9em;
+            display: none;
+        }
+        .dc-next.show { display: inline-block; }
+        .dc-score {
+            font-size: 1.2em;
+            font-weight: 700;
+            margin: 12px 0;
+        }
+
+        /* 발견 토스트 */
+        .dex-toast {
+            position: fixed;
+            bottom: 80px;
+            left: 50%;
+            transform: translateX(-50%) translateY(20px);
+            background: rgba(0,184,148,0.95);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 0.85em;
+            font-weight: 600;
+            opacity: 0;
+            transition: all 0.4s;
+            z-index: 10002;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        .dex-toast.show {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+        }
+
+        @media (max-width: 600px) {
+            .dex-cats { grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); }
+            .dc-options { grid-template-columns: 1fr; }
+            .dex-word-list { grid-template-columns: repeat(auto-fill, minmax(90px, 1fr)); }
+        }
     </style>
 </head>
 <body>
@@ -1715,6 +1986,7 @@
     <a href="#budget">예산</a>
     <a href="#travel-quiz">여행퀴즈</a>
     <a href="#lang-quiz">일본어퀴즈</a>
+    <a href="#word-dex">도감</a>
 </nav>
 
 <!-- Overview -->
@@ -4138,6 +4410,47 @@
     <button class="progress-reset" onclick="progressReset()">진도 초기화</button>
 </div>
 
+<!-- ===== 심화학습: 단어 도감 + 뱃지 + 일일 챌린지 ===== -->
+<section id="word-dex" class="section fade-in">
+<div class="dex-section">
+    <h3>📖 단어 도감</h3>
+    <p class="dex-subtitle">페이지를 읽으며 단어를 탭/호버하면 도감에 등록됩니다 — 본 학습 진도에는 영향 없음</p>
+
+    <!-- 총 발견 수 -->
+    <div class="dex-total">
+        <div class="dex-total-bar"><div class="dex-total-fill" id="dex-bar" style="width:0%"></div></div>
+        <div class="dex-total-text" id="dex-total-text">0 / 0</div>
+    </div>
+
+    <!-- 뱃지 -->
+    <div class="dex-badges" id="dex-badges"></div>
+
+    <!-- 카테고리 그리드 -->
+    <div class="dex-cats" id="dex-cats"></div>
+
+    <!-- 일일 챌린지 -->
+    <div class="dex-challenge" id="dex-challenge">
+        <h4>🎯 오늘의 챌린지</h4>
+        <div class="streak" id="dc-streak"></div>
+        <div id="dc-area"></div>
+    </div>
+</div>
+</section>
+
+<!-- 카테고리 상세 모달 -->
+<div class="dex-detail-overlay" id="dex-detail-overlay">
+    <div class="dex-detail-box">
+        <div class="dex-detail-header">
+            <h4 id="dex-detail-title"></h4>
+            <button class="dex-detail-close" onclick="closeDexDetail()">✕</button>
+        </div>
+        <div class="dex-word-list" id="dex-detail-words"></div>
+    </div>
+</div>
+
+<!-- 발견 토스트 -->
+<div class="dex-toast" id="dex-toast"></div>
+
 <!-- Footer -->
 <footer>
     <p>아오모리 여행 계획 | 2026.4.2~4.5</p>
@@ -5182,6 +5495,11 @@ function showPopup(jw) {
     if (activeJw) activeJw.classList.remove('active');
     jw.classList.add('active');
     activeJw = jw;
+
+    // 도감 발견 등록
+    const dexWord = jw.dataset.b || jw.textContent;
+    if (dexWord && koDict[dexWord]) dexDiscover(dexWord);
+    else if (jw.textContent && koDict[jw.textContent]) dexDiscover(jw.textContent);
 }
 
 function hidePopup() {
@@ -5224,6 +5542,453 @@ document.addEventListener('click', function(e) {
     if (!jw && !e.target.closest('#jw-popup')) {
         hidePopup();
     }
+});
+
+// ===== 심화학습: 단어 도감 시스템 =====
+const DEX_KEY = 'aomori_dex';
+const DEX_CHALLENGE_KEY = 'aomori_dc';
+
+// 카테고리 정의 (아이콘, 이름, 색상, 키워드 매칭)
+const dexCategories = [
+    { id: 'food', icon: '🍽️', name: '음식/음료', color: '#e17055',
+      kw: ['덮밥','라멘','사시미','생선','요리','해산물','식권','초밥','젤라토','맛','음식','사과','과일','야채','채소','된장','국','조림','굽','튀김','빵','소스','전병','밥','식사','아침식사','간식','맛집','양념','식재료','회','명물','특산','가게','메뉴','주문','오징어','새우','게 ','카레','고기','소고기','돼지','닭','야키토리','모츠','소바','우동','가정식','정식','식당','포장','배달','과자','냄비','접시','그릇','숟가락','젓가락','뚜껑','익다','삶다','굽다','끓이다','볶다','재료','신선','풍미','짠','매운','달콤','쓴','시큼','갈레트','파스타','이탈리안','카페','디저트','케이크','빙수','떡','배부르'] },
+    { id: 'drink', icon: '🍶', name: '술/음료', color: '#d63031',
+      kw: ['술','사케','시드르','맥주','와인','시음','건배','양조','소주','칵테일','음료','마시','잔','지자케','비교 시음','리큐어','한 잔','차','커피','보틀','드라이','하이볼','위스키','쇼추','청주','도수','알코올','한 병','따르다','잔을','주류','취하'] },
+    { id: 'night', icon: '🏮', name: '나이트라이프', color: '#6c5ce7',
+      kw: ['스낵바','마마상','가라오케','카운터','단골','클럽','바','라운지','2차','3차','나이트','밤','야간','네온','선술집','이자카야','안주','노래','마이크','술집','유흥','호프','포장마차','영업','자리','좌석','분위기','손님'] },
+    { id: 'transport', icon: '🚃', name: '교통', color: '#0984e3',
+      kw: ['버스','역','공항','전철','택시','승차','도보','이동','운행','노선','승강장','탑승','리무진','항공','비행','교통','개찰','출발','도착','환승','표','운임','요금','편도','왕복','경로','길','도로','차','자전거','배편','페리','터미널','시간표','막차','첫차','승객','좌석','예약'] },
+    { id: 'place', icon: '📍', name: '장소/지명', color: '#00b894',
+      kw: ['아오모리','후루카와','혼슈','도호쿠','시장','박물관','온천','공원','항구','거리','시내','에리어','구역','야스카타','혼마치','와랏세','아사무시','관광','명소','호텔','숙박','여관','료칸','민박','체크인','체크아웃','방','객실','로비','프론트','건물','층','입구','출구','지하','옥상','마을','동네','시청','도서관','병원','약국','편의점','슈퍼','센토','목욕','사우나','탈의','탕','원천'] },
+    { id: 'culture', icon: '🏯', name: '문화/축제', color: '#fdcb6e',
+      kw: ['축제','네부타','샤미센','전통','문화','역사','제작','전시','장식','구호','수레','박력','공연','생연주','향토','민속','예술','공예','도자기','염색','기모노','유카타','부채','인형','조각','그림','서예','다도','꽃꽂이','가부키','마츠리','신사','절','참배','오마모리','기원','종교','풍습','예절','관습','문학'] },
+    { id: 'nature', icon: '🌸', name: '자연/계절', color: '#55efc4',
+      kw: ['벚꽃','봄','겨울','눈','자연','산','바다','날씨','기온','개화','계절','쌀쌀','따뜻','풍경','숲','꽃','하늘','비','구름','바람','태풍','습도','안개','홍수','지진','여름','가을','단풍','만개','햇빛','일몰','일출','해변','강','호수','섬','반도','곶','절벽','동물','새','물고기'] },
+    { id: 'people', icon: '👥', name: '사람/감정', color: '#fd79a8',
+      kw: ['사람','친구','가족','어머니','아버지','어르신','아이','남자','여자','손님','주인','직장인','관광객','외국인','현지','노동자','표정','감정','웃','울','기쁘','슬프','즐거','무서','놀라','화나','행복','그립','외로','부끄','긴장','설레','피로','힘들','편안','여유','분위기','호기심','호의','스스럼','친근','따뜻','과묵','열심','적극','소극','겸손','자신감','인사','환대','접대','호스피탈리티','신세','수고','부탁','추억','경험'] },
+    { id: 'expr', icon: '💬', name: '일상 표현', color: '#74b9ff',
+      kw: ['안녕','감사','실례','좋아','싫어','괜찮','어서오세요','잘 먹','잘 부탁','마음을 열','또 보자','죄송','미안','천만에','축하','환영','대단','어렵','쉬운','가능','불가','필요','충분','다르','같은','많은','적은','크','작','높','낮','길','짧','빠르','느리','새로','오래','가까','먼','일찍','늦','아직','벌써','계속','가끔','매일','오늘','내일','어제','다음','이번','처음','마지막','최고','최초','완전'] },
+    { id: 'dialect', icon: '🗣️', name: '방언/쓰가루벤', color: '#a29bfe',
+      kw: ['쓰가루','방언','사투리','맛있다!','멋지다','말투','억양','탁음','거센소리'] },
+    { id: 'lang', icon: '📚', name: '언어/학습', color: '#e84393',
+      kw: ['단어','문법','발음','읽기','쓰기','회화','표현','의미','어휘','한자','히라가나','카타카나','존경','겸양','경어','반말','뜻','번역','통역','언어','일본어','한국어','영어','프랑스어','문장','문자','글자','대사','의성어','의태어','소개','설명','학습','공부','연습','선생','수업','교과서','질문','대답','이해'] },
+    { id: 'life', icon: '🏠', name: '생활/일반', color: '#636e72',
+      kw: ['시간','가격','돈','엔','만','원','가게','구매','판매','세트','예약','무료','유료','현금','카드','결제','계산','합계','비용','예산','할인','세일','인기','유명','보통','일반','특별','중요','필요','있다','없다','하다','되다','알다','보다','모르','찾다','사용','이용','가능','상태','정도','종류','약','정','경험','추천','소개','안내','확인','준비','정리','변경','취소','등록','선택','시작','끝','결정','포인트','구조','시스템','스타일','타입','클래스','레벨','코스','모드','옵션'] },
+    { id: 'etc', icon: '📝', name: '기타', color: '#b2bec3', kw: [] }
+];
+
+// 일본어 한자/카타카나 → 카테고리 매칭 (뜻 키워드로 잡히지 않는 단어 보완)
+const dexJaPatterns = [
+    { id: 'food', re: /[食飯丼麺肉魚菜豆米粉卵乳油糖塩酢汁煮焼揚蒸漬切盛皿鍋膳]|イカ|エビ|カニ|タコ|サーモン|スープ|サラダ|ソース|スパイス|パスタ|ピザ|トッピング|ジューシー|ダイニング|ランチ|ディナー|レストラン|フード|テイスト|フレーバー|グルメ|デリ/ },
+    { id: 'drink', re: /[酒醸泡瓶杯]|ウォーター|ジュース|ティー|ドリンク|ボトル|グラス|ワイン|ビール|ウイスキー|ハイボール|サワー|カクテル/ },
+    { id: 'night', re: /ナイト|スナック|バー$|パブ|クラブ|ネオン|カラオケ|居酒屋|スナ|チャージ/ },
+    { id: 'transport', re: /[駅港線路橋船車輪]|バス|タクシー|フェリー|リムジン|ターミナル|ルート|アクセス|チケット|パス$/ },
+    { id: 'place', re: /[市町村県区街店館園城寺社宮塔堂]|ホテル|ビル|センター|エリア|スポット|ゾーン|プレイス|タウン|ショッピング|コーナー|ブース/ },
+    { id: 'culture', re: /[祭舞踊芸絵書陶染織刀甲冑]|アート|ミュージアム|ギャラリー|フェスティバル|パフォーマンス|アニメ|テレビ|チャンネル|コント|セリフ|シンボル/ },
+    { id: 'nature', re: /[山川海森林花草木鳥虫雪雨風空月星]|シーズン|オフシーズン/ },
+    { id: 'people', re: /[人客員友家父母兄弟姉妹子老若男女氏]|グループ|コミュニティ|コミュニケーション|スタッフ|メンバー|ガイド|ツアー/ },
+    { id: 'food', re: /マグロ|テーブル|マーケット|一本釣り|加熱|スティング|[弁当膳箸皿鍋椀]/ },
+    { id: 'expr', re: /おすすめ|おしゃれ|しっかり|ちゃんと|たっぷり|ぴったり|ギリギリ|ハッピー|パワー|コンパクト|スマート|クオリティ|セルフ|カスタム|また来ます|何気な/ },
+    { id: 'lang', re: /[語言葉字読書話聞答訳文]|フランス語|ランゲージ|レッスン|テキスト|オノマトペ|セリフ|トーク|イントネーション/ },
+    { id: 'place', re: /日本|世界|地方|[都道府]|リゾート|タウン|ホール|ホーム/ },
+    { id: 'people', re: /[愛娘息夫婦姉妹兄弟嬢]|ミチコ|永井|七郎|キャリア|ベテラン|マニア|ユーモア|[感気心情怒泣笑恥嫌]/ },
+    { id: 'culture', re: /ライブ|リズム|ラインナップ|イベント|ハイライト|オープニング|プレミアム|シグネチャー|リアル|[演奏曲歌踊謡劇映画像]|動画/ },
+    { id: 'life', re: /[金銭値売買払届物荷運営印象圧気安高低良悪多少早遅近遠長短広深重軽強弱新古全半]|セレクション|ボリューム|ペース|タイム|ニュー|コート|バックアップ|オブジェ|システム|プロ|スタート|セット|コース|モード|タイプ|レベル|ポイント|パターン|メリット|チャンス|バランス|プラン|プロセス|SNS|インテリア|カーテン|ドア|キー|インターホン|マネー|為替|お土産|お湯|お腹|以下|以外|以上|以内/ },
+];
+
+// 단어 → 카테고리 분류
+function classifyWord(word, meaning) {
+    if (!meaning) return 'etc';
+    const m = meaning.toLowerCase();
+    // 1차: 뜻 키워드 매칭
+    for (const cat of dexCategories) {
+        if (cat.id === 'etc') continue;
+        for (const kw of cat.kw) {
+            if (m.includes(kw)) return cat.id;
+        }
+    }
+    // 2차: 일본어 원어 패턴 매칭
+    for (const jp of dexJaPatterns) {
+        if (jp.re.test(word)) return jp.id;
+    }
+    // 3차: 한자/혼합 단어 → 생활/일반으로 폴백 (카타카나 외래어·순수히라가나만 기타)
+    if (/[一-龥]/.test(word)) return 'life';
+    return 'etc';
+}
+
+// koDict 전체 → 카테고리별 분류 캐시
+let _dexWordMap = null; // { catId: [ {ja, ko} ] }
+function getDexWordMap() {
+    if (_dexWordMap) return _dexWordMap;
+    _dexWordMap = {};
+    dexCategories.forEach(c => _dexWordMap[c.id] = []);
+    for (const [ja, ko] of Object.entries(koDict)) {
+        const catId = classifyWord(ja, ko);
+        _dexWordMap[catId].push({ ja, ko });
+    }
+    // 각 카테고리를 가나다순 정렬
+    for (const catId in _dexWordMap) {
+        _dexWordMap[catId].sort((a, b) => a.ja.localeCompare(b.ja, 'ja'));
+    }
+    return _dexWordMap;
+}
+
+// localStorage
+function dexLoad() {
+    try { return JSON.parse(localStorage.getItem(DEX_KEY)) || { found: {}, firstDate: null }; }
+    catch { return { found: {}, firstDate: null }; }
+}
+function dexSave(data) { localStorage.setItem(DEX_KEY, JSON.stringify(data)); }
+
+// 단어 발견 등록 — showPopup에서 호출
+let _dexToastTimer = null;
+function dexDiscover(word) {
+    const data = dexLoad();
+    if (!data.found) data.found = {};
+    if (!data.found[word]) {
+        data.found[word] = Date.now();
+        if (!data.firstDate) data.firstDate = new Date().toISOString().slice(0,10);
+        dexSave(data);
+        // 토스트 알림
+        const total = Object.keys(data.found).length;
+        const toast = document.getElementById('dex-toast');
+        if (toast) {
+            toast.textContent = `📖 "${word}" 발견! (${total}개)`;
+            toast.classList.add('show');
+            clearTimeout(_dexToastTimer);
+            _dexToastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
+        }
+        // 뱃지 달성 체크
+        checkBadgeMilestone(total);
+        // 도감 UI 업데이트 (throttle)
+        dexRenderThrottle();
+    }
+}
+
+// 뱃지 정의
+const dexBadges = [
+    { id: 'b10',   icon: '🌱', name: '새싹 여행자',    req: 10 },
+    { id: 'b50',   icon: '🥉', name: '초보 탐험가',    req: 50 },
+    { id: 'b100',  icon: '🥈', name: '아오모리 여행자', req: 100 },
+    { id: 'b200',  icon: '🥇', name: '아오모리 탐험가', req: 200 },
+    { id: 'b500',  icon: '🏆', name: '현지인 친구',    req: 500 },
+    { id: 'b1000', icon: '💎', name: '아오모리 마스터', req: 1000 },
+    { id: 'b2000', icon: '👑', name: '전설의 언어학자', req: 2000 },
+];
+
+// 카테고리 뱃지 (80% 달성)
+const dexCatBadges = [
+    { catId: 'food',   icon: '🍣', name: '미식가' },
+    { catId: 'drink',  icon: '🍻', name: '술 마스터' },
+    { catId: 'night',  icon: '🌃', name: '밤의 제왕' },
+    { catId: 'culture',icon: '🎭', name: '문화통' },
+    { catId: 'dialect', icon: '🗣️', name: '쓰가루벤 달인' },
+];
+
+function checkBadgeMilestone(total) {
+    // 수량 뱃지 — 딱 달성 시점에만 토스트
+    for (const b of dexBadges) {
+        if (total === b.req) {
+            setTimeout(() => {
+                const toast = document.getElementById('dex-toast');
+                if (toast) {
+                    toast.textContent = `${b.icon} 뱃지 획득: "${b.name}"!`;
+                    toast.classList.add('show');
+                    clearTimeout(_dexToastTimer);
+                    _dexToastTimer = setTimeout(() => toast.classList.remove('show'), 3000);
+                }
+            }, 2200); // 발견 토스트 이후에 표시
+        }
+    }
+}
+
+// 도감 UI 렌더링
+let _dexRenderPending = false;
+function dexRenderThrottle() {
+    if (_dexRenderPending) return;
+    _dexRenderPending = true;
+    requestAnimationFrame(() => { dexRender(); _dexRenderPending = false; });
+}
+
+function dexRender() {
+    const data = dexLoad();
+    const found = data.found || {};
+    const foundSet = new Set(Object.keys(found));
+    const wordMap = getDexWordMap();
+    const totalWords = Object.keys(koDict).length;
+    const totalFound = foundSet.size;
+
+    // 총 진행 바
+    const pct = totalWords > 0 ? Math.round((totalFound / totalWords) * 100) : 0;
+    const bar = document.getElementById('dex-bar');
+    const text = document.getElementById('dex-total-text');
+    if (bar) bar.style.width = pct + '%';
+    if (text) text.textContent = `${totalFound} / ${totalWords}`;
+
+    // 뱃지 렌더링
+    const badgesEl = document.getElementById('dex-badges');
+    if (badgesEl) {
+        let bh = '';
+        // 수량 뱃지
+        dexBadges.forEach(b => {
+            const earned = totalFound >= b.req;
+            bh += `<div class="dex-badge ${earned ? 'earned' : ''}">
+                <div class="badge-icon">${earned ? b.icon : '❓'}</div>
+                <div class="badge-name">${earned ? b.name : '???'}</div>
+                <div class="badge-req">${b.req}개</div>
+            </div>`;
+        });
+        // 카테고리 뱃지
+        dexCatBadges.forEach(cb => {
+            const catWords = wordMap[cb.catId] || [];
+            const catFound = catWords.filter(w => foundSet.has(w.ja)).length;
+            const earned = catWords.length > 0 && (catFound / catWords.length) >= 0.8;
+            bh += `<div class="dex-badge ${earned ? 'earned' : ''}">
+                <div class="badge-icon">${earned ? cb.icon : '❓'}</div>
+                <div class="badge-name">${earned ? cb.name : '???'}</div>
+                <div class="badge-req">${cb.catId !== 'etc' ? (dexCategories.find(c=>c.id===cb.catId)?.name||'') + ' 80%' : ''}</div>
+            </div>`;
+        });
+        badgesEl.innerHTML = bh;
+    }
+
+    // 카테고리 그리드 렌더링
+    const catsEl = document.getElementById('dex-cats');
+    if (catsEl) {
+        let ch = '';
+        dexCategories.forEach(cat => {
+            const words = wordMap[cat.id] || [];
+            const catFound = words.filter(w => foundSet.has(w.ja)).length;
+            const catPct = words.length > 0 ? Math.round((catFound / words.length) * 100) : 0;
+            ch += `<div class="dex-cat" onclick="openDexDetail('${cat.id}')">
+                <div class="cat-icon">${cat.icon}</div>
+                <div class="cat-name">${cat.name}</div>
+                <div class="cat-count">${catFound} / ${words.length}</div>
+                <div class="cat-bar"><div class="cat-bar-fill" style="width:${catPct}%;background:${cat.color}"></div></div>
+            </div>`;
+        });
+        catsEl.innerHTML = ch;
+    }
+}
+
+// 카테고리 상세 보기
+function openDexDetail(catId) {
+    const cat = dexCategories.find(c => c.id === catId);
+    if (!cat) return;
+    const wordMap = getDexWordMap();
+    const words = wordMap[catId] || [];
+    const found = (dexLoad().found) || {};
+
+    document.getElementById('dex-detail-title').textContent = `${cat.icon} ${cat.name}`;
+    const listEl = document.getElementById('dex-detail-words');
+    let h = '';
+    words.forEach(w => {
+        const disc = found[w.ja];
+        if (disc) {
+            h += `<div class="dex-word discovered"><div class="dw-ja">${w.ja}</div><div class="dw-ko">${w.ko.split('—')[0].trim()}</div></div>`;
+        } else {
+            h += `<div class="dex-word undiscovered"><div class="dw-ja">???</div><div class="dw-ko">미발견</div></div>`;
+        }
+    });
+    listEl.innerHTML = h;
+    document.getElementById('dex-detail-overlay').classList.add('active');
+    document.body.style.overflow = 'hidden';
+}
+function closeDexDetail() {
+    document.getElementById('dex-detail-overlay').classList.remove('active');
+    document.body.style.overflow = '';
+}
+// ESC로 닫기
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && document.getElementById('dex-detail-overlay').classList.contains('active')) {
+        closeDexDetail();
+    }
+});
+// 오버레이 배경 클릭으로 닫기
+document.getElementById('dex-detail-overlay').addEventListener('click', function(e) {
+    if (e.target === this) closeDexDetail();
+});
+
+// ===== 일일 챌린지 =====
+function dcLoad() {
+    try { return JSON.parse(localStorage.getItem(DEX_CHALLENGE_KEY)) || {}; }
+    catch { return {}; }
+}
+function dcSave(data) { localStorage.setItem(DEX_CHALLENGE_KEY, JSON.stringify(data)); }
+
+function dcGetToday() { return new Date().toISOString().slice(0,10); }
+
+// 시드 기반 난수 (날짜별 동일 문제)
+function dcSeedRandom(seed) {
+    let h = 0;
+    for (let i = 0; i < seed.length; i++) { h = ((h << 5) - h + seed.charCodeAt(i)) | 0; }
+    return function() { h = (h * 16807 + 0) % 2147483647; return (h & 0x7fffffff) / 0x7fffffff; };
+}
+
+function dcGenerateQuestions(date, count) {
+    const words = Object.entries(koDict);
+    if (words.length < 4) return [];
+    const rng = dcSeedRandom(date);
+    const questions = [];
+    const used = new Set();
+
+    for (let attempt = 0; attempt < count * 10 && questions.length < count; attempt++) {
+        const idx = Math.floor(rng() * words.length);
+        if (used.has(idx)) continue;
+        used.add(idx);
+        const [ja, ko] = words[idx];
+        const koShort = ko.split('—')[0].split('(')[0].split(',')[0].trim();
+        if (!koShort || koShort.length < 2) continue;
+
+        // 오답 3개 생성
+        const wrongs = [];
+        const wrongUsed = new Set([idx]);
+        for (let w = 0; w < 100 && wrongs.length < 3; w++) {
+            const wi = Math.floor(rng() * words.length);
+            if (wrongUsed.has(wi)) continue;
+            wrongUsed.add(wi);
+            const wko = words[wi][1].split('—')[0].split('(')[0].split(',')[0].trim();
+            if (wko && wko.length >= 2 && wko !== koShort) wrongs.push(wko);
+        }
+        if (wrongs.length < 3) continue;
+
+        // 정답 위치 랜덤
+        const ansIdx = Math.floor(rng() * 4);
+        const options = [...wrongs];
+        options.splice(ansIdx, 0, koShort);
+
+        questions.push({ ja, ko: koShort, options, answer: ansIdx });
+    }
+    return questions;
+}
+
+let dcState = null;
+
+function dcInit() {
+    const today = dcGetToday();
+    const saved = dcLoad();
+    const area = document.getElementById('dc-area');
+    const streakEl = document.getElementById('dc-streak');
+    if (!area) return;
+
+    // 스트릭 계산
+    let streak = saved.streak || 0;
+    if (saved.lastDate === today) {
+        // 오늘 이미 플레이 — 스트릭 유지
+    } else {
+        const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0,10);
+        if (saved.lastDate === yesterday) {
+            // 연속 유지
+        } else if (saved.lastDate) {
+            streak = 0; // 끊김
+        }
+    }
+    if (streakEl) {
+        streakEl.textContent = streak > 0 ? `🔥 ${streak}일 연속 도전 중!` : '매일 도전해서 연속 기록을 세워보세요!';
+    }
+
+    // 오늘의 문제 생성 (5문제)
+    const questions = dcGenerateQuestions(today, 5);
+    if (questions.length === 0) { area.innerHTML = '<p>단어 데이터가 부족합니다.</p>'; return; }
+
+    // 이미 완료했으면 결과 표시
+    if (saved.lastDate === today && saved.todayScore !== undefined) {
+        dcShowComplete(area, saved.todayScore, questions.length, streak);
+        return;
+    }
+
+    dcState = { questions, current: 0, score: 0 };
+    dcShowQuestion(area);
+}
+
+function dcShowQuestion(area) {
+    const s = dcState;
+    if (!s || s.current >= s.questions.length) {
+        dcFinish(area);
+        return;
+    }
+    const q = s.questions[s.current];
+    let h = `<div class="dc-question"><strong>${s.current + 1}/${s.questions.length}</strong>&nbsp;&nbsp;「${q.ja}」의 뜻은?</div>`;
+    h += '<div class="dc-options">';
+    q.options.forEach((opt, i) => {
+        h += `<button class="dc-opt" onclick="dcAnswer(${i})">${opt}</button>`;
+    });
+    h += '</div>';
+    h += '<div class="dc-result" id="dc-result"></div>';
+    h += '<button class="dc-next" id="dc-next" onclick="dcNext()">다음 →</button>';
+    area.innerHTML = h;
+}
+
+function dcAnswer(idx) {
+    const s = dcState;
+    if (!s) return;
+    const q = s.questions[s.current];
+    const opts = document.querySelectorAll('.dc-opt');
+    const result = document.getElementById('dc-result');
+    const next = document.getElementById('dc-next');
+
+    opts.forEach((el, i) => {
+        el.classList.add('disabled');
+        if (i === q.answer) el.classList.add('correct');
+        if (i === idx && idx !== q.answer) el.classList.add('wrong');
+    });
+
+    if (idx === q.answer) {
+        s.score++;
+        result.innerHTML = '✅ 정답!';
+        result.style.background = 'rgba(39,174,96,0.2)';
+        // 도감에 등록
+        dexDiscover(q.ja);
+    } else {
+        result.innerHTML = `❌ 오답 — 정답: <strong>${q.ko}</strong>`;
+        result.style.background = 'rgba(231,76,60,0.2)';
+    }
+    result.classList.add('show');
+    next.classList.add('show');
+}
+
+function dcNext() {
+    const s = dcState;
+    if (!s) return;
+    s.current++;
+    dcShowQuestion(document.getElementById('dc-area'));
+}
+
+function dcFinish(area) {
+    const s = dcState;
+    const saved = dcLoad();
+    const today = dcGetToday();
+    const yesterday = new Date(Date.now() - 86400000).toISOString().slice(0,10);
+    let streak = saved.streak || 0;
+    if (saved.lastDate === yesterday || !saved.lastDate) streak++;
+    else if (saved.lastDate !== today) streak = 1;
+
+    saved.lastDate = today;
+    saved.todayScore = s.score;
+    saved.streak = streak;
+    dcSave(saved);
+
+    dcShowComplete(area, s.score, s.questions.length, streak);
+
+    // 스트릭 업데이트
+    const streakEl = document.getElementById('dc-streak');
+    if (streakEl) streakEl.textContent = `🔥 ${streak}일 연속 도전 중!`;
+}
+
+function dcShowComplete(area, score, total, streak) {
+    const pct = Math.round((score / total) * 100);
+    const emoji = pct >= 80 ? '🎉' : pct >= 60 ? '👏' : '💪';
+    area.innerHTML = `
+        <div class="dc-score">${emoji} ${score} / ${total}</div>
+        <p style="color:rgba(255,255,255,0.7)">오늘의 챌린지 완료! 내일 새 문제가 나옵니다.</p>
+        <p style="color:rgba(255,255,255,0.5);font-size:0.85em;margin-top:8px">🔥 연속 ${streak}일</p>
+    `;
+}
+
+// 도감 초기 렌더링
+document.addEventListener('DOMContentLoaded', function() {
+    dexRender();
+    dcInit();
 });
 
 // ===== 학습 진도 트래커 (localStorage) =====

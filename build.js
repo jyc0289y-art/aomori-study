@@ -564,10 +564,11 @@ async function main() {
     // #jw-loading 인디케이터 제거
     outputHtml = outputHtml.replace(/<div id="jw-loading"[^>]*>.*?<\/div>/s, '');
 
-    // koDict ~ applyKuromoji 함수 전체 제거 (hover dictionary 섹션)
+    // HOVER DICTIONARY 섹션에서 koDict은 보존하고 나머지(posKo~applyKuromoji) 제거
+    // (koDict은 도감 시스템에서 런타임에 사용됨)
     outputHtml = outputHtml.replace(
-        /\/\/ ===== HOVER DICTIONARY — kuromoji\.js 자동 형태소 분석 =====[\s\S]*?\/\/ 로딩 표시 제거\n\s*const indicator = document\.getElementById\('jw-loading'\);\n\s*if \(indicator\) indicator\.style\.display = 'none';\n\}/,
-        '// ===== HOVER DICTIONARY — 빌드 타임 토큰화 완료, 런타임 코드 제거됨 ====='
+        /\/\/ 품사 한국어 매핑 \(koDict에 없을 때 fallback\)[\s\S]*?\/\/ 로딩 표시 제거\n\s*const indicator = document\.getElementById\('jw-loading'\);\n\s*if \(indicator\) indicator\.style\.display = 'none';\n\}/,
+        '// ===== HOVER DICTIONARY — 빌드 타임 토큰화 완료, 런타임 코드 제거됨 (koDict 보존) ====='
     );
 
     // kuromoji.js 동적 로드 블록 제거
