@@ -962,6 +962,87 @@
             .section-title { font-size: 1.15em; }
         }
 
+        /* Song Recommendations */
+        .song-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .song-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            overflow: hidden;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .song-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px var(--card-shadow);
+        }
+        .song-card-inner {
+            padding: 18px 20px;
+        }
+        .song-card-header {
+            display: flex;
+            align-items: baseline;
+            gap: 10px;
+            margin-bottom: 6px;
+        }
+        .song-card-header .song-title {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--text);
+        }
+        .song-card-header .song-artist {
+            font-size: 0.85em;
+            color: var(--text-muted);
+        }
+        .song-card .song-remake {
+            display: inline-block;
+            background: rgba(91,163,217,0.12);
+            color: var(--primary);
+            font-size: 0.78em;
+            font-weight: 600;
+            padding: 3px 10px;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+        .song-card .song-desc {
+            font-size: 0.88em;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+        .song-card .video-embed {
+            margin: 0;
+            border-radius: 0;
+        }
+        .song-card .video-embed iframe {
+            border-radius: 0;
+        }
+        .song-category {
+            font-size: 1.1em;
+            font-weight: 700;
+            color: var(--accent);
+            margin-top: 36px;
+            margin-bottom: 4px;
+            padding-bottom: 8px;
+            border-bottom: 2px solid var(--accent);
+        }
+        .song-category:first-of-type {
+            margin-top: 12px;
+        }
+        .song-category-desc {
+            font-size: 0.85em;
+            color: var(--text-muted);
+            margin-bottom: 16px;
+        }
+        @media (max-width: 600px) {
+            .song-card-inner { padding: 14px 16px; }
+            .song-card-header .song-title { font-size: 1em; }
+            .song-card .song-desc { font-size: 0.83em; }
+        }
+
         /* Review highlights */
         .review-highlights {
             background: var(--surface);
@@ -1980,6 +2061,7 @@
     <a href="#day4">Day 4</a>
     <a href="#dialect">쓰가루벤</a>
     <a href="#tips">로컬 팁</a>
+    <a href="#songs">추천곡</a>
     <a href="#transport">교통</a>
     <a href="#budget">예산</a>
     <a href="#travel-quiz">여행퀴즈</a>
@@ -4232,6 +4314,296 @@
             <li><div class="bilingual"><span class="ko">"また来ます！" (또 올게요!) — 가게를 나갈 때</span><p class="ja" data-jw-done="1">「また<span class="jw" data-r="き" data-m="올, 다음" data-b="来る">来</span>ます！」— お<span class="jw" data-r="みせ" data-m="가게">店</span>を<span class="jw" data-r="でる" data-m="나가다">出る</span><span class="jw" data-r="とき" data-m="때, 시">時</span>に</p></div></li>
         </ul>
     </div>
+</section>
+</div>
+
+<!-- Recommended Songs -->
+<div class="container">
+<section id="songs" class="section">
+    <h2 class="section-title fade-in"><span class="emoji">🎵</span> 이번 여행에 추천하는 곡</h2>
+    <div class="bilingual">
+        <p class="ko section-desc fade-in">아오모리 여행의 분위기를 더해줄 일본 명곡 모음 — 한국에서 미리 들어보고 가세요</p>
+        <p class="ja section-desc fade-in" data-jw-done="1"><span class="jw" data-r="あおもり" data-m="아오모리">青森</span><span class="jw" data-r="りょこう" data-m="여행">旅行</span>の<span class="jw" data-r="ふんいき" data-m="분위기">雰囲気</span>をもっと<span class="jw" data-r="たのしめる" data-m="즐길 수 있다">楽しめる</span><span class="jw" data-r="にっぽん" data-m="일본">日本</span>の<span class="jw" data-r="めいきょく" data-m="명곡">名曲</span><span class="jw" data-r="これくしょん" data-p="명사">コレクション</span></p>
+    </div>
+
+    <div class="song-category fade-in">남성 보컬 — 강력 추천</div>
+    <p class="song-category-desc fade-in">세대를 불문하고 일본인이라면 누구나 아는 곡들</p>
+
+    <div class="song-grid">
+
+        <!-- 1. 瞳をとじて -->
+        <div class="song-card fade-in">
+            <div class="video-embed">
+                <iframe src="https://www.youtube.com/embed/EqVoCfSwfUY" loading="lazy" allowfullscreen=""></iframe>
+            </div>
+            <div class="song-card-inner">
+                <div class="song-card-header">
+                    <span class="song-title">瞳をとじて</span>
+                    <span class="song-artist">平井堅</span>
+                </div>
+                <span class="song-remake">🇰🇷 신승훈 "눈을 감으면"</span>
+                <p class="song-desc">영화 세상의 중심에서 사랑을 외치다(세카츄) OST. 전 세대가 아는 국민곡으로, 한국에서도 신승훈이 리메이크해 큰 인기를 끌었다. 느린 템포라 일본어 발음에 신경 쓸 여유가 있다.</p>
+            </div>
+        </div>
+
+        <!-- 2. I LOVE YOU -->
+        <div class="song-card fade-in">
+            <div class="video-embed">
+                <iframe src="https://www.youtube.com/embed/EsOsc-sajMk" loading="lazy" allowfullscreen=""></iframe>
+            </div>
+            <div class="song-card-inner">
+                <div class="song-card-header">
+                    <span class="song-title">I LOVE YOU</span>
+                    <span class="song-artist">尾崎豊</span>
+                </div>
+                <span class="song-remake">🇰🇷 포지션 "I Love You"</span>
+                <p class="song-desc">일본 남성들의 영원한 명곡. 한국에서는 포지션의 리메이크로 널리 알려졌다. 감정을 실어 부르면 세대를 넘어 공감을 이끌어내는 곡.</p>
+            </div>
+        </div>
+
+        <!-- 3. 奏 -->
+        <div class="song-card fade-in">
+            <div class="video-embed">
+                <iframe src="https://www.youtube.com/embed/J5Z7tIq7bco" loading="lazy" allowfullscreen=""></iframe>
+            </div>
+            <div class="song-card-inner">
+                <div class="song-card-header">
+                    <span class="song-title">奏（かなで）</span>
+                    <span class="song-artist">スキマスイッチ</span>
+                </div>
+                <span class="song-remake">🇰🇷 이석훈 "사랑하나봐"</span>
+                <p class="song-desc">2004년 발매. 아름다운 멜로디가 인상적인 곡으로 한국에서는 이석훈이 "사랑하나봐"로 리메이크했다. 젊은 층부터 중년까지 폭넓게 사랑받는다.</p>
+            </div>
+        </div>
+
+        <!-- 4. 粉雪 -->
+        <div class="song-card fade-in">
+            <div class="video-embed">
+                <iframe src="https://www.youtube.com/embed/1wxTksLZ1Mw" loading="lazy" allowfullscreen=""></iframe>
+            </div>
+            <div class="song-card-inner">
+                <div class="song-card-header">
+                    <span class="song-title">粉雪（こなゆき）</span>
+                    <span class="song-artist">レミオロメン</span>
+                </div>
+                <p class="song-desc">일본 최고의 폭설 지역 아오모리에서 들으면 특별해지는 곡. 사비의 "こなぁーゆきぃー" 부분은 일본인이라면 누구나 따라 부를 정도로 유명하다. 아오모리 여행의 분위기와 완벽하게 어울리는 곡.</p>
+            </div>
+        </div>
+
+        <!-- 5. 糸 -->
+        <div class="song-card fade-in">
+            <div class="video-embed">
+                <iframe src="https://www.youtube.com/embed/VI8zQG-yMMI" loading="lazy" allowfullscreen=""></iframe>
+            </div>
+            <div class="song-card-inner">
+                <div class="song-card-header">
+                    <span class="song-title">糸（いと）</span>
+                    <span class="song-artist">中島みゆき</span>
+                </div>
+                <p class="song-desc">스낵바 단골곡 1위급. 여성 원곡이지만 남성 키로 부르는 것이 보편적이다. 40~60대가 특히 좋아하며, 외국인이 이 곡을 알고 있으면 "일본을 좋아해주는구나"라는 감동을 준다.</p>
+            </div>
+        </div>
+
+        <!-- 6. 小さな恋のうた -->
+        <div class="song-card fade-in">
+            <div class="video-embed">
+                <iframe src="https://www.youtube.com/embed/u8EkSB9zSpE" loading="lazy" allowfullscreen=""></iframe>
+            </div>
+            <div class="song-card-inner">
+                <div class="song-card-header">
+                    <span class="song-title">小さな恋のうた</span>
+                    <span class="song-artist">MONGOL800</span>
+                </div>
+                <p class="song-desc">2001년 곡이지만 세대 불문 국민곡. 업템포 펑크 록으로 분위기를 띄우기 좋다. 20대도 50대도 모두 아는 곡.</p>
+            </div>
+        </div>
+
+        <!-- 7. TRUE LOVE -->
+        <div class="song-card fade-in">
+            <div class="video-embed">
+                <iframe src="https://www.youtube.com/embed/RvIWD9xV4e8" loading="lazy" allowfullscreen=""></iframe>
+            </div>
+            <div class="song-card-inner">
+                <div class="song-card-header">
+                    <span class="song-title">TRUE LOVE</span>
+                    <span class="song-artist">藤井フミヤ</span>
+                </div>
+                <p class="song-desc">90년대 드라마 あすなろ白書 OST로 대히트. 기무라 타쿠야 주연 드라마와 함께 시대를 풍미한 명곡. 30~50대 세대의 추억이 담긴 곡이다.</p>
+            </div>
+        </div>
+
+        <!-- 8. TSUNAMI -->
+        <div class="song-card fade-in">
+            <div class="video-embed">
+                <iframe src="https://www.youtube.com/embed/a63cIqqbt_8" loading="lazy" allowfullscreen=""></iframe>
+            </div>
+            <div class="song-card-inner">
+                <div class="song-card-header">
+                    <span class="song-title">TSUNAMI</span>
+                    <span class="song-artist">サザンオールスターズ</span>
+                </div>
+                <p class="song-desc">일본 역대 싱글 판매 1위를 기록한 국민곡 중의 국민곡. 서던 올스타즈는 일본의 국민 밴드로, 이 곡을 모르는 일본인은 거의 없다.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="song-category fade-in">남성 보컬 — 상황에 따라</div>
+    <p class="song-category-desc fade-in">분위기와 상대에 따라 선택하면 좋은 곡들</p>
+
+    <div class="song-grid">
+
+        <!-- 9. 言えないよ -->
+        <div class="song-card fade-in">
+            <div class="video-embed">
+                <iframe src="https://www.youtube.com/embed/HAkUeMEOXzQ" loading="lazy" allowfullscreen=""></iframe>
+            </div>
+            <div class="song-card-inner">
+                <div class="song-card-header">
+                    <span class="song-title">言えないよ</span>
+                    <span class="song-artist">郷ひろみ</span>
+                </div>
+                <span class="song-remake">🇰🇷 김동률 "감사"의 원곡 분위기</span>
+                <p class="song-desc">40대 이상에게 확실한 반응을 이끌어내는 곡. 진솔한 가사와 멜로디가 인상적이다.</p>
+            </div>
+        </div>
+
+        <!-- 10. 桜坂 -->
+        <div class="song-card fade-in">
+            <div class="video-embed">
+                <iframe src="https://www.youtube.com/embed/AGYJ6jeu3p8" loading="lazy" allowfullscreen=""></iframe>
+            </div>
+            <div class="song-card-inner">
+                <div class="song-card-header">
+                    <span class="song-title">桜坂（さくらざか）</span>
+                    <span class="song-artist">福山雅治</span>
+                </div>
+                <p class="song-desc">일본의 국민배우이자 가수인 후쿠야마 마사하루의 대표곡. 남녀노소 모두 좋아하며, 봄 여행이라면 계절감까지 완벽하다.</p>
+            </div>
+        </div>
+
+        <!-- 11. 世界に一つだけの花 -->
+        <div class="song-card fade-in">
+            <div class="video-embed">
+                <iframe src="https://www.youtube.com/embed/n69cLnXHas4" loading="lazy" allowfullscreen=""></iframe>
+            </div>
+            <div class="song-card-inner">
+                <div class="song-card-header">
+                    <span class="song-title">世界に一つだけの花</span>
+                    <span class="song-artist">SMAP</span>
+                </div>
+                <p class="song-desc">SMAP 해산 후 오히려 더 국민곡이 된 노래. 다 같이 따라 부르는 분위기가 자연스럽게 만들어진다. 일본의 "세상에 하나뿐인 꽃".</p>
+            </div>
+        </div>
+
+        <!-- 12. 花 -->
+        <div class="song-card fade-in">
+            <div class="video-embed">
+                <iframe src="https://www.youtube.com/embed/iYkg90hDInc" loading="lazy" allowfullscreen=""></iframe>
+            </div>
+            <div class="song-card-inner">
+                <div class="song-card-header">
+                    <span class="song-title">花（はな）</span>
+                    <span class="song-artist">ORANGE RANGE</span>
+                </div>
+                <p class="song-desc">밝고 경쾌한 곡으로 분위기 전환에 딱 좋다. 2004년 발매된 오키나와 출신 밴드의 히트곡.</p>
+            </div>
+        </div>
+
+        <!-- 13. さくら -->
+        <div class="song-card fade-in">
+            <div class="video-embed">
+                <iframe src="https://www.youtube.com/embed/p_2F2lKV9uA" loading="lazy" allowfullscreen=""></iframe>
+            </div>
+            <div class="song-card-inner">
+                <div class="song-card-header">
+                    <span class="song-title">さくら（独唱）</span>
+                    <span class="song-artist">森山直太朗</span>
+                </div>
+                <p class="song-desc">일본의 대표적인 봄 노래. 4월 초 벚꽃 시즌에 아오모리를 방문한다면 계절감이 완벽하게 맞는 곡이다.</p>
+            </div>
+        </div>
+
+        <!-- 14. それが大事 -->
+        <div class="song-card fade-in">
+            <div class="video-embed">
+                <iframe src="https://www.youtube.com/embed/i-4in14x5y0" loading="lazy" allowfullscreen=""></iframe>
+            </div>
+            <div class="song-card-inner">
+                <div class="song-card-header">
+                    <span class="song-title">それが大事</span>
+                    <span class="song-artist">大事MANブラザーズバンド</span>
+                </div>
+                <p class="song-desc">응원가 느낌의 밝은 곡. "負けないこと 投げ出さないこと…" 가사를 다 같이 따라 부르기 좋다.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="song-category fade-in">여성 보컬 — 참고용</div>
+    <p class="song-category-desc fade-in">알아두면 좋은 명곡들</p>
+
+    <div class="song-grid">
+
+        <!-- 15. 雪の華 -->
+        <div class="song-card fade-in">
+            <div class="video-embed">
+                <iframe src="https://www.youtube.com/embed/mF5Qq2YheTg" loading="lazy" allowfullscreen=""></iframe>
+            </div>
+            <div class="song-card-inner">
+                <div class="song-card-header">
+                    <span class="song-title">雪の華（ゆきのはな）</span>
+                    <span class="song-artist">中島美嘉</span>
+                </div>
+                <span class="song-remake">🇰🇷 박효신 "눈의 꽃"</span>
+                <p class="song-desc">한국에서는 박효신의 "눈의 꽃"으로 유명한 곡. 겨울·눈 하면 떠오르는 일본의 대표 명곡으로, 아오모리의 설경과 잘 어울린다.</p>
+            </div>
+        </div>
+
+        <!-- 16. ハナミズキ -->
+        <div class="song-card fade-in">
+            <div class="video-embed">
+                <iframe src="https://www.youtube.com/embed/TngUo1gDNOg" loading="lazy" allowfullscreen=""></iframe>
+            </div>
+            <div class="song-card-inner">
+                <div class="song-card-header">
+                    <span class="song-title">ハナミズキ</span>
+                    <span class="song-artist">一青窈</span>
+                </div>
+                <p class="song-desc">전 세대가 아는 국민곡. 느린 템포에 아름다운 가사가 인상적. 일본에서 웨딩송으로도 자주 쓰이는 곡이다.</p>
+            </div>
+        </div>
+
+        <!-- 17. 涙そうそう -->
+        <div class="song-card fade-in">
+            <div class="video-embed">
+                <iframe src="https://www.youtube.com/embed/5TR1wJCimyk" loading="lazy" allowfullscreen=""></iframe>
+            </div>
+            <div class="song-card-inner">
+                <div class="song-card-header">
+                    <span class="song-title">涙そうそう（なだそうそう）</span>
+                    <span class="song-artist">夏川りみ</span>
+                </div>
+                <p class="song-desc">오키나와 민요풍의 따뜻한 곡. 돌아가신 분을 그리는 가사가 감동적이다. 따뜻한 분위기를 만들고 싶을 때 좋은 곡.</p>
+            </div>
+        </div>
+
+        <!-- 18. First Love -->
+        <div class="song-card fade-in">
+            <div class="video-embed">
+                <iframe src="https://www.youtube.com/embed/o1sUaVJUeB0" loading="lazy" allowfullscreen=""></iframe>
+            </div>
+            <div class="song-card-inner">
+                <div class="song-card-header">
+                    <span class="song-title">First Love</span>
+                    <span class="song-artist">宇多田ヒカル</span>
+                </div>
+                <p class="song-desc">1999년 발매. 일본 역사상 가장 많이 팔린 앨범의 타이틀곡. 한국인이 이 곡을 알고 있으면 일본인들이 반가워하는 곡 중 하나. 난이도가 있지만 멜로디가 아름답다.</p>
+            </div>
+        </div>
+
+    </div>
+
 </section>
 </div>
 
